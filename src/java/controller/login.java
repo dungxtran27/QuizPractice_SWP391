@@ -62,8 +62,6 @@ public class login extends HttpServlet {
             request.getRequestDispatcher("login.html").include(request, response);
             return;
         }
-
-
     }
 
     /**
