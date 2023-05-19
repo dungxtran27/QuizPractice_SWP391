@@ -10,8 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.jsp.PageContext;
+//import jakarta.servlet.http.HttpSession;
+//import jakarta.servlet.jsp.PageContext;
 import model.userDAO;
 import model.user;
 
@@ -52,16 +52,16 @@ public class login extends HttpServlet {
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");
         userDAO ud = new userDAO();
-        user foundUser = ud.getUser(pass, name);
-        HttpSession session = request.getSession(true);
-        request.getSession().setAttribute("currUser", foundUser);
-        if (foundUser != null) {
-            response.sendRedirect("index");
-        }else{
-            pr.print("<h3>Invalid username or password!<h3>");
-            request.getRequestDispatcher("login.html").include(request, response);
-            return;
-        }
+////        user foundUser = ud.getUser(pass, name);
+////        HttpSession session = request.getSession(true);
+//        request.getSession().setAttribute("currUser", foundUser);
+//        if (foundUser != null) {
+//            response.sendRedirect("index");
+//        }else{
+//            pr.print("<h3>Invalid username or password!<h3>");
+//            request.getRequestDispatcher("login.html").include(request, response);
+//            return;
+//        }
 
 
     }
