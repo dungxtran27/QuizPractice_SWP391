@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/swp391/src/java/controller/logout.java</file>
+            <file>file:/E:/swp391/src/java/controller/ChangePassword.java</file>
+            <file>file:/E:/swp391/src/java/model/subjectDAO.java</file>
+            <file>file:/E:/swp391/web/change.jsp</file>
             <file>file:/E:/swp391/src/java/model/userDAO.java</file>
-            <file>file:/E:/swp391/src/java/controller/login.java</file>
+            <file>file:/E:/swp391/web/profile.jsp</file>
+            <file>file:/E:/swp391/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
