@@ -9,5 +9,5 @@ package model;
  * @author dungmuahahaha
  */
 public class Course {
-    
+   
 }
