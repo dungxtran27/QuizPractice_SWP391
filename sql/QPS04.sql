@@ -5,6 +5,7 @@ CREATE DATABASE [SWP391_QPS04]
  GO
  USE [SWP391_QPS04]
  GO
+ 
  -- tao database lan 1 
  CREATE TABLE [dbo].[Account](
 	[userId] [int] IDENTITY(1,1) NOT NULL,
