@@ -1,8 +1,9 @@
-    package model;
+    package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import model.DBContext;
 
 public class MyDAO extends DBContext {
   public Connection con = null;
