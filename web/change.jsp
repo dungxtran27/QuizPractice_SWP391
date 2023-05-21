@@ -17,7 +17,6 @@
             <span class="title">Change password form</span>
             <form class="form" action="change">
             Old password: <input type="password" name ="pass"/><br/>
-<!--            <input type="hidden" name="user" value="${sessionScope.user.username}"-->
             New password: <input type="password" name ="npass"/><br/>
             Confirm password: <input type="password" name ="cpass"/><br/>
             <input type="submit" value="Change"/>

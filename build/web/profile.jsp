@@ -5,11 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.User" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+         <link href="css/profile.css" rel="stylesheet" type="text/css"/>
+
+          <title>Profile Change</title>
     </head>
     <body>
     
@@ -21,10 +24,7 @@
                     </div>
 
                     <div>
-                        <table>                   
-
-                      
-                        <tr><td colspan="2" id="error-fname"></td></tr>
+                        <table>            
 
                         <tr>
                             <td>Full name</td>
@@ -65,6 +65,15 @@
                             <td colspan="2"><input id="submit-btn" type="submit" value="Save" /></td>
                         </tr>
                     </table>
+<!--                          <c:if test="${successNoti != null}">
+                            <tr>
+                                <td colspan="2">
+                                    <div id="notification">
+                                        <span>Profile has been changed successfully!</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:if>-->
                 </div>
             </form>
 
