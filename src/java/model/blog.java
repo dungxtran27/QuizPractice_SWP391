@@ -11,4 +11,38 @@ public class blog {
     private int blogId;
     private String blogName;
     private int subId;
+
+    public blog() {
+    }
+
+    public blog(int blogId, String blogName, int subId) {
+        this.blogId = blogId;
+        this.blogName = blogName;
+        this.subId = subId;
+    }
+
+    public int getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(int blogId) {
+        this.blogId = blogId;
+    }
+
+    public String getBlogName() {
+        return blogName;
+    }
+
+    public void setBlogName(String blogName) {
+        this.blogName = blogName;
+    }
+
+    public int getSubId() {
+        return subId;
+    }
+
+    public void setSubId(int subId) {
+        this.subId = subId;
+    }
+    
 }
