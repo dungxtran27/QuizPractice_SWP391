@@ -27,6 +27,20 @@ public class User {
     public User() {
     }
 
+    public User(int userid, String username, String password, String email, int phone, String fullname, String address, String avatar, Role role) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.fullname = fullname;
+        this.address = address;
+        this.avatar = avatar;
+        this.role = role;
+    }
+    
+    
+
     public User(int userid, String username, String password, String status, String email, int phone, String fullname, String address, String gender, String avatar, int roleid, Role role, Timestamp created_date, Timestamp modify_date) {
         this.userid = userid;
         this.username = username;
@@ -69,6 +83,8 @@ public class User {
     public void setPassword_token(String password_token) {
         this.password_token = password_token;
     }
+    
+    
     
     
 }
