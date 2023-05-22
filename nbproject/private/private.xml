@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Subject.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/CourseDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Course.java</file>
@@ -22,6 +23,13 @@
             <file>file:/E:/swp391/web/profile.jsp</file>
             <file>file:/E:/swp391/web/WEB-INF/web.xml</file>
 >>>>>>> 6557833593617a6552d20b70e8b6c9b8fa9f6b72
+=======
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/footer.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/LogInServlet.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Home.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/index.java</file>
+>>>>>>> 5410d4cccffe1ffb9954d89e32ce3ad63cc709a9
         </group>
     </open-files>
 </project-private>
