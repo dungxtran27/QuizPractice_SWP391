@@ -15,3 +15,4 @@
       crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <link rel="stylesheet" href="css/NavbarStyle.css">
+<link rel="stylesheet" href="css/SignInStyle.css">
