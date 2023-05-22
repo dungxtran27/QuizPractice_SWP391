@@ -100,8 +100,10 @@
             </div>
         </div>
 
+
             <div class="footer" >
                   <%@include file="Components/footer.jsp" %>
             </div>
+
     </body>
 </html>
