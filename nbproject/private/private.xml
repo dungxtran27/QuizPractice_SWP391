@@ -3,25 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/DBContext.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/css/inUp.css</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/index.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Course.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/User.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/css/NavbarStyle.css</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/AllAccess.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Quiz.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/MyDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/subjectDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Subject.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/courseDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/index.html</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/footer.jsp</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Home.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/LogInServlet.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/css/inUp_1.css</file>
         </group>
     </open-files>
 </project-private>
