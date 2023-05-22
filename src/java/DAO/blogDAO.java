@@ -18,7 +18,7 @@ import model.blog;
  *
  * @author admin
  */
-public class blogDAO extends DBContext {
+public class blogDAO extends MyDAO {
 
     Connection con = null;
     PreparedStatement pst = null;
