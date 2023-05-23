@@ -5,11 +5,20 @@
 package DAO;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
-import model.*;
+import model.User;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import model.DBContext;
+import java.util.ArrayList;
+import model.Role;
+
+import model.User;
 
 /**
  *
- * @author admin
+ * @author Admin
  */
 public class userDAO extends MyDAO{
     
@@ -121,7 +130,8 @@ public class userDAO extends MyDAO{
         }
     }
          // tim user theo email va password
-          public User getUser(String email, String password) {
+    
+     public User getUser(String email, String password){
         try {
             if (con != null) {
                 xSql = "SELECT u.*, r.* FROM [User] u , [Role] r  WHERE [email] = ? AND [password] = ? and r.roleId = u.roleId";
@@ -159,7 +169,7 @@ public class userDAO extends MyDAO{
             }
         }
         return null;
-    }
+     }
     //tim nguoi dung theo id va cap nhat mat khau
     public void changePassword(int userID, String newPassword) {
         xSql = "UPDATE User SET password = ? WHERE userId = ?";
@@ -184,3 +194,4 @@ public class userDAO extends MyDAO{
     }
 
 }
+

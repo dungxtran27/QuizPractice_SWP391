@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.sql.Timestamp;
@@ -73,14 +76,6 @@ public class User {
         this.role = role;
         this.created_date = created_date;
         this.modify_date = modify_date;
-        this.password_token = password_token;
-    }
-
-    public String getPassword_token() {
-        return password_token;
-    }
-
-    public void setPassword_token(String password_token) {
         this.password_token = password_token;
     }
 
@@ -195,9 +190,6 @@ public class User {
     public void setModify_date(Timestamp modify_date) {
         this.modify_date = modify_date;
     }
-    
-    
-    
     
 }
 
