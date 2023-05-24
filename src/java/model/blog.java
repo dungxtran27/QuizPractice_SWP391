@@ -7,15 +7,15 @@ package model;
  *
  * @author admin
  */
-public class blog {
+public class Blog {
     private int blogId;
     private String blogName;
     private int subId;
 
-    public blog() {
+    public Blog() {
     }
 
-    public blog(int blogId, String blogName, int subId) {
+    public Blog(int blogId, String blogName, int subId) {
         this.blogId = blogId;
         this.blogName = blogName;
         this.subId = subId;

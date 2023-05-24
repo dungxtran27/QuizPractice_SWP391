@@ -4,10 +4,9 @@
  */
 package controller;
 
-import model.blog;
-import DAO.blogDAO;
+import model.Blog;
+import DAO.BlogDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -34,12 +33,10 @@ public class BlogListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            blogDAO bdao = new blogDAO();
-            List<blog> bl = bdao.getListBlogs();
-            request.setAttribute("bl", bl);
-            request.getRequestDispatcher("/BlogList.jsp").forward(request, response);
-        }
+        BlogDAO bdao = new BlogDAO();
+        List<Blog> listB = bdao.getListBlogs();
+        request.setAttribute("listB", listB);
+        request.getRequestDispatcher("BlogList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

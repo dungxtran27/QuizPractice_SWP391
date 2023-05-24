@@ -4,12 +4,11 @@
  */
 package controller;
 
-import DAO.blogDAO;
-import model.blog;
+import DAO.BlogDAO;
+import model.Blog;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,8 +17,6 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-
-@WebServlet(name = "BlogDetailController", urlPatterns = {"/BlogDetailController"})
 public class BlogDetailController extends HttpServlet {
 
     /**
@@ -60,11 +57,6 @@ public class BlogDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        blogDAO bdao = new blogDAO();
-        blog temp = (blog) bdao.getListBlogs();
-        request.setAttribute("bl", temp);
-        request.getRequestDispatcher("/BlogDetail.jsp").forward(request, response);
-
     }
 
     /**

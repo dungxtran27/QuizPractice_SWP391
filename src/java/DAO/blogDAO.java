@@ -4,43 +4,29 @@
  */
 package DAO;
 
-import model.DBContext;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.blog;
+import model.*;
 
 /**
  *
  * @author admin
  */
-public class blogDAO extends MyDAO {
+public class BlogDAO extends MyDAO {
 
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-
-    public List<blog> getListBlogs() {
-        ArrayList<blog> list = new ArrayList<>();
+    public List<Blog> getListBlogs() {
+        List<Blog> list = new ArrayList<>();
+        xSql = "select * from Blog";
         try {
-            String sql = "select * from Blog";
-            PreparedStatement stm = con.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
             while (rs.next()) {
-
-                blog bl = new blog();
-                bl.setBlogId(rs.getInt(1));
-                bl.setBlogName(rs.getString(2));
-                bl.setSubId(rs.getInt(3));
-
-                list.add(bl);
+                list.add(new Blog(rs.getInt(1),
+                                  rs.getString(2),
+                                  rs.getInt(3)));
             }
-        } catch (Exception ex) {
-            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return list;
     }

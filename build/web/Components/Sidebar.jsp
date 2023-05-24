@@ -6,7 +6,7 @@
     </div>
 
     <ul class="list-unstyled components">
-        <p>Dummy Heading</p>
+        <p>Quiz Practicing System</p>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -48,7 +48,7 @@
 
     <ul class="list-unstyled CTAs">
         <li>
-            <a href="Login.jsp" class="login">Login</a>
+            <a href="SignIn.jsp" class="login">Login</a>
         </li>
         <li>
             <a href="#" class="register">Sign up</a>

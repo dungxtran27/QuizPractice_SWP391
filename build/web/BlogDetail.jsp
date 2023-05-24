@@ -53,9 +53,9 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h2 class="card-title">Card One</h2>
-                                    <p class="card-text">${bl.getBlogId()}</p>
-                                    <p class="card-text">${bl.getBlogName()}</p>
-                                    <p class="card-text">${bl.getSubId()}</p>
+                                    <p class="card-text">${blog.BlogId}</p>
+                                    <p class="card-text">${blog.BlogName}</p>
+                                    <p class="card-text">${blog.SubId}</p>
                                 </div>
                                 <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                             </div>
@@ -64,9 +64,9 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h2 class="card-title">Card Two</h2>
-                                    <p class="card-text">${bl.getBlogId()}</p>
-                                    <p class="card-text">${bl.getBlogName()}</p>
-                                    <p class="card-text">${bl.getSubId()}</p>
+                                    <p class="card-text">${blog.BlogId}</p>
+                                    <p class="card-text">${blog.BlogName}</p>
+                                    <p class="card-text">${blog.SubId}</p>
                                 </div>
                                 <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                             </div>
@@ -75,9 +75,9 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h2 class="card-title">Card Three</h2>
-                                    <p class="card-text">${bl.getBlogId()}</p>
-                                    <p class="card-text">${bl.getBlogName()}</p>
-                                    <p class="card-text">${bl.getSubId()}</p>
+                                    <p class="card-text">${blog.BlogId}</p>
+                                    <p class="card-text">${blog.BlogName}</p>
+                                    <p class="card-text">${blog.SubId}</p>
                                 </div>
                                 <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                             </div>
