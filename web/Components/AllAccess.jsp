@@ -16,3 +16,4 @@
 
 <link rel="stylesheet" href="css/NavbarStyle.css">
 <link rel="stylesheet" href="css/SignInStyle.css">
+<link rel="stylesheet" href="css/SignUpStyle.css">

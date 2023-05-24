@@ -51,7 +51,7 @@
             <a href="SignIn.jsp" class="login">Login</a>
         </li>
         <li>
-            <a href="#" class="register">Sign up</a>
+            <a href="SignUp.jsp" class="register">Sign up</a>
         </li>
     </ul>
 </nav>
