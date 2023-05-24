@@ -30,23 +30,23 @@ public class LogInServlet extends HttpServlet {
         request.getSession().setAttribute("currentYear", currentYear);
         PrintWriter pr = response.getWriter();
         
-        String user = request.getParameter("username");
+        String email = request.getParameter("email");
         String pass = request.getParameter("password");
         
         User x;
         userDAO t = new userDAO();
         
-        x = t.getUser(user, pass);
+        x = t.getUser(email, pass);
         request.getSession().setAttribute("currUser", x);
         
         String logResult="";
-
+        
         if(x==null){
             logResult = "Sorry, username and/or password are/ is invalid!";
         } else {
             logResult = "Login is successful!";
         }
-//        
+        
 //        if(user != null && pass != null){
 //            User us = t.getUser(user, pass);
 //            if(us != null){
@@ -60,30 +60,10 @@ public class LogInServlet extends HttpServlet {
 //            }
 //            
 //        }
+pr.print(email +" " +pass);
         pr.print(logResult);
         request.getRequestDispatcher("Home.jsp").include(request, response);
         
-        
-        
-        //
-//        response.setContentType("text/html;charset=UTF-8");
-//        PrintWriter pr = response.getWriter();
-//        String name = request.getParameter("username");
-//        String pass = request.getParameter("password");
-//        userDAO ud = new userDAO();
-//        User foundUser = ud.getUser(name, pass);
-//        HttpSession session = request.getSession(true);
-//        request.getSession().setAttribute("currUser", foundUser);
-//        
-//        if (foundUser != null) {
-//            response.sendRedirect("Home.jsp");
-//        }else{
-//            pr.print("<h3>Invalid username or password!<h3>");
-//            request.getRequestDispatcher("SignIn.jsp").include(request, response);
-//            return;
-//        }
-
-
     }
     
 }

@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import model.DBContext;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import model.Role;
 
 /**
@@ -68,7 +70,7 @@ public class userDAO extends MyDAO {
                 String xusername = rs.getString(2);
                 String xpassword = rs.getString(3);
                 String xfullname = rs.getString(7);
-                int xphone = rs.getInt(6);
+                String xphone = rs.getString(6);
                 String xaddress = rs.getString(8);
                 String xemail = rs.getString(5);
                 String xava = rs.getString(10);
@@ -103,7 +105,7 @@ public class userDAO extends MyDAO {
                 String xusername = rs.getString(2);
                 String xpassword = rs.getString(3);
                 String xfullname = rs.getString(7);
-                int xphone = rs.getInt(6);
+                String xphone = rs.getString(6);
                 String xaddress = rs.getString(8);
                 String xemail = rs.getString(5);
                 String xava = rs.getString(10);
@@ -118,14 +120,17 @@ public class userDAO extends MyDAO {
     }
 
     //Sign Up for Customer
-    public void signUp(String user, String pass, String email) {
-        xSql = "INSERT INTO User ([username], [password] ,[email], [roleId]) VALUES (?, ?, ?, 2)";
+    public void signUp(User x) {
+        xSql = "INSERT INTO [User] ([fullname],[gender],[username],[phone], [password] ,[email], [roleId]) VALUES (?, ?, ?, ?, ?, ?, 2)";
 
         try {
             ps = con.prepareStatement(xSql);
-            ps.setString(1, user);
-            ps.setString(2, pass);
-            ps.setString(3, email);
+            ps.setString(1, x.getFullname());
+            ps.setString(2, x.getGender());
+            ps.setString(3, x.getUsername());
+            ps.setString(4, x.getPhone());
+            ps.setString(5, x.getPassword());
+            ps.setString(6, x.getEmail());
             ps.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,13 +138,13 @@ public class userDAO extends MyDAO {
     }
  
     
-    public User getUser(String user, String pass) {
-        xSql = "SELECT * FROM [User] WHERE [username] = 'admin' and [password] = '123456'";
+    public User getUser(String email, String pass) {
+        xSql = "select * from [User] WHERE [email] =? and [password] =?";
         User x = null;
         try {
             ps = con.prepareStatement(xSql);
-//            ps.setString(1, user);
-//            ps.setString(2, pass);
+            ps.setString(1, email);
+            ps.setString(2, pass);
 
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -152,7 +157,7 @@ public class userDAO extends MyDAO {
                 String xusername = rs.getString(2);
                 String xpassword = rs.getString(3);
                 String xfullname = rs.getString(7);
-                int xphone = rs.getInt(6);
+                String xphone = rs.getString(6);
                 String xaddress = rs.getString(8);
                 String xemail = rs.getString(5);
                 String xava = rs.getString(10);
@@ -166,6 +171,84 @@ public class userDAO extends MyDAO {
         }
         return null;
     }
+    
+    
+    //Kiểm tra input username nhập vào có bị trùng với username đã có hay không
+    public boolean checkUsername(String username){
+        try{
+            xSql="SELECT [username] FROM [User] WHERE [username]=?";
+            ps = con.prepareStatement(xSql);
+            ps.setString(1,username);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    //check phonenumber
+    public boolean checkPhonenumber(String phone){
+        String regex = "^\\d{10}$";
+        Pattern p = Pattern.compile(regex);
+        if (phone == null) {
+            return false;
+        }
+
+        Matcher m = p.matcher(phone);
+        return m.matches();
+    }
+    
+    //  Kiểm tra password nhập vào có đúng điều kiện không, điều kiên 
+    //  cụ thể ở đây là password phải có từ 6 đến 20 kí tự bao gồm chữ và số.
+    public boolean checkPassword(String password) {
+        String regex = "^(?=.*[0-9])(?=.*[a-z]).{6,20}$";
+        Pattern p = Pattern.compile(regex);
+        if (password == null) {
+            return false;
+        }
+
+        Matcher m = p.matcher(password);
+        return m.matches();
+    }
+    
+    //Kiem tra email
+    /*
+    - Cho phep cac gia tri tu 0-9
+    - Cho phep ca cac chu hoa va chu thuong tu a den z
+    - dau "-" va dau"." khong duoc phep o dau va cuoi phan ten mien
+    - khong co dau cham lien tiep
+    */
+    public boolean checkEmail(String email){
+        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
+        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        Pattern p = Pattern.compile(regex);
+        if (email == null) {
+            return false;
+        }
+
+        Matcher m = p.matcher(email);
+        return m.matches();
+    }
+    
+    //kiem tra email ton tai
+    public boolean checkEmailExist(String email){
+        try{
+            xSql="SELECT [email] FROM [User] WHERE [email]=?";
+            ps = con.prepareStatement(xSql);
+            ps.setString(1,email);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
     
     
 }

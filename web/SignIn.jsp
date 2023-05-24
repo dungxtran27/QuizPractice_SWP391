@@ -25,11 +25,14 @@
                                 <h1 class="text-center ">QPS04</h1>
                             </div>
                             <form action="login" method="post">
-
+                                <c: if test="${not empty status}">
+                                    <p class="text-center text text-fails">${status}</p>
+                                    <p></p>
+                                </c:>
                                 <!-- Username input -->
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="username" name="username" class="form-control form-control-lg"
-                                           value="" placeholder="Username" />
+                                    <input type="text" id="username" name="email" class="form-control form-control-lg"
+                                           value="" placeholder="Email" />
                                 </div>
 
                                 <!-- Password input -->

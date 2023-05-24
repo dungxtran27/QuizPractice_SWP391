@@ -20,6 +20,10 @@
                         <div  class="">
                             <div class="loginHeader align-items-center my-4">
                                 <h1 class="text-center ">Sign Up</h1>
+                                <c: if test="${not empty status}">
+                                    <p class="text-center text text-fails">${status}</p>
+                                    <p></p>
+                                </c:>
                             </div>
                             <form action="signUp" method="post">
                                 <div class="row">
@@ -27,25 +31,40 @@
 
                                         <div class="form-outline mb-4">
                                             <input type="text" id="fullname" name="fullname" class="form-control form-control-lg"
-                                                   value="" placeholder="Fullname" />
+                                                   value="" placeholder="Fullname" required="required"/>
                                         </div>
 
-                                        <div class="form-outline mb-4" data-validate="Username is required!">
-                                            <input type="text" id="username" name="username" class="form-control form-control-lg"
-                                                   value="" placeholder="Username" />
-                                        </div>    
+                                        <div class="form-outline mb-4 px-4" >
+                                            <h6 class="mb-2 pb-1">Gender: </h6>
 
-                                        <!-- Password input -->
-                                        <div id="enterbox" class="form-outline mb-3" data-validate="Password is required!">
-                                            <input type="password" id="password"name="password" class="form-control form-control-lg"
-                                                   value="" placeholder="Password" />
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="femaleGender"
+                                                       value="Female" checked />
+                                                <label class="form-check-label" for="femaleGender">Female</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                                                       value="Male" />
+                                                <label class="form-check-label" for="maleGender">Male</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="otherGender"
+                                                       value="Other" />
+                                                <label class="form-check-label" for="otherGender">Other</label>
+                                            </div>
                                         </div>
 
-                                        <!-- Re-password input -->
-                                        <div id="enterbox" class="form-outline mb-3" data-validate="RePassword is required!">
-                                            <input type="password" id="password"name="password" class="form-control form-control-lg"
-                                                   value="" placeholder="Re-password" />
-                                        </div>    
+                                        <div class="form-outline mb-4" data-validate="Email is required!">
+                                            <input type="email" id="email" name="email" class="form-control form-control-lg"
+                                                   value="" placeholder="Email" required="required"/>
+                                        </div>
+
+                                        <div class="form-outline mb-4" data-validate="Email is required!">
+                                            <input type="text" id="phone" name="phone" class="form-control form-control-lg"
+                                                   value="" placeholder="Phone number" required="required"/>
+                                        </div>   
 
                                         <div id="enterbox" class="d-flex justify-content-between align-items-center">
                                             <!-- Checkbox -->
@@ -57,36 +76,22 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <div class="form-outline mb-4" data-validate="Email is required!">
-                                            <input type="email" id="email" name="email" class="form-control form-control-lg"
-                                                   value="" placeholder="Email" />
+                                        <div class="form-outline mb-4" data-validate="Username is required!">
+                                            <input type="text" id="username" name="username" class="form-control form-control-lg"
+                                                   value="" placeholder="Username" required="required"/>
+                                        </div>    
+
+                                        <!-- Password input -->
+                                        <div id="enterbox" class="form-outline mb-3" data-validate="Password is required!">
+                                            <input type="password" id="password"name="password" class="form-control form-control-lg"
+                                                   value="" placeholder="Password" required="required"/>
                                         </div>
-                                        <div class="form-outline mb-4" data-validate="Email is required!">
-                                            <input type="text" id="phone" name="phone" class="form-control form-control-lg"
-                                                   value="" placeholder="Phone number" />
-                                        </div>
 
-                                        <div class="form-outline mb-4" >
-                                            <h6 class="mb-2 pb-1">Gender: </h6>
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                                       value="option1" checked />
-                                                <label class="form-check-label" for="femaleGender">Female</label>
-                                            </div>
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                                       value="option2" />
-                                                <label class="form-check-label" for="maleGender">Male</label>
-                                            </div>
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                                                       value="option3" />
-                                                <label class="form-check-label" for="otherGender">Other</label>
-                                            </div>
-                                        </div>
+                                        <!-- Re-password input -->
+                                        <div id="enterbox" class="form-outline mb-3" data-validate="RePassword is required!">
+                                            <input type="password" id="repassword"name="repassword" class="form-control form-control-lg"
+                                                   value="" placeholder="Re-password" required="required"/>
+                                        </div> 
                                     </div>
 
 

@@ -39,13 +39,13 @@
             </ul>
         </li>
         <li>
-            <a href="#">Portfolio</a>
+            <a href="profile.jsp">Profile</a>
         </li>
         <li>
             <a href="#">Contact</a>
         </li>
     </ul>
-
+    
     <ul class="list-unstyled CTAs">
         <li>
             <a href="SignIn.jsp" class="login">Login</a>
@@ -54,6 +54,7 @@
             <a href="SignUp.jsp" class="register">Sign up</a>
         </li>
     </ul>
+    
 </nav>
 
 
