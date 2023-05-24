@@ -8,6 +8,6 @@ package model;
  *
  * @author dungmuahahaha
  */
-public class Subject {
+public class subject {
     
 }

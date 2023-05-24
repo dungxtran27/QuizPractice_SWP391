@@ -4,7 +4,6 @@
     Author     : admin
 --%>
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,37 +41,11 @@
     </head>
 
     <body class="sb-sidenav-toggled">
-        <%@include file="Components/navBarComponent.jsp" %>
 
         <div id="layoutSidenav">
-            <%@include file="Components/catgoryComponent_1.jsp" %>
-            <div id="layoutSidenav_content">
-                <div class="container px-4 px-lg-5" style="margin-top: 91px">
-                    <!-- Heading Row-->
-                    <article>
-                        <!-- Post header-->
-                        <header class="mb-4">
-                            <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">Welcome to Blog Post!</h1>
-                            <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on ${post.created_date} by ${post.brifInfor}</div>
-                            <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="post-list?blogAction=get">Post List</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Register</a>
-                        </header>
-
-                        <!-- Preview image figure-->
-                        <!-- Post content-->
-                        <section class="mb-5">
-                            <h2 class="fw-bolder mb-4 mt-5">${post.title}</h2>
-                            <a href="#!"><img src="uploads/${post.thumbnail}" alt="..."/></a>
-                            <p class="fs-5 mb-4">${post.content}</p>
-                        </section>
-                    </article>
-
                     <!-- Call to Action-->
                     <div class="card text-white bg-secondary my-5 py-4 text-center">
-                        <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
+                        <div class="card-body"><p class="text-white m-0">Cards</p></div>
                     </div>
                     <!-- Content Row-->
                     <div class="row gx-4 gx-lg-5">
@@ -80,7 +53,9 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h2 class="card-title">Card One</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                    <p class="card-text">${bl.getBlogId()}</p>
+                                    <p class="card-text">${bl.getBlogName()}</p>
+                                    <p class="card-text">${bl.getSubId()}</p>
                                 </div>
                                 <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                             </div>
@@ -89,7 +64,9 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h2 class="card-title">Card Two</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
+                                    <p class="card-text">${bl.getBlogId()}</p>
+                                    <p class="card-text">${bl.getBlogName()}</p>
+                                    <p class="card-text">${bl.getSubId()}</p>
                                 </div>
                                 <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                             </div>
@@ -98,7 +75,9 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h2 class="card-title">Card Three</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                    <p class="card-text">${bl.getBlogId()}</p>
+                                    <p class="card-text">${bl.getBlogName()}</p>
+                                    <p class="card-text">${bl.getSubId()}</p>
                                 </div>
                                 <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                             </div>

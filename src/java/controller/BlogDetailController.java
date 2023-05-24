@@ -4,21 +4,23 @@
  */
 package controller;
 
+import DAO.blogDAO;
+import model.blog;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.User;
-import DAO.userDAO;
 
 /**
  *
- * @author dungmuahahaha
+ * @author admin
  */
-public class LogInServlet extends HttpServlet {
+
+@WebServlet(name = "BlogDetailController", urlPatterns = {"/BlogDetailController"})
+public class BlogDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,10 @@ public class LogInServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogInServlet</title>");            
+            out.println("<title>Servlet BlogListController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogInServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BlogListController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +60,11 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        blogDAO bdao = new blogDAO();
+        blog temp = (blog) bdao.getListBlogs();
+        request.setAttribute("bl", temp);
+        request.getRequestDispatcher("/BlogDetail.jsp").forward(request, response);
+
     }
 
     /**
@@ -72,21 +78,6 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter pr = response.getWriter();
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        userDAO ud = new userDAO();
-        User foundUser = ud.getUser(pass, name);
-        HttpSession session = request.getSession(true);
-        request.getSession().setAttribute("currUser", foundUser);
-        if (foundUser != null) {
-            response.sendRedirect("index");
-        }else{
-            pr.print("<h3>Invalid username or password!<h3>");
-            request.getRequestDispatcher("login.html").include(request, response);
-            return;
-        }
         processRequest(request, response);
     }
 

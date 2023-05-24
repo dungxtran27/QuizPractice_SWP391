@@ -4,10 +4,16 @@
  */
 package DAO;
 
+import model.User;
+
 /**
  *
  * @author dungmuahahaha
  */
 public class userDAO {
+
+    public User getUser(String pass, String name) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

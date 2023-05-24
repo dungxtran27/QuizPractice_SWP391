@@ -4,7 +4,6 @@
     Author     : admin
 --%>
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,114 +41,48 @@
     </head>
     
     <body class="sb-sidenav-toggled">
-        <%@include file="Components/navBarComponent.jsp" %>
+        <body>
+            <section class="py-5">
+                <div id="header">
+                    <jsp:include page="Components/nav.jsp"></jsp:include>
+                </div>
+            </section>
+            <!-- Page content-->
+            <div class="container mt-5">
+                <h2 class="fw-bolder fs-5 mb-4">Blog List</h2>
+                <div class="row">
+                    <!-- Blog entries-->
+                    <div class="col-lg-8">
+                        <!-- Featured blog post-->
 
-        <div id="layoutSidenav" class="mb-4">
-            <%@include file="Components/catgoryComponent_1.jsp" %>
-            <div id="layoutSidenav_content">
-                <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
-                    <h1>Blog List</h1>
-                    <div class="container">
+                        <!-- Nested row for non-featured blog posts-->
                         <div class="row">
-                            <!-- Blog entries-->
-                            <div class="col-lg-8">
-                                <!-- Featured blog post-->
-                                <div class="card mb-4">
-                                    <a href="#!"><img class="card-img-top" src="uploads/${lastPost.thumbnail}" alt="..." /></a>
-                                    <div class="card-body">
-                                        <div class="small text-muted">${lastPost.created_date}</div>
-                                        <h2 class="card-title">${lastPost.title}</h2>
-                                        <p class="card-text">${lastPost.content}</p>
-                                        <div class="text-center">
-                                            <a href="post-detail?postId=${lastPost.postId}" class="btn btn-primary"/>Detail</a>
+                            <c:forEach items="${bl}" var="o">
+                                <div class="col-lg-6 mb-3">
+                                    <!-- Blog post-->
+                                    <div class="card h-100 shadow border-0">
+                                        <img class="card-img-top" id="card-img-blog" src=${o.getImage()} alt="..." />
+                                        <div class="card-body p-4">
+                                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">${o.getType()}</div>
+                                            <a class="text-decoration-none link-dark stretched-link" href="BlogDetail?bid=${o.getId()}">
+                                                <div class="h5 card-title mb-3">${o.getTitle()}</div>
+                                            </a>
+                                            <p class="card-text mb-0">${o.getDescription()}</p>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- Blog post-->
-
-                                <div class ="row mt-5">
-                                    <c:forEach var="P" items="${listPosts}">
-                                        <div class="col-md-4 mb-3 mx-auto d-block shadow p-3 mb-5 bg-white rounded" style="padding: 10px 0px 10px 10px; border-radius: 8px; width: 32%; margin-left: 10px">
-                                            <form action="subject-detail" method="POST">
-                                                <img class="mx-auto d-block img-fluid" src="uploads/${P.thumbnail}" width="400" height="400" />
-                                                <h2 class="text-center"> ${P.title} </h2>
-                                                <ul style="margin-left: 8%">
-                                                    <li><b>Last edit: ${P.edit_date}</b></li>
-                                                    <li><b>Infor: ${P.brifInfor}</b></li>
-                                                    <li><b>Status: ${P.status == 'true'?"Active":"Inactive"}</b></li>
-                                                </ul>
-                                                <div class="text-center">
-                                                    <a href="post-detail?postId=${P.postId}" class="btn btn-primary"/>Detail</a>
+                                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                            <div class="d-flex align-items-end justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                                    <div class="small">
+                                                        <div class="fw-bold">${o.getAuthor()}</div>
+                                                        <div class="text-muted">${o.getDate()}</div>
+                                                    </div>
                                                 </div>
-
-                                            </form>
+                                            </div>
                                         </div>
-                                    </c:forEach>
-                                </div>
-                            </div>
-                            <!-- Side widgets-->
-                            <div class="col-lg-4">
-                                <div class="card mb-4">
-                                    <div class="card-header">Blog Categories</div>
-                                    <div class="list-group">
-                                        <c:forEach items="${listBlogs}" var="B">
-                                            <a href="post-list?blogId=${B.blogId}&blogAction=post" class="list-group-item list-group-item-action ${B.blogId == requestScope.blogId?"list-group-item-warning":""}">${B.blogName}</a>
-                                        </c:forEach>
                                     </div>
                                 </div>
-                            </div>
-
+                            </c:forEach>
                         </div>
                     </div>
-                    <!-- Phan trang -->
-                    <c:choose>
-                        <c:when test="${listPosts==null || listPosts.size()==0}">
-                            Not founds
-                        </c:when>
-                        <c:when test="${totalPage < 2}">
-                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                                <ul class="pagination">
-                                    <c:forEach begin="1" end="${totalPage}" var="i">
-                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                        </c:forEach>
-                                </ul>
-                            </nav>
-                        </c:when>
-                        <c:when test="${page < 2}">
-                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                                <ul class="pagination">  
-                                    <c:forEach begin="1" end="${totalPage}" var="i">
-                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                        </c:forEach>
-                                    <li class="page-item"><a class="page-link" href="${pagination_url}page=${page+1}">Next</a></li>
-                                </ul>
-                            </nav>
-                        </c:when>
-                        <c:when test="${page+1 > totalPage}">
-                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="${pagination_url}page=${page-1}">Previous</a></li>
-                                        <c:forEach begin="1" end="${totalPage}" var="i">
-                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                        </c:forEach>
-                                </ul>
-                            </nav>
-                        </c:when>
-                        <c:otherwise>
-                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="${pagination_url}page=${page-1}">Previous</a></li>
-                                        <c:forEach begin="1" end="${totalPage}" var="i">
-                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                        </c:forEach>
-                                    <li class="page-item"><a class="page-link" href="${pagination_url}page=${page+1}">Next</a></li>
-                                </ul>
-                            </nav>
-                        </c:otherwise>
-                    </c:choose>
-
-
-                </div>
-            </div>
-    </body>
 </html>
