@@ -37,36 +37,30 @@ public class BlogDAO extends MyDAO{
     }
       public ArrayList<Blog> GetBlogs(int mode) {
         ArrayList<Blog> bl = new ArrayList<>();
+          int BlogId, SubId;
+        String Blogname;
         try {
            
-            if (mode == 1) {
-                ps = con.prepareCall("SELECT * FROM [QuizPractice].[dbo].[Blog] where status = 1 order by time desc ");
-            } else {
-                ps = con.prepareCall("SELECT * FROM [QuizPractice].[dbo].[Blog] order by time desc ");
-            }
+//            if (mode == 1) {
+//                ps = con.prepareCall("SELECT * FROM [QuizPractice].[dbo].[Blog] where status = 1 order by time desc ");
+//            } else {
+//                ps = con.prepareCall("SELECT * FROM [QuizPractice].[dbo].[Blog] order by time desc ");
+//            }
 
             rs = ps.executeQuery();
             while (rs.next()) {
                 //nu standfor new-user
-                Blog b = new Blog();
-                b.getBlogId(rs.getInt(1));
-                b.setTitle(rs.getString(2));
-                b.setTypeId(rs.getInt(3));
-                b.setAuthor(rs.getInt(4));
-                b.setDate(rs.getDate(5).toString());
-                b.setType(rs.getString(6));
-                b.setStatus(rs.getInt(7));
-                b.setContent(rs.getString(8));
-                b.setModifier(rs.getInt(9));
-                b.setDescription(rs.getString(10));
-                b.setImage(rs.getString(11));
-                bl.add(b);
+                Blog blog = new Blog();
+                BlogId = rs.getInt("BlogId");
+                SubId = rs.getInt("SubId");
+                Blogname = rs.getString("Blogname");
+                bl.add(new Blog(BlogId, Blogname, SubId));
+               
+               
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DBConnection.close(conn, ps, rs);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return bl;
     }

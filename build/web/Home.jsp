@@ -5,13 +5,7 @@
 <%@page import="DAO.*" %>
 <%
    BlogDAO Bld = new BlogDAO();
-    List<blog> list = (List<blog>)request.getAttribute("list");
-//    int count = Bld.getCount();
-//    int pageCount = count / 12;
-//    if(count % 12 != 0){
-//        pageCount++;
-//    }
-//    int offset = (int)request.getAttribute("offSet");
+    List<Blog> list = (List<Blog>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -114,7 +108,7 @@
 
                 <%
                     }else{
-                       for(blog: list){
+                       for(Blog bl: list){
                 %>
 
 
@@ -122,7 +116,7 @@
                 <a class="a card" href="#">
                     <div class="">
                        
-                        <div style="text-align: left;" class=" card__body card__body--back">
+                        <div style="text-align: left;" class=" ">
                             <h5 >id: <%=bl.getBlogId()%>USD&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h5>
                             <h5 >name: <%=bl.getBlogName()%>&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h5>
                             <h5 >Gender: <%=bl.getSubId()%>&ensp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h5>

@@ -5,12 +5,12 @@
         <group>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/DBContext.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/postDAO.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/User.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/post.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Home.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/userDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Blog.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/LogInServlet.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/userDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/BlogDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/post/post.java</file>
         </group>
     </open-files>
 </project-private>
