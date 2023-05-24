@@ -4,17 +4,22 @@
  */
 package controller;
 
+import DAO.userDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
  * @author dungmuahahaha
  */
+@WebServlet(urlPatterns = {"/login"})
 public class LogInServlet extends HttpServlet {
 
     /**
@@ -28,19 +33,7 @@ public class LogInServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LogInServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LogInServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,9 +60,31 @@ public class LogInServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+response.setContentType("text/html;charset=UTF-8");
+        PrintWriter pr = response.getWriter();
+        String name = request.getParameter("username");
+        String pass = request.getParameter("password");
+        userDAO ud = new userDAO();
+        User foundUser = ud.getUser(name, pass);
+        HttpSession session = request.getSession(true);
+        request.getSession().setAttribute("currUser", foundUser);
+        if (foundUser != null) {
+            response.sendRedirect("Home.jsp");
+        }else{
+            pr.print("<h3>Invalid username or password!<h3>");
+            request.getRequestDispatcher("SignIn.jsp").include(request, response);
+            return;
+        }
+        
+        
+        
+        
+        
     }
 
     /**

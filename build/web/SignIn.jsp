@@ -24,17 +24,17 @@
                             <div class="loginHeader align-items-center my-4">
                                 <h1 class="text-center ">QPS04</h1>
                             </div>
-                            <form>
+                            <form action="login" method="post">
 
                                 <!-- Username input -->
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="user" class="form-control form-control-lg"
+                                <div class="form-outline mb-4" >
+                                    <input type="text" id="user" name="username" class="form-control form-control-lg"
                                            placeholder="Username" />
                                 </div>
 
                                 <!-- Password input -->
                                 <div id="enterbox" class="form-outline mb-3">
-                                    <input type="password" id="pass" class="form-control form-control-lg"
+                                    <input type="password" id="pass" name="password" class="form-control form-control-lg"
                                            placeholder="Password" />
                                 </div>
 
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="text-center text-lg-start mt-4 pt-2">
-                                    <button id="buttonLogin" type="button" class="btn btn-primary btn-l">Login</button>
+                                    <button id="buttonLogin" type="submit" class="btn btn-primary btn-l">Login</button>
                                     <p  class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
                                         <a href="#!" class="link-danger">Register</a></p>
                                 </div>

@@ -1,0 +1,53 @@
+#container{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+form{
+    border-radius: calc(0.5rem - 1px);
+    border: 1px solid rgba(0,0,0,.125);
+    margin-right: 100px;
+}
+
+table{
+    line-height: 1.5;
+    border: 0;
+}
+#table-header{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    background-color: #f5f8fa;
+    font-weight: 300;
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+table td{
+    padding: 15px 15px;
+    text-align: left;
+}
+
+table input{
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 12px 24px;
+    width: 400px;
+}
+
+#submit-btn{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: 400;
+    text-align: center;
+    font-size: 16px;
+    padding: 12px;
+    width: 100px;
+    cursor: pointer;
+}
+
+#submit-btn:hover{
+    background-color: #0069d9;
+}
