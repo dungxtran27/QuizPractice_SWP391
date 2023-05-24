@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 /**
  *
  * @author admin
@@ -44,5 +45,4 @@ public class Blog {
     public void setSubId(int subId) {
         this.subId = subId;
     }
-    
 }
