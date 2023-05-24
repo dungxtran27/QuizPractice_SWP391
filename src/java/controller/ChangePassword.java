@@ -1,4 +1,4 @@
-
+//
 package controller;
 
 import DAO.userDAO;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.User;
 
-@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePassword"})
+@WebServlet(name = "ChangePassword", urlPatterns = {"/changepw"})
 public class ChangePassword extends HttpServlet {
 
     

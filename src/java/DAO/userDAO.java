@@ -131,20 +131,21 @@ public class userDAO extends MyDAO{
     }
          // tim user theo email va password
     
-     public User getUser(String email, String password){
+     public User getUpdateUser(String username, String password){
         try {
             if (con != null) {
-                xSql = "SELECT u.*, r.* FROM [User] u , [Role] r  WHERE [email] = ? AND [password] = ? and r.roleId = u.roleId";
+                xSql = "SELECT u.*, r.* FROM [User] u , [Role] r  WHERE [username] = ? AND [password] = ? and r.roleId = u.roleId";
                 ps = con.prepareStatement(xSql);
-                ps.setString(1, email);
+                ps.setString(1, username);
                 ps.setString(2, password);
                 rs = ps.executeQuery();
                 if (rs.next()) {
                     User user = new User();
                     Role role = new Role();
-                    
+
                     role.setRole_id(rs.getInt("RoleID"));
                     role.setRole_name(rs.getString("Name"));
+                    
                     user.setUserid(rs.getInt("userId"));
                     user.setFullname(rs.getString("fullname"));
                     user.setPhone(rs.getInt("phone"));
@@ -154,6 +155,7 @@ public class userDAO extends MyDAO{
                     user.setModify_date(rs.getTimestamp("modify_date"));
                     user.setAddress(rs.getString("address"));
                     user.setPassword(rs.getString("password"));
+                    
                     return user;
                 }
             }

@@ -26,54 +26,54 @@
                     <div>
                         <table>            
 
-                        <tr>
-                            <td>Full name</td>
-                            <td><input type="text"  name="fullname" value="" required/></td>
-                        </tr>
-                        <tr><td colspan="2" id="error-lname" ></td></tr>
-                        <tr>
-                            <td>Avatar</td>
-                            <td><input type="file" name="avatar" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Phone</td>
-                            <td><input type="text" name="phone" value="" required/></td>
-                        </tr>
-                        <tr><td colspan="2" ></td></tr>
-
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="text" name="email" value="" disabled="disabled"/></td>
-                        </tr>
-                        <tr><td colspan="2"></td></tr>
-
-                        <tr>
-                            <td>Password</td>
-                            <td><a href="change.jsp">Change password</a></td>
-                        </tr>
-                        <tr><td></td></tr>
-
-                        <tr>
-                            <td>Address</td>
-                            <td><input type="text" name="address" value="" /></td>
-                        </tr>
-                        <tr><td colspan="2"></td></tr>
-
-
-
-                        <tr>
-                            <td colspan="2"><input id="submit-btn" type="submit" value="Save" /></td>
-                        </tr>
-                    </table>
-<!--                          <c:if test="${successNoti != null}">
                             <tr>
-                                <td colspan="2">
-                                    <div id="notification">
-                                        <span>Profile has been changed successfully!</span>
-                                    </div>
-                                </td>
+                                <td>Full name</td>
+                                <td><input type="text"  name="fullname" value="" required/></td>
                             </tr>
-                        </c:if>-->
+                            <tr><td colspan="2" id="error-lname" ></td></tr>
+                            <tr>
+                                <td>Avatar</td>
+                                <td><input type="file" name="avatar" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td><input type="text" name="phone" value="" required/></td>
+                            </tr>
+                            <tr><td colspan="2" ></td></tr>
+
+                            <tr>
+                                <td>Email</td>
+                                <td><input type="text" name="email" value="" disabled="disabled"/></td>
+                            </tr>
+                            <tr><td colspan="2"></td></tr>
+
+                            <tr>
+                                <td>Password</td>
+                                <td><a href="change.jsp">Change password</a></td>
+                            </tr>
+                            <tr><td></td></tr>
+
+                            <tr>
+                                <td>Address</td>
+                                <td><input type="text" name="address" value="" /></td>
+                            </tr>
+                            <tr><td colspan="2"></td></tr>
+
+
+
+                            <tr>
+                                <td colspan="2"><input id="submit-btn" type="submit" value="Save" /></td>
+                            </tr>
+                            <c:if test="${successNoti != null}">
+                                <tr>
+                                    <td colspan="2">
+                                        <div id="notification">
+                                            <span>Profile has been changed successfully!</span> <a href="Home.jsp">Back to home</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:if>
+                        </table>
                 </div>
             </form>
 
