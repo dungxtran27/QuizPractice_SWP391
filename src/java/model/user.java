@@ -16,7 +16,7 @@ public class User {
     private String password;
     private String status;
     private String email;
-    private int phone;
+    private String phone;
     private String fullname;
     private String address;
     private String gender;
@@ -30,7 +30,7 @@ public class User {
     public User() {
     }
 
-    public User(int userid, String username, String password, String email, int phone, String fullname, String address, String avatar, Role role) {
+    public User(int userid, String username, String password, String email, String phone, String fullname, String address, String avatar, Role role) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -44,7 +44,7 @@ public class User {
     
     
 
-    public User(int userid, String username, String password, String status, String email, int phone, String fullname, String address, String gender, String avatar, int roleid, Role role, Timestamp created_date, Timestamp modify_date) {
+    public User(int userid, String username, String password, String status, String email, String phone, String fullname, String address, String gender, String avatar, int roleid, Role role, Timestamp created_date, Timestamp modify_date) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -61,7 +61,7 @@ public class User {
         this.modify_date = modify_date;
     }
 
-    public User(int userid, String username, String password, String status, String email, int phone, String fullname, String address, String gender, String avatar, int roleid, Role role, Timestamp created_date, Timestamp modify_date, String password_token) {
+    public User(int userid, String username, String password, String status, String email, String phone, String fullname, String address, String gender, String avatar, int roleid, Role role, Timestamp created_date, Timestamp modify_date, String password_token) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -119,11 +119,11 @@ public class User {
         this.email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

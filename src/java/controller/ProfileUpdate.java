@@ -98,7 +98,7 @@ public class ProfileUpdate extends HttpServlet {
         //lay thong tin cua nguoi dung hien tai
         int userId = curUser.getUserid();
         String fullname = request.getParameter("fullname");
-        int phone = Integer.parseInt(request.getParameter("phone"));
+        String phone = Integer.parseInt(request.getParameter("phone"));
 //        String image = request.getParameter("avatar");
         String address = request.getParameter("address");
         //String filename = uploadFile(request);

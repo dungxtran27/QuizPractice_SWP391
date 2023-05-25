@@ -1,11 +1,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="Components/AllAccess.jsp"%>
-        <title>JSP Page</title>
+        <title>QPS 04</title>
     </head>
     <body>
         <div class="wrapper">
