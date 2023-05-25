@@ -36,10 +36,10 @@ public class BlogDetailController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BlogListController</title>");            
+            out.println("<title>Servlet BlogDetailController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BlogListController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BlogDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,6 +71,8 @@ public class BlogDetailController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        BlogDAO bdao = new BlogDAO();
+        request.setAttribute("b", bdao);
     }
 
     /**

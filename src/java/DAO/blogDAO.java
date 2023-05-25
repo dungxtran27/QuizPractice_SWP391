@@ -5,29 +5,38 @@
 package DAO;
 
 import java.util.ArrayList;
-import java.util.List;
-import model.*;
+import model.Blog;
 
 /**
  *
  * @author admin
  */
-public class BlogDAO extends MyDAO {
+public class BlogDAO extends MyDAO{
 
-    public List<Blog> getListBlogs() {
-        List<Blog> list = new ArrayList<>();
-        xSql = "select * from Blog";
+    public ArrayList<Blog> GetBlogs() {
+        ArrayList<Blog> bl = new ArrayList<>();
         try {
-            ps = con.prepareStatement(xSql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Blog(rs.getInt(1),
-                                  rs.getString(2),
-                                  rs.getInt(3)));
+            if (con != null) {
+                ps = con.prepareStatement("select * from Blog");
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    rs.getInt("blogId");
+                    rs.getString("roleName");
+                    rs.getInt("subId");
+                    return bl;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return list;
+        return null;
     }
 }

@@ -8,19 +8,17 @@ import model.Blog;
 import DAO.BlogDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author admin
  */
-@WebServlet(name = "BlogListController", urlPatterns = {"/BlogListController"})
-public class BlogListController extends HttpServlet {
 
+public class BlogListController extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,9 +31,9 @@ public class BlogListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        BlogDAO bdao = new BlogDAO();
-        List<Blog> listB = bdao.getListBlogs();
-        request.setAttribute("listB", listB);
+        BlogDAO bd = new BlogDAO();
+        ArrayList<Blog> bl = bd.GetBlogs();
+        request.setAttribute("listB", bl);
         request.getRequestDispatcher("BlogList.jsp").forward(request, response);
     }
 

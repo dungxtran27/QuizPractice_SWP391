@@ -4,7 +4,7 @@
     Author     : admin
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,11 +12,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/NavbarStyle.css">
+        <link rel="stylesheet" href="NavbarStyle.css">
+        <title>Manage Blog</title>
     </head>
-        
     <body>
-        <c:set var="a" value="${sessionScope.acc}"></c:set>
             <table class="table">
                 <thead>
                     <tr>
@@ -26,18 +25,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${listB}" var="blog">
-                    <c:if test="${acc.username!=a.username}">
+                    <c:forEach items="${listB}" var="bl">
                     <tr>
-                        <td>${blog.BlogId}</td>
-                        <td>${blog.BlogName}</td>
-                        <td>${blog.SubId}</td>
+                        <td>${bl.blogId}</td>
+                        <td>${bl.blogName}></td>
+                        <td>${bl.subId}></td>
                     </tr>
-                    </c:if>
                 </c:forEach>
             </tbody>
         </table>
-
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

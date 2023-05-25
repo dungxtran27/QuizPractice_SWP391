@@ -118,6 +118,7 @@ INSERT [dbo].[Post] ([postId], [thumbnail], [userId], [categoryBlogId], [content
 INSERT [dbo].[Post] ([postId], [thumbnail], [userId], [categoryBlogId], [content], [created_date], [edit_date], [status], [brifInfor], [title], [postFileId]) VALUES (3, N'ba350ec8-3901-4c34-b621-5f041cce9220_400_400.png', 3, 3, N'Computer software is programming code executed on a computer processor. The code can be machine-level code, or code written for an operating system.', CAST(N'2021-11-06' AS Date), CAST(N'2022-05-24' AS Date), 1, N'Computer', N'Computer', 3)
 SET IDENTITY_INSERT [dbo].[Post] OFF
 
-
+select * from Blog
+go
 
 

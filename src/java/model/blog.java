@@ -45,4 +45,5 @@ public class Blog {
     public void setSubId(int subId) {
         this.subId = subId;
     }
+    
 }

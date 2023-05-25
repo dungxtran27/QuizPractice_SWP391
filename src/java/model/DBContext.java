@@ -7,6 +7,8 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBContext {
     protected Connection connection;
@@ -24,8 +26,16 @@ public class DBContext {
         }
     }
     public static void main(String[] args) {
-        DBContext db = new DBContext();
-        System.out.println(db);
+        try {
+            DBContext dBContext = new DBContext();
+            if (dBContext.connection != null) {
+                System.out.println("Ok");
+            } else {
+                System.out.println("Fail");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 
