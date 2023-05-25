@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.User" %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@
     
 
             <div id="container">
-                <form action="profile" method="POST" >
+                <form action="profile" method="POST">
                     <div id="table-header">
                         <span>My profile</span>
                     </div>
@@ -28,7 +29,7 @@
 
                             <tr>
                                 <td>Full name</td>
-                                <td><input type="text"  name="fullname" value="" required/></td>
+                                <td><input type="text"  name="fullname" value="${us.fullname}" required/></td>
                             </tr>
                             <tr><td colspan="2" id="error-lname" ></td></tr>
                             <tr>
@@ -37,13 +38,13 @@
                             </tr>
                             <tr>
                                 <td>Phone</td>
-                                <td><input type="text" name="phone" value="" required/></td>
+                                <td><input type="text" name="phone" value="${us.phone}" required/></td>
                             </tr>
                             <tr><td colspan="2" ></td></tr>
 
                             <tr>
                                 <td>Email</td>
-                                <td><input type="text" name="email" value="" disabled="disabled"/></td>
+                                <td><input type="text" name="email" value="${us.email}" disabled="disabled"/></td>
                             </tr>
                             <tr><td colspan="2"></td></tr>
 
@@ -55,7 +56,7 @@
 
                             <tr>
                                 <td>Address</td>
-                                <td><input type="text" name="address" value="" /></td>
+                                <td><input type="text" name="address" value="${us.address}" /></td>
                             </tr>
                             <tr><td colspan="2"></td></tr>
 
@@ -78,7 +79,7 @@
             </form>
 
             <div id="avatar">
-                <img src="uploads/" alt="Avatar" width="250" height="250">
+                <img src="uploads/${us.avatar}" alt="Avatar" width="250" height="250">
             </div>  
         </div>
     </body>

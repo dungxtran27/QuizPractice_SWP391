@@ -31,7 +31,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav navbar-nav ml-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">personal</a>
+                                    <a class="nav-link" href="profile.jsp">personal</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Page</a>
