@@ -4,15 +4,16 @@
 <%@page import="model.*" %>
 <%@page import="DAO.*" %>
 <%
-   BlogDAO Bld = new BlogDAO();
-    List<Blog> list = (List<Blog>)request.getAttribute("list");
+    List<Blog> blist = (List<Blog>)request.getAttribute("blist");
 %>
 <!DOCTYPE html>
+
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="Components/AllAccess.jsp"%>
-        <title>JSP Page</title>
+        <title>QPS 04</title>
     </head>
     <body>
         <div class="wrapper">
@@ -101,26 +102,25 @@
 
             <div class="list">
                 <%
-                    if(list == null||list.size()== 0){
+                    if(blist == null||blist.size()== 0){
                 %>
                 <h1>no blog</h1>
 
 
                 <%
                     }else{
-                       for(Blog bl: list){
+                       for(Blog bl: blist){
                 %>
 
 
 
                 <a class="a card" href="#">
-                    <div class="">
+                    <div style="display: flex" class="">
                        
                         <div style="text-align: left;" class=" ">
-                            <h5 >id: <%=bl.getBlogId()%>USD&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h5>
+                          
                             <h5 >name: <%=bl.getBlogName()%>&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h5>
-                            <h5 >Gender: <%=bl.getSubId()%>&ensp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h5>
-                           
+                          
 
                         </div>
                     </div>
