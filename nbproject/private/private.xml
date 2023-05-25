@@ -4,8 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/SWP391/web/BlogList.jsp</file>
+            <file>file:/D:/SWP391/src/java/DAO/BlogDAO.java</file>
+            <file>file:/D:/SWP391/src/java/model/Blog.java</file>
+            <file>file:/D:/SWP391/src/java/controller/LogInServlet.java</file>
+            <file>file:/D:/SWP391/src/java/DAO/userDAO.java</file>
+            <file>file:/D:/SWP391/src/java/controller/SignUpServlet.java</file>
             <file>file:/D:/SWP391/src/java/controller/BlogListController.java</file>
-            <file>file:/D:/SWP391/web/WEB-INF/web.xml</file>
+            <file>file:/D:/SWP391/src/java/model/DBContext.java</file>
+            <file>file:/D:/SWP391/src/java/model/User.java</file>
         </group>
     </open-files>
 </project-private>

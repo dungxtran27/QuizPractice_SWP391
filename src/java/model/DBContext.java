@@ -11,20 +11,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DBContext {
+
     protected Connection connection;
-    public DBContext()
-    {
+
+    public DBContext() {
         try {
-            // Edit URL , username, password to authenticate with your MS SQL Server
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391_QPS04";
+            //Change the username password and url to connect your own database
             String username = "sa";
-            String password = "12345678";
+            String password = "sa";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391_QPS04";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public static void main(String[] args) {
         try {
             DBContext dBContext = new DBContext();
@@ -37,5 +39,9 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
+
+
+
 
