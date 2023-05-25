@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.User;
+import DAO.userDAO;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -29,24 +31,24 @@ public class LogInServlet extends HttpServlet {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         request.getSession().setAttribute("currentYear", currentYear);
         PrintWriter pr = response.getWriter();
-        
+
         String email = request.getParameter("email");
         String pass = request.getParameter("password");
-        
+
         User x;
         userDAO t = new userDAO();
-        
+
         x = t.getUser(email, pass);
         request.getSession().setAttribute("currUser", x);
-        
-        String logResult="";
-        
-        if(x==null){
+
+        String logResult = "";
+
+        if (x == null) {
             logResult = "Sorry, username and/or password are/ is invalid!";
         } else {
             logResult = "Login is successful!";
         }
-        
+
 //        if(user != null && pass != null){
 //            User us = t.getUser(user, pass);
 //            if(us != null){
@@ -60,10 +62,10 @@ public class LogInServlet extends HttpServlet {
 //            }
 //            
 //        }
-pr.print(email +" " +pass);
+        pr.print(email + " " + pass);
         pr.print(logResult);
         request.getRequestDispatcher("Home.jsp").include(request, response);
-        
+
     }
-    
+
 }

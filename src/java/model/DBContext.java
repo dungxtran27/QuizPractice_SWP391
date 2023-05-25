@@ -11,9 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DBContext {
+
     protected Connection connection;
-    public DBContext()
-    {
+
+    public DBContext() {
         try {
             //Change the username password and url to connect your own database
             String username = "sa";
@@ -25,20 +26,22 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void main(String[] args) {
-        try{
+        try {
             DBContext dBContext = new DBContext();
             if (dBContext.connection != null) {
-                 System.out.println("Ok");
-            }else{
+                System.out.println("Ok");
+            } else {
                 System.out.println("Fail");
-                }
-    }catch(Exception ex){
-    Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
-}
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
 
 
-}
+
 

@@ -8,6 +8,6 @@ package model;
  *
  * @author dungmuahahaha
  */
-public class Quiz {
+public class quiz {
     
 }

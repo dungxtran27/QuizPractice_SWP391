@@ -5,6 +5,11 @@
 package DAO;
 
 import model.User;
+
+/**
+ *
+ * @author dungmuahahaha
+ */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -252,3 +257,4 @@ public class userDAO extends MyDAO {
     
     
 }
+
