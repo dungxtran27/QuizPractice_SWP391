@@ -5,6 +5,7 @@ CREATE DATABASE [SWP391_QPS04]
  GO
  USE [SWP391_QPS04]
  GO
+ 
  -- tao database lan 1 
  CREATE TABLE [dbo].[User](
 	[userId] [int] IDENTITY(1,1) NOT NULL,
@@ -116,3 +117,11 @@ INSERT [dbo].[Post] ([postId], [thumbnail], [userId], [categoryBlogId], [content
 INSERT [dbo].[Post] ([postId], [thumbnail], [userId], [categoryBlogId], [content], [created_date], [edit_date], [status], [brifInfor], [title], [postFileId]) VALUES (2, N'b1a9da7a-8f9d-46c4-a3f3-b6c6834a6efa_400_400.png', 2, 2, N'Physical indicates connected with, pertaining to, the animal or human body as a material organism: physical strength, exercise. Bodily means belonging to, concerned with, the human body', CAST(N'2021-08-09' AS Date), CAST(N'2021-07-10' AS Date), 1, N'Portugal', N'Physical', 2)
 INSERT [dbo].[Post] ([postId], [thumbnail], [userId], [categoryBlogId], [content], [created_date], [edit_date], [status], [brifInfor], [title], [postFileId]) VALUES (3, N'ba350ec8-3901-4c34-b621-5f041cce9220_400_400.png', 3, 3, N'Computer software is programming code executed on a computer processor. The code can be machine-level code, or code written for an operating system.', CAST(N'2021-11-06' AS Date), CAST(N'2022-05-24' AS Date), 1, N'Computer', N'Computer', 3)
 SET IDENTITY_INSERT [dbo].[Post] OFF
+<<<<<<< HEAD
+
+select * from Blog
+go
+
+
+=======
+>>>>>>> 0e1866662ab7b85a9c6a7c028a325513e9a4ff9e
