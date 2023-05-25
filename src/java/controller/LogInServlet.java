@@ -12,7 +12,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Calendar;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -67,13 +66,5 @@ pr.print(email +" " +pass);
         request.getRequestDispatcher("Home.jsp").include(request, response);
         
     }
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    
 }
