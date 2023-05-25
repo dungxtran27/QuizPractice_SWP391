@@ -3,33 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Subject.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/CourseDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Course.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/SubjectDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/index.html</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Quiz.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/User.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/MyDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/DBContext.java</file>
-=======
-            <file>file:/E:/swp391/src/java/controller/ChangePassword.java</file>
-            <file>file:/E:/swp391/src/java/model/subjectDAO.java</file>
-            <file>file:/E:/swp391/web/change.jsp</file>
-            <file>file:/E:/swp391/src/java/model/userDAO.java</file>
-            <file>file:/E:/swp391/web/profile.jsp</file>
-            <file>file:/E:/swp391/web/WEB-INF/web.xml</file>
->>>>>>> 6557833593617a6552d20b70e8b6c9b8fa9f6b72
-=======
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/footer.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/LogInServlet.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Home.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/index.java</file>
->>>>>>> 5410d4cccffe1ffb9954d89e32ce3ad63cc709a9
+            <file>file:/D:/Uni/Semester_05/swp1/summer2023-swp391.se1721-g4/src/java/controller/LogInServlet.java</file>
+            <file>file:/D:/Uni/Semester_05/swp1/summer2023-swp391.se1721-g4/web/SignUp.jsp</file>
+            <file>file:/D:/Uni/Semester_05/swp1/summer2023-swp391.se1721-g4/web/profile.jsp</file>
+            <file>file:/D:/Uni/Semester_05/swp1/summer2023-swp391.se1721-g4/src/java/DAO/userDAO.java</file>
+            <file>file:/D:/Uni/Semester_05/swp1/summer2023-swp391.se1721-g4/src/java/controller/SignUpServlet.java</file>
         </group>
     </open-files>
 </project-private>
