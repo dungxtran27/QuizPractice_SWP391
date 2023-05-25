@@ -16,8 +16,9 @@ import model.Blog;
  * @author dungmuahahaha
  */
 public class BlogDAO extends MyDAO{
-     public List<Blog> getAllBill() {
-        xSql = "select * from Blog";
+     
+    public List<Blog> getAllBlog() {
+        xSql = "select * from [Blog]";
         List<Blog> list = new ArrayList<>();
         int BlogId, SubId;
         String Blogname;
@@ -25,11 +26,14 @@ public class BlogDAO extends MyDAO{
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                BlogId = rs.getInt("BlogId");
-                SubId = rs.getInt("SubId");
-                Blogname = rs.getString("Blogname");
+                BlogId = rs.getInt("blogId");
+                SubId = rs.getInt("subId");
+                Blogname = rs.getString("blogName");
                 list.add(new Blog(BlogId, Blogname, SubId));
+                
             }
+            rs.close();
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
