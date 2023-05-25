@@ -50,7 +50,7 @@ public class postDAO extends MyDAO {
 
                 postFileId = rs.getInt("postFileId");
 
-                list.add(new Post(postId, userId, thumbnail, categoryBlogId, content, brifInfor, title, created_date, edit_date, status, postFileId));
+                list.add(new Post(postId, thumbnail, userId, categoryBlogId, content, created_date, title, status, brifInfor, title, postFileId));
 
             }
             rs.close();

@@ -11,37 +11,33 @@ import java.util.Date;
  * @author dungmuahahaha
  */
 public class Post {
-    
-    
-	
-       
-        private int postId;
-        private int userId;
-        private String thumbnail;
-        private int categoryBlogId;
-        private String content;
-        private String brifInfor ;
-        private String title;
-        private Date created_date;
-        private Date edit_date;
-        private boolean status;
-        private int postFileId;
+     private int postId;
+    private String thumbnail;
+    private int userId;
+    private int categoryBlogId;
+    private String content;
+    private Date created_date;
+    private String edit_date;
+    private Boolean status;
+    private String brifInfor;
+    private String title;
+    private int postFileId;
 
-    public Post(int postId, int userId, String thumbnail, int categoryBlogId, String content, String brifInfor, String title, Date created_date, Date edit_date, boolean status, int postFileId) {
+    public Post(int postId, String thumbnail, int userId, int categoryBlogId, String content, Date created_date, String edit_date, Boolean status, String brifInfor, String title, int postFileId) {
         this.postId = postId;
-        this.userId = userId;
         this.thumbnail = thumbnail;
+        this.userId = userId;
         this.categoryBlogId = categoryBlogId;
         this.content = content;
-        this.brifInfor = brifInfor;
-        this.title = title;
         this.created_date = created_date;
         this.edit_date = edit_date;
         this.status = status;
+        this.brifInfor = brifInfor;
+        this.title = title;
         this.postFileId = postFileId;
     }
-        public Post() {
-       
+      public Post() {
+        
     }
 
     public int getPostId() {
@@ -52,20 +48,20 @@ public class Post {
         this.postId = postId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getThumbnail() {
         return thumbnail;
     }
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getCategoryBlogId() {
@@ -84,6 +80,30 @@ public class Post {
         this.content = content;
     }
 
+    public Date getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
+    }
+
+    public String getEdit_date() {
+        return edit_date;
+    }
+
+    public void setEdit_date(String edit_date) {
+        this.edit_date = edit_date;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     public String getBrifInfor() {
         return brifInfor;
     }
@@ -100,30 +120,6 @@ public class Post {
         this.title = title;
     }
 
-    public Date getCreated_date() {
-        return created_date;
-    }
-
-    public void setCreated_date(Date created_date) {
-        this.created_date = created_date;
-    }
-
-    public Date getEdit_date() {
-        return edit_date;
-    }
-
-    public void setEdit_date(Date edit_date) {
-        this.edit_date = edit_date;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public int getPostFileId() {
         return postFileId;
     }
@@ -131,7 +127,5 @@ public class Post {
     public void setPostFileId(int postFileId) {
         this.postFileId = postFileId;
     }
-        
-        
-        
+    
 }

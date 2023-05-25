@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Calendar;
 import jakarta.servlet.http.HttpSession;
 import model.User;
 import DAO.userDAO;
@@ -25,6 +26,7 @@ import model.User;
 public class LogInServlet extends HttpServlet {
 
     @Override
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -67,5 +69,4 @@ public class LogInServlet extends HttpServlet {
         request.getRequestDispatcher("Home.jsp").include(request, response);
 
     }
-
 }
