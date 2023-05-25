@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
-
+import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,40 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.Role;
 
-/**
- *
- * @author Admin
- */
-public class userDAO extends MyDAO {
-
-    public void editProfile(User us) {
-        Timestamp createdTime = new Timestamp(System.currentTimeMillis());
-
-        xSql = "UPDATE [User] SET [fullname] =? , [phone] =?, [avatar]=?, [modify_date]= ?, [address] =? WHERE [userId] = ?";
-        try {
-            if (con != null) {
-                ps = con.prepareStatement(xSql);
-                ps.setString(1, us.getFullname());
-                ps.setString(2, String.valueOf(us.getPhone()));
-                ps.setString(3, us.getAvatar());
-                ps.setTimestamp(4, createdTime);
-                ps.setString(5, us.getAddress());
-                ps.setInt(6, us.getUserid());
-
-                ps.executeUpdate();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+public class userDAO extends MyDAO{
 
     public boolean checkLogin(String user, String pass) {
         xSql = "SELECT * FROM User WHERE [username] = ? and [password] = ?";
@@ -172,7 +140,6 @@ public class userDAO extends MyDAO {
         return null;
     }
     
-    
     //Kiểm tra input username nhập vào có bị trùng với username đã có hay không
     public boolean checkUsername(String username){
         try{
@@ -248,7 +215,102 @@ public class userDAO extends MyDAO {
         }
         return false;
     }
+
     
+  
+        //cap nhat thong tin user trong db
+         public void editProfile(User us) {
+        Timestamp createdTime = new Timestamp(System.currentTimeMillis());
+        
+        xSql = "UPDATE [User] SET [fullname] =? , [phone] =?, [avatar]=?, [modify_date]= ?, [address] =? WHERE [userId] = ?";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, us.getFullname());
+                ps.setString(2, String.valueOf(us.getPhone()));
+                ps.setString(3, us.getAvatar());
+                ps.setTimestamp(4, createdTime);
+                ps.setString(5, us.getAddress());
+                ps.setInt(6, us.getUserid());
+
+                ps.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+         // tim user theo email va password
     
-    
+     public User getUpdateUser(String email, String password){
+        try {
+            if (con != null) {
+                xSql = "SELECT u.*, r.* FROM [User] u , [Role] r  WHERE [email] = ? AND [password] = ? and r.roleId = u.roleId";
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, email);
+                ps.setString(2, password);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    User user = new User();
+                    Role role = new Role();
+
+                    role.setRole_id(rs.getInt("RoleID"));
+                    role.setRole_name(rs.getString("Name"));
+                    
+                    user.setUserid(rs.getInt("userId"));
+                    user.setFullname(rs.getString("fullname"));
+                    user.setPhone(rs.getString("phone"));
+                    user.setEmail(rs.getString("email"));
+                    user.setAvatar(rs.getString("avatar"));
+                    user.setCreated_date(rs.getTimestamp("created_date"));
+                    user.setModify_date(rs.getTimestamp("modify_date"));
+                    user.setAddress(rs.getString("address"));
+                    user.setPassword(rs.getString("password"));
+                    
+                    return user;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+     }
+    //tim nguoi dung theo id va cap nhat mat khau
+    public void changePassword(int userID, String newPassword) {
+        xSql = "UPDATE User SET password = ? WHERE userId = ?";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, userID);
+                ps.setString(2, newPassword);
+                ps.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
