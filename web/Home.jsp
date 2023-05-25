@@ -4,11 +4,9 @@
 <%@page import="DAO.*" %>
 <%
     List<Blog> blist = (List<Blog>)request.getAttribute("blist");
-<<<<<<< HEAD
+
     List<Post> plist = (List<Post>)request.getAttribute("plist");
 
-=======
->>>>>>> c0eba42cb888d8a59ffac254312b40ceb32f3aa5
 %>
 <!DOCTYPE html>
 

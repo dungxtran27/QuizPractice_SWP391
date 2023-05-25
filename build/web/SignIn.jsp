@@ -25,7 +25,6 @@
                                 <h1 class="text-center ">QPS04</h1>
                             </div>
                             <form action="login" method="post">
-<<<<<<< HEAD
                                 <c: if test="${not empty status}">
                                     <p class="text-center text text-fails">${status}</p>
                                     <p></p>
@@ -34,24 +33,12 @@
                                 <div class="form-outline mb-4">
                                     <input type="text" id="username" name="email" class="form-control form-control-lg"
                                            value="" placeholder="Email" />
-=======
-
-                                <!-- Username input -->
-                                <div class="form-outline mb-4" >
-                                    <input type="text" id="user" name="username" class="form-control form-control-lg"
-                                           placeholder="Username" />
->>>>>>> e0c794c67670778eb359d765c0987e465a28757a
                                 </div>
 
                                 <!-- Password input -->
                                 <div id="enterbox" class="form-outline mb-3">
-<<<<<<< HEAD
                                     <input type="password" id="password"name="password" class="form-control form-control-lg"
                                            value="" placeholder="Password" />
-=======
-                                    <input type="password" id="pass" name="password" class="form-control form-control-lg"
-                                           placeholder="Password" />
->>>>>>> e0c794c67670778eb359d765c0987e465a28757a
                                 </div>
 
                                 <div id="enterbox" class="d-flex justify-content-between align-items-center">

@@ -12,7 +12,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Calendar;
 import jakarta.servlet.http.HttpSession;
 import model.User;
 import DAO.userDAO;
@@ -69,4 +68,5 @@ public class LogInServlet extends HttpServlet {
         request.getRequestDispatcher("Home.jsp").include(request, response);
 
     }
+    
 }

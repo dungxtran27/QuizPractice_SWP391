@@ -191,6 +191,19 @@ public class User {
         this.modify_date = modify_date;
     }
     
+    
+
+    public String getPassword_token() {
+        return password_token;
+    }
+
+    public void setPassword_token(String password_token) {
+        this.password_token = password_token;
+    }
+    
+    
+    
+    
 }
 
 
