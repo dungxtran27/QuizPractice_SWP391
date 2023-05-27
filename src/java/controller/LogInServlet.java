@@ -36,15 +36,15 @@ public class LogInServlet extends HttpServlet {
         String email = request.getParameter("email");
         String pass = request.getParameter("password");
 
-        User x;
+        User currUser;
         userDAO t = new userDAO();
 
-        x = t.getUser(email, pass);
-        request.getSession().setAttribute("currUser", x);
+        currUser = t.getUser(email, pass);
+        request.getSession().setAttribute("currUser", currUser);
 
         String logResult = "";
 
-        if (x == null) {
+        if (currUser == null) {
             logResult = "Sorry, username and/or password are/ is invalid!";
         } else {
             logResult = "Login is successful!";
