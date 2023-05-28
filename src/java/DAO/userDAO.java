@@ -224,13 +224,13 @@ public class userDAO extends MyDAO {
                 int xuserid = rs.getInt(1);
                 String xusername = rs.getString(2);
                 String xpassword = rs.getString(3);
-                String xfullname = rs.getString(7);
-                String xphone = rs.getString(6);
-                String xaddress = rs.getString(8);
                 String xemail = rs.getString(5);
+                String xphone = rs.getString(6);
+                String xfullname = rs.getString(7);
+                String xaddress = rs.getString(8);
                 String xava = rs.getString(10);
 
-                x = new User(xuserid, xusername, xpassword, xfullname, xphone, xaddress, xemail, xava, role);
+                x = new User(xuserid, xusername, xpassword, xemail, xphone, xfullname, xaddress,  xava, role);
                 return x;
             }
 
