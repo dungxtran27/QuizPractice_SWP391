@@ -11,6 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="Components/AllAccess.jsp"%>
         <title>Sign In</title>
+          <link href=“https://fonts.googleapis.com/css?family=Hammersmith+One&display=swap” rel=“stylesheet”>
+      <link rel=“stylesheet” href=“css/style.css”>
     </head>
     <body>
         <section class="vh-100">

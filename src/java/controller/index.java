@@ -28,9 +28,15 @@ public class index extends HttpServlet {
         PrintWriter pr = response.getWriter();
      
       
-        BlogDAO bd = new BlogDAO();
-        List<Blog> list = bd.getAllBlog();
-        request.setAttribute("blist", list);
+          BlogDAO bd = new BlogDAO();
+        List<Blog> blist = bd.getAllBlog();
+        request.setAttribute("blist", blist);
+      
+          postDAO pd = new postDAO();
+        List<Post> plist = pd.getAllPost();
+        request.setAttribute("plist", plist);
+        
+        
       
         
         request.getRequestDispatcher("Home.jsp").forward(request, response);

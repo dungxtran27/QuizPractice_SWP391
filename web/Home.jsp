@@ -50,7 +50,7 @@
                                     <a class="nav-link" href="#">Page</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="rr" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img style="width: 40px" src="img/roll.jpg" alt="alt"/></a>
+                                    <a class="rr" href="profile.jsp"><img style="width: 40px" src="img/roll.jpg" alt="alt"/></a>
                                 </li>
                             </ul>
                         </div>
@@ -107,27 +107,7 @@
                 </div>
 
                 <div class="mainContent">
-                    <%
-                   if(plist == null||plist.size()== 0){
-                    %>
-                    noooo
-
-
-                    <%
-                        }else{
-                           for(Post pl: plist){
-                    %>
-
-
-
-
-                    <p>name: <%=pl.getTitle()%></p>
-
-
-                    <%
-                           }
-                        }
-                    %>
+                   
                     <div class="list">
                         <%
                             if(blist == null||blist.size()== 0){
