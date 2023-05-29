@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.User" %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +37,7 @@
                             </tr>
                             <tr>
                                 <td>Phone</td>
-                                <td><input type="text" name="phone" value="${sessionScope.currUser.phone}" required/></td>
+                                <td><input type="text" name="phone"  pattern="(?=.*\d){10,}" value="${sessionScope.currUser.phone}" required/></td>
                             </tr>
                             <tr><td colspan="2" ></td></tr>
 
@@ -64,22 +63,14 @@
 
                             <tr>
                                 <td colspan="2"><input id="submit-btn" type="submit" value="Save" /></td>
+                                <td colspan="2"> <a href="Home.jsp">Cancel</a></td>
                             </tr>
-                            <c:if test="${successNoti != null}">
-                                <tr>
-                                    <td colspan="2">
-                                        <div id="notification">
-                                            <span>Profile has been changed successfully!</span> <a href="Home.jsp">Back to home</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:if>
                         </table>
                 </div>
             </form>
 
             <div id="avatar">
-                <img src="uploads/${us.avatar}" alt="Avatar" width="250" height="250">
+                <img ${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
             </div>  
         </div>
     </body>
