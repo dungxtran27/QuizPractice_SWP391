@@ -65,22 +65,16 @@
                             <tr>
                                 <td colspan="2"><input id="submit-btn" type="submit" value="Save" /></td>
                             </tr>
-                            <c:if test="${successNoti != null}">
-                                <tr>
-                                    <td colspan="2">
-                                        <div id="notification">
-                                            <span>Profile has been changed successfully!</span> <a href="Home.jsp">Back to home</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:if>
+                           
                         </table>
                 </div>
+                            
             </form>
 
             <div id="avatar">
-                <img src="uploads/${us.avatar}" alt="Avatar" width="250" height="250">
+                <img src="${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
             </div>  
         </div>
+              <p><button onclick='window.history.go(-1);'>Back to previous page</button>
     </body>
 </html>

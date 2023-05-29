@@ -2,10 +2,18 @@
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@page import="DAO.*" %>
-<%
-    List<Blog> blist = (List<Blog>)request.getAttribute("blist");
 
-    List<Post> plist = (List<Post>)request.getAttribute("plist");
+<%
+      postDAO pd = new postDAO();
+        List<Post> plist = pd.getAllPost();
+        request.setAttribute("plist", plist);
+        
+        
+        BlogDAO bd = new BlogDAO();
+        List<Blog> blist = bd.getAllBlog();
+        request.setAttribute("blist", blist);
+    
+
 
 %>
 <!DOCTYPE html>
@@ -16,6 +24,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="Components/AllAccess.jsp"%>
         <title>QPS 04</title>
+        <style>
+            .carousel {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: scroll;
+                scroll-behavior: smooth;
+                padding: 20px 0;
+                margin-bottom: 20px;
+            }
+
+            .carousel__item {
+                flex: 0 0 calc(100% / 3);
+                text-align: center;
+                padding: 10px;
+                box-sizing: border-box;
+                background-color: #f5f5f5;
+                margin-right: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .carousel__back-link {
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        </style>
     </head>
     <body>
         <div class="wrapper">
@@ -60,16 +94,20 @@
                 <h2>quiz prsctice</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+
+                <div id="myCarousel" class="carousel " >
 
                     <%
                            if(plist == null||plist.size()== 0){
                     %>
-                    <div class="carousel-item active">
-                        <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>no post</h5>
-                            <p>First Slide Description</p>
+                    <div class="carousel__item">
+                        <div class="carousel-item active">
+                            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>no post</h5>
+                                <p>First Slide Description</p>
+                            </div>
                         </div>
                     </div>
 
@@ -80,17 +118,34 @@
                     %>
 
 
+                    <div class="carousel__item">
 
-                    <a href="#">
                         <div class="carousel-item active">
-                            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>name: <%=pl.getTitle()%></h5>
-                                <p>brief: <%=pl.getBrifInfor()%></p>
-                            </div>
+                            <a href="post?postId=<%=post.getPostId()%>
+                               &thumbnail=<%=post.getThumbnail()%>
+                               &userId=<%=post.getUserId()%>
+                               &categoryBlogId=<%=post.getCategoryBlogId()%>
+                               &content=<%=post.getContent()%>
+                               &created_date=<%=post.getCreated_date()%>
+                               &edit_date=<%=post.getEdit_date()%>
+                               &status=<%=post.getStatus()%>
+                               &brifInfor=<%=post.getBrifInfor()%>
+                               &title=<%=post.getTitle()%>
+                               &postFileId=<%=post.getPostFileId()%>"
+
+                         <img style="width: 100%" src="<%=pl.getThumbnail()%>" alt="First Slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>name: <%=pl.getTitle()%></h5>
+                                    <p>brief: <%=pl.getBrifInfor()%></p>
+                                </div>
+                            </a>
+
                         </div>
 
-                    </a>
+                    </div>
+
+
+
                     <%
                            }
                         }
@@ -106,15 +161,27 @@
                     </a>
                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="mainContent">
-                   
+
                     <div class="list">
                         <%
                             if(blist == null||blist.size()== 0){
                         %>
                         <h1>no blog</h1>
-
-
                         <%
                             }else{
                                for(Blog bl: blist){
@@ -145,10 +212,47 @@
             </div>
         </div>
 
+    </div>
+    <div class="footer" >
+        <%@include file="Components/footer.jsp" %>
+    </div>
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const items = carousel.querySelectorAll('.carousel__item');
+        const prevBtn = document.createElement('button');
+        prevBtn.innerHTML = '&lt;';
+        prevBtn.className = 'carousel__btn carousel__btn--prev';
+        const nextBtn = document.createElement('button');
+        nextBtn.innerHTML = '&gt;';
+        nextBtn.className = 'carousel__btn carousel__btn--next';
+        carousel.parentNode.insertBefore(prevBtn, carousel);
+        carousel.parentNode.insertBefore(nextBtn, carousel.nextSibling);
 
-        <div class="footer" >
-            <%@include file="Components/footer.jsp" %>
-        </div>
+        let scrollPosition = 0;
+        const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(items[0]).marginRight);
 
-    </body>
+        function handlePrevClick() {
+            if (scrollPosition > 0) {
+                scrollPosition -= itemWidth;
+                carousel.scroll({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function handleNextClick() {
+            if (scrollPosition < (carousel.scrollWidth - carousel.offsetWidth)) {
+                scrollPosition += itemWidth;
+                carousel.scroll({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        prevBtn.addEventListener('click', handlePrevClick);
+        nextBtn.addEventListener('click', handleNextClick);
+    </script>
+</body>
 </html>

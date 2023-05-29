@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.util.List;
 import model.Post;
 
@@ -28,13 +29,43 @@ public class postServlet extends HttpServlet {
          response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
         
-        postDAO pd = new postDAO();
-        List<Post> list = pd.getAllPost();
-        request.setAttribute("plist", list);
-      
+       String postId, thumbnail, userId, categoryBlogId, content, created_date, edit_date, status, brifInfor,title,postFiled;
+        Date cDate,eDate;
+        int pId, uId,cBlogId,pFiled;
+        boolean stats;
         
-       
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        
+        postId = request.getParameter("postId");
+        userId = request.getParameter("userId");
+        created_date = request.getParameter("created_date");
+        edit_date = request.getParameter("edit_date");
+        thumbnail = request.getParameter("thumbnail");
+        categoryBlogId = request.getParameter("categoryBlogId");
+        content = request.getParameter("content");
+        status = request.getParameter("status");
+        brifInfor = request.getParameter("brifInfor");
+        title = request.getParameter("title");
+        postFiled = request.getParameter("postFiled");
+        if (postId != null) {
+            
+             
+            
+            pId = Integer.parseInt(postId);
+            uId = Integer.parseInt(userId);
+            cBlogId = Integer.parseInt(categoryBlogId);
+            pFiled = Integer.parseInt(postFiled);
+            eDate = Date.valueOf(edit_date);
+            cDate = Date.valueOf(created_date);
+            stats = Boolean.valueOf(status);
+            
+            
+            Post p = new Post(pId, thumbnail, uId, cBlogId, content, eDate, edit_date, stats, brifInfor, title, pFiled) ;
+            request.setAttribute("post", p);
+            
+            request.getRequestDispatcher("post.jsp").forward(request, response);
+        }
+        
+
     }
 
 

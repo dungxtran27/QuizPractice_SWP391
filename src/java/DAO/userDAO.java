@@ -99,13 +99,13 @@ public class userDAO extends MyDAO {
     }
 
     //tim nguoi dung theo id va cap nhat mat khau
-    public void changePassword(User user) {
-        xSql = "UPDATE User SET password = ? WHERE userId = ?";
+   public void changePassword(int userId, String newPassword) {
+        xSql = "UPDATE [dbo].[User] SET password = '"+newPassword+"' WHERE userId = ?";
         try {
             if (con != null) {
                 ps = con.prepareStatement(xSql);
-                ps.setInt(2, user.getUserid());
-                ps.setString(1, user.getPassword());
+                ps.setInt(1, userId);
+               // ps.setString(1, newPassword);
                 ps.executeUpdate();
             }
         } catch (Exception e) {
@@ -121,12 +121,12 @@ public class userDAO extends MyDAO {
         }
     }
 
-    public boolean checkLogin(String user, String pass) {
-        xSql = "SELECT * FROM User WHERE [username] = ? and [password] = ?";
-        User x = null;
+
+public User checkLogin(int userId, String pass) {
+        xSql = "SELECT * FROM User WHERE [userId] = ? and [password] = ?";
         try {
             ps = con.prepareStatement(xSql);
-            ps.setString(1, user);
+            ps.setInt(1, userId);
             ps.setString(2, pass);
 
             rs = ps.executeQuery();
@@ -145,18 +145,14 @@ public class userDAO extends MyDAO {
                 String xemail = rs.getString(5);
                 String xava = rs.getString(10);
 
-                x = new User(xuserid, xusername, xpassword, xfullname, xphone, xaddress, xemail, xava, role);
-
+                return new User(xuserid, xusername, xpassword, xfullname, xphone, xaddress, xemail, xava, role);
+                
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (x == null) {
-            return false;
-        } else {
-            return true;
-        }
+       return null;
     }
 
     public User checkUserExit(String user) {
