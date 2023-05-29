@@ -97,13 +97,13 @@ public class userDAO extends MyDAO {
         return null;
      }
     //tim nguoi dung theo id va cap nhat mat khau
-    public void changePassword(User user) {
+    public void changePassword(int userId, String newPassword) {
         xSql = "UPDATE User SET password = ? WHERE userId = ?";
         try {
             if (con != null) {
                 ps = con.prepareStatement(xSql);
-                ps.setString(1, user.getPassword());
-                ps.setInt(2, user.getUserid());
+                ps.setInt(2, userId);
+                ps.setString(1, newPassword);
                 ps.executeUpdate();
             }
         } catch (Exception e) {

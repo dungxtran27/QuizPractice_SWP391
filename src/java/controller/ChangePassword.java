@@ -36,10 +36,10 @@ public class ChangePassword extends HttpServlet {
         userDAO userDao = new userDAO();
         //phien cua nguoi dung hien tai
         User curUser =(User) session.getAttribute("currUser");
-
+        int userid = curUser.getUserid();
         //thay doi mat khau va luu du lieu vao db
         String newPassword = request.getParameter("npass");
-        userDao.changePassword(curUser);
+        userDao.changePassword(userid, newPassword);
         curUser.setPassword(newPassword);
         request.getSession().setAttribute("currUser", curUser);
 
