@@ -8,17 +8,15 @@
 <%@page import="model.*" %>
 <%@page import="DAO.*" %>
 
-<%
-    post p = (animalInfo)request.getAttribute("post");
-%>
+
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Post</title>
     </head>
     <body>
-        <h1>Hello World!  <%=p.getTitle()%></h1>
+        <h1>Hello World! </h1>
     </body>
 </html>

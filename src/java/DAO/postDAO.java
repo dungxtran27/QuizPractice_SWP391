@@ -16,7 +16,8 @@ import model.*;
 public class postDAO extends MyDAO {
 
     public List<Post> getAllPost() {
-        xSql = "select * from [Post]";
+        xSql = "select * from [Post] \n" +
+"order by created_date ";
         List<Post> list = new ArrayList<>();
 
         int postId;

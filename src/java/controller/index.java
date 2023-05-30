@@ -26,7 +26,11 @@ public class index extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
 
-      
+        
+    
+        
+        
+
 
         request.getRequestDispatcher("Home.jsp").forward(request, response);
 

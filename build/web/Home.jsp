@@ -13,10 +13,17 @@
         List<Blog> blist = bd.getAllBlog();
         request.setAttribute("blist", blist);
     
-        subjectDAO sd = new subjectDAO();
+       subjectListDAO sd;
+        sd = new subjectListDAO();
         List<subject> slist = sd.getAllSubject();
         request.setAttribute("slist", slist);
-
+        
+        
+        
+        SliderDAO sld = new SliderDAO();
+      
+        List<slider> sllist = sld.getAllSlider();
+        request.setAttribute("sllist", sllist);
 %>
 <!DOCTYPE html>
 
@@ -51,7 +58,14 @@
                 display: inline-block;
                 margin-bottom: 20px;
             }
+
+            .avatar {
+                width: 50px; /* Điều chỉnh kích thước theo ý muốn */
+                height: 50px; /* Điều chỉnh kích thước theo ý muốn */
+                border-radius: 50%;
+            }
         </style>
+
     </head>
     <body>
         <div class="wrapper">
@@ -76,9 +90,7 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="profile.jsp">Profile</a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="post.jsp">post</a>
                                 </li>
@@ -86,7 +98,9 @@
                                     <a class="nav-link" href="#">Page</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="rr" href="profile.jsp"><img style="width: 40px" src="img/roll.jpg" alt="alt"/></a>
+                                    <a href="profile.jsp">
+                                        <img src="${sessionScope.currUser.avatar}" alt="Avatar" class="avatar">
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -96,13 +110,63 @@
                 <h2>quiz prsctice</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
+<h2>Slider: </h2>
+ <div id="myCarousel" class="carousel " >
+
+                    <%
+                           if(sllist == null||sllist.size()== 0){
+                    %>
+                    
+                    <div class="carousel__item">
+                        <div class="carousel-item active">
+                            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>no slider</h5>
+                                <p>First Slide Description</p>
+                            </div>
+                        </div>
+                    </div>
 
 
+                    <%
+                        }else{
+                           for(slider sl: sllist){
+                    %>
+
+
+                    <div class="carousel__item">
+
+                        <div class="carousel-item active">
+                            <a href="slider.jsp">
+
+                                <img style="" src="<%=sl.getSliderUrl()%>" alt="First Slide">
+                                <div class="">
+                                    <h5> <%=sl.getTitle()%></h5>
+                                 
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <%
+                           }
+                        }
+                    %>
+
+                   
+                </div>
+
+  <h2>Post: </h2>
                 <div id="myCarousel" class="carousel " >
 
                     <%
                            if(plist == null||plist.size()== 0){
                     %>
+                    
                     <div class="carousel__item">
                         <div class="carousel-item active">
                             <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
@@ -123,12 +187,61 @@
                     <div class="carousel__item">
 
                         <div class="carousel-item active">
-                            <a href="post?postId=<%=p.getPostId()%>&thumbnail=<%=p.getThumbnail()%>&userId=<%=p.getUserId()%>&categoryBlogId=<%=p.getCategoryBlogId()%>&content=<%=p.getContent()%>&created_date=<%=p.getCreated_date()%>&edit_date=<%=p.getEdit_date()%>&status=<%=p.getStatus()%>&brifInfor=<%=p.getBrifInfor()%>&title=<%=p.getTitle()%>&postFileId=<%=p.getPostFileId()%>">
+                            <a href="post.jsp">
 
                                 <img style="width: 100%" src="<%=p.getThumbnail()%>" alt="First Slide">
+                                <div class="">
+                                    <h5> <%=p.getTitle()%></h5>
+                                    <h5><%=p.getBrifInfor()%><h5>
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <%
+                           }
+                        }
+                    %>
+
+                   
+                </div>
+<h2>Subject: </h2>
+                <div id="myCarousel" class="carousel " >
+
+                    <%
+                           if(slist == null||slist.size()== 0){
+                    %>
+                    <div class="carousel__item">
+                        <div class="carousel-item active">
+                            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>no subject</h5>
+                                <p>First Slide Description</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <%
+                        }else{
+                           for(subject s: slist){
+                    %>
+
+
+                    <div class="carousel__item">
+
+                        <div class="carousel-item active">
+                            <a href="subject.jsp">
+
+                                <img style="width: 100%" src="<%=s.getThumbnail()%>" alt="First Slide">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>name: <%=p.getTitle()%></h5>
-                                    <p>brief: <%=p.getBrifInfor()%></p>
+                                    <br>  <br>  <br>  <br>
+                                    <h5 style="color: black; background-color: whitesmoke"><%=s.getTitle()%></h5>
+                                  
                                 </div>
                             </a>
 
@@ -166,20 +279,7 @@
 
 
 
-
-                <div class="mainContent">
-                    <% if(slist == null||slist.size()== 0){
-                    %>
-                    <h4>no subject</h4>
-                    <% }else{
-                    for subject s: slist{
-                    <h4>name : <%=s.getSubjectName()%></h4>
-                    }
-
-                    %>
-                    <%}}%>
-
-                </div>
+               
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>

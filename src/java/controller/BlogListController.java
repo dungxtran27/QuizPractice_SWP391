@@ -33,10 +33,7 @@ public class BlogListController extends HttpServlet {
         PrintWriter pr = response.getWriter();
      
            
-        BlogDAO bd = new BlogDAO();
-        List<Blog> blist = bd.getAllBlog();
-        request.setAttribute("blist", blist);
-       
+        
         
         request.getRequestDispatcher("Home.jsp").forward(request, response);
 
