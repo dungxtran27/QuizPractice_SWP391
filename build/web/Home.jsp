@@ -13,7 +13,9 @@
         List<Blog> blist = bd.getAllBlog();
         request.setAttribute("blist", blist);
     
-
+ subjectDAO sd = new subjectDAO();
+        List<subject> slist = sd.getAllSubject();
+        request.setAttribute("slist", slist);
 
 %>
 <!DOCTYPE html>
@@ -114,29 +116,19 @@
 
                     <%
                         }else{
-                           for(Post pl: plist){
+                           for(Post p: plist){
                     %>
 
 
                     <div class="carousel__item">
 
                         <div class="carousel-item active">
-                            <a href="post?postId=<%=post.getPostId()%>
-                               &thumbnail=<%=post.getThumbnail()%>
-                               &userId=<%=post.getUserId()%>
-                               &categoryBlogId=<%=post.getCategoryBlogId()%>
-                               &content=<%=post.getContent()%>
-                               &created_date=<%=post.getCreated_date()%>
-                               &edit_date=<%=post.getEdit_date()%>
-                               &status=<%=post.getStatus()%>
-                               &brifInfor=<%=post.getBrifInfor()%>
-                               &title=<%=post.getTitle()%>
-                               &postFileId=<%=post.getPostFileId()%>"
+                            <a href="post?postId=<%=p.getPostId()%>&thumbnail=<%=p.getThumbnail()%>&userId=<%=p.getUserId()%>&categoryBlogId=<%=p.getCategoryBlogId()%>&content=<%=p.getContent()%>&created_date=<%=p.getCreated_date()%>&edit_date=<%=p.getEdit_date()%>&status=<%=p.getStatus()%>&brifInfor=<%=p.getBrifInfor()%>&title=<%=p.getTitle()%>&postFileId=<%=p.getPostFileId()%>">
 
-                         <img style="width: 100%" src="<%=pl.getThumbnail()%>" alt="First Slide">
+                         <img style="width: 100%" src="<%=p.getThumbnail()%>" alt="First Slide">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>name: <%=pl.getTitle()%></h5>
-                                    <p>brief: <%=pl.getBrifInfor()%></p>
+                                    <h5>name: <%=p.getTitle()%></h5>
+                                    <p>brief: <%=p.getBrifInfor()%></p>
                                 </div>
                             </a>
 
@@ -176,37 +168,17 @@
 
 
                 <div class="mainContent">
+<% if(slist == null||slist.size()== 0){
+%>
+<h4>no subject</h4>
+<% }else{
+for subject s: slist{
+<h4>name : <%=s.getSubjectName()%></h4>
+}
 
-                    <div class="list">
-                        <%
-                            if(blist == null||blist.size()== 0){
-                        %>
-                        <h1>no blog</h1>
-                        <%
-                            }else{
-                               for(Blog bl: blist){
-                        %>
-
-
-
-                        <a class="a card" href="#">
-                            <div style="display: flex" class="">
-
-                                <div style="text-align: left;" class=" ">
-
-                                    <h5 >name: <%=bl.getBlogName()%>;</h5>
-
-
-                                </div>
-                            </div>
-
-                        </a>
-                        <%
-                               }
-                            }
-                        %>
-
-                    </div>
+%>
+<%}}%>
+               
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>

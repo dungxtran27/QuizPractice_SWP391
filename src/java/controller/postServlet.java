@@ -22,16 +22,15 @@ import model.Post;
  */
 public class postServlet extends HttpServlet {
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
-        
-       String postId, thumbnail, userId, categoryBlogId, content, created_date, edit_date, status, brifInfor,title,postFiled;
-        Date cDate,eDate;
-        int pId, uId,cBlogId,pFiled;
+
+        String postId, thumbnail, userId, categoryBlogId, content, created_date, edit_date, status, brifInfor, title, postFiled;
+        Date cDate, eDate;
+        int pId, uId, cBlogId, pFiled;
         boolean stats;
         
         
@@ -46,10 +45,9 @@ public class postServlet extends HttpServlet {
         brifInfor = request.getParameter("brifInfor");
         title = request.getParameter("title");
         postFiled = request.getParameter("postFiled");
-        if (postId != null) {
-            
-             
-            
+       
+        
+        if (postId != null && userId!=null) {
             pId = Integer.parseInt(postId);
             uId = Integer.parseInt(userId);
             cBlogId = Integer.parseInt(categoryBlogId);
@@ -57,16 +55,13 @@ public class postServlet extends HttpServlet {
             eDate = Date.valueOf(edit_date);
             cDate = Date.valueOf(created_date);
             stats = Boolean.valueOf(status);
-            
-            
-            Post p = new Post(pId, thumbnail, uId, cBlogId, content, eDate, edit_date, stats, brifInfor, title, pFiled) ;
-            request.setAttribute("post", p);
-            
+
+            Post p = new Post(pId, thumbnail, uId, cBlogId, content, eDate, edit_date, stats, brifInfor, title, pFiled);
+            request.setAttribute("p", p);
+
             request.getRequestDispatcher("post.jsp").forward(request, response);
         }
-        
 
     }
-
 
 }
