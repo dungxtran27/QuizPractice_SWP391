@@ -138,7 +138,7 @@ public class ProfileUpdate extends HttpServlet {
         User userUpdate = userDao.getUpdateUser(curUser.getEmail(), curUser.getPassword());
         request.getSession().setAttribute("currUser", userUpdate);
 
-        response.sendRedirect("profile");
+        response.sendRedirect("profile.jsp");
 
     }
     

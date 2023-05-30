@@ -65,13 +65,16 @@
                                 <td colspan="2"><input id="submit-btn" type="submit" value="Save" /></td>
                                 <td colspan="2"> <a href="Home.jsp">Cancel</a></td>
                             </tr>
+                           
                         </table>
                 </div>
+                            
             </form>
 
             <div id="avatar">
-                <img ${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
+                <img src="${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
             </div>  
         </div>
+              <p><button onclick='window.history.go(-1);'>Back to previous page</button>
     </body>
 </html>

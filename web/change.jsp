@@ -14,15 +14,16 @@
     </head>
     <body>
         <div id="container">
-             <form class="form" action="changepw" method="post" onsubmit="submitForm()">
+             <form class="form" action="changepw" method="post" >
             <div id="table-head">
                 <span>Change password</span>
+                <h3 style="color:red">${requestScope.ms}</h3>
             </div>
             <div>
                 <table>
                     <tr>
                         <td>Old password:</td>
-                        <td><input type="password" name ="" value="" id="old-password"/></td>
+                        <td><input type="password" name ="opass" value="" id="old-password"/></td>
                     </tr>
                     <tr><td colspan="2" id="error-old-password" class="error"></td></tr>
                     <tr>
@@ -32,7 +33,7 @@
                     <tr><td id="error-new-password" class="error"></td></tr>
                     <tr>
                         <td>Confirm password:</td> 
-                        <td><input type="password" name ="" value="" id="confirm-password"/></td>
+                        <td><input type="password" name ="curpass" value="" id="confirm-password"/></td>
                     </tr>
                     <tr><td id="error-confirm-password" class="error"></td></tr>
                     <tr>
@@ -43,7 +44,7 @@
         </form>
     </div>
 <!--        doan code js kiem tra mat khau ma nguoi dung nhap vao-->
-        <script>
+<!--        <script>
             function submitForm() {
                     var oldPassword = document.getElementById("old-password").value;
                     var newPassword = document.getElementById("new-password").value;
@@ -62,6 +63,6 @@
                     }
                     return true;
                 }
-        </script>
+        </script>-->
     </body>
 </html>

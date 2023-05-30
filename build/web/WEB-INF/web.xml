@@ -23,6 +23,14 @@
         <servlet-name>ProfileUpdate</servlet-name>
         <servlet-class>controller.ProfileUpdate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>post</servlet-name>
+        <servlet-class>controller.post</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>blogServlet</servlet-name>
+        <servlet-class>controller.blogServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -42,6 +50,14 @@
     <servlet-mapping>
         <servlet-name>ProfileUpdate</servlet-name>
         <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>post</servlet-name>
+        <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>blogServlet</servlet-name>
+        <url-pattern>/blog</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
