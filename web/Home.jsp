@@ -1,5 +1,23 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@page import="DAO.*" %>
+
+<%
+      postDAO pd = new postDAO();
+        List<Post> plist = pd.getAllPost();
+        request.setAttribute("plist", plist);
+        
+        
+        BlogDAO bd = new BlogDAO();
+        List<Blog> blist = bd.getAllBlog();
+        request.setAttribute("blist", blist);
+    
+ subjectDAO sd = new subjectDAO();
+        List<subject> slist = sd.getAllSubject();
+        request.setAttribute("slist", slist);
+
+%>
 <!DOCTYPE html>
 
 
@@ -8,6 +26,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="Components/AllAccess.jsp"%>
         <title>QPS 04</title>
+        <style>
+            .carousel {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: scroll;
+                scroll-behavior: smooth;
+                padding: 20px 0;
+                margin-bottom: 20px;
+            }
+
+            .carousel__item {
+                flex: 0 0 calc(100% / 3);
+                text-align: center;
+                padding: 10px;
+                box-sizing: border-box;
+                background-color: #f5f5f5;
+                margin-right: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .carousel__back-link {
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        </style>
     </head>
     <body>
         <div class="wrapper">
@@ -33,79 +77,154 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav navbar-nav ml-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">personal</a>
+                                    <a class="nav-link" href="profile.jsp">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="post.jsp">post</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Page</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Page</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="rr" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img style="width: 40px" src="img/roll.jpg" alt="alt"/></a>
+                                    <a class="rr" href="profile.jsp"><img style="width: 40px" src="img/roll.jpg" alt="alt"/></a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
 
-                <h2>Collapsible Sidebar Using Bootstrap 4</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h2>quiz prsctice</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-               <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>First Slide Heading</h5>
-                <p>First Slide Description</p>
+
+
+                <div id="myCarousel" class="carousel " >
+
+                    <%
+                           if(plist == null||plist.size()== 0){
+                    %>
+                    <div class="carousel__item">
+                        <div class="carousel-item active">
+                            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>no post</h5>
+                                <p>First Slide Description</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <%
+                        }else{
+                           for(Post p: plist){
+                    %>
+
+
+                    <div class="carousel__item">
+
+                        <div class="carousel-item active">
+                            <a href="post?postId=<%=p.getPostId()%>&thumbnail=<%=p.getThumbnail()%>&userId=<%=p.getUserId()%>&categoryBlogId=<%=p.getCategoryBlogId()%>&content=<%=p.getContent()%>&created_date=<%=p.getCreated_date()%>&edit_date=<%=p.getEdit_date()%>&status=<%=p.getStatus()%>&brifInfor=<%=p.getBrifInfor()%>&title=<%=p.getTitle()%>&postFileId=<%=p.getPostFileId()%>">
+
+                         <img style="width: 100%" src="<%=p.getThumbnail()%>" alt="First Slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>name: <%=p.getTitle()%></h5>
+                                    <p>brief: <%=p.getBrifInfor()%></p>
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <%
+                           }
+                        }
+                    %>
+
+                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="mainContent">
+<% if(slist == null||slist.size()== 0){
+%>
+<h4>no subject</h4>
+<% }else{
+for subject s: slist{
+<h4>name : <%=s.getSubjectName()%></h4>
+}
+
+%>
+<%}}%>
+               
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
-        <div class="carousel-item">
-            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="Second Slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Second Slide Heading</h5>
-                <p>Second Slide Description</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="Third Slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third Slide Heading</h5>
-                <p>Third Slide Description</p>
-            </div>
-        </div>
+
     </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+    <div class="footer" >
+        <%@include file="Components/footer.jsp" %>
+    </div>
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const items = carousel.querySelectorAll('.carousel__item');
+        const prevBtn = document.createElement('button');
+        prevBtn.innerHTML = '&lt;';
+        prevBtn.className = 'carousel__btn carousel__btn--prev';
+        const nextBtn = document.createElement('button');
+        nextBtn.innerHTML = '&gt;';
+        nextBtn.className = 'carousel__btn carousel__btn--next';
+        carousel.parentNode.insertBefore(prevBtn, carousel);
+        carousel.parentNode.insertBefore(nextBtn, carousel.nextSibling);
 
-                <h2>Lorem Ipsum Dolor</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        let scrollPosition = 0;
+        const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(items[0]).marginRight);
 
-                <div class="line"></div>
+        function handlePrevClick() {
+            if (scrollPosition > 0) {
+                scrollPosition -= itemWidth;
+                carousel.scroll({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
 
-                <h3>Lorem Ipsum Dolor</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-        </div>
+        function handleNextClick() {
+            if (scrollPosition < (carousel.scrollWidth - carousel.offsetWidth)) {
+                scrollPosition += itemWidth;
+                carousel.scroll({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
 
-
-            <div class="footer" >
-                  <%@include file="Components/footer.jsp" %>
-            </div>
-
-    </body>
+        prevBtn.addEventListener('click', handlePrevClick);
+        nextBtn.addEventListener('click', handleNextClick);
+    </script>
+</body>
 </html>

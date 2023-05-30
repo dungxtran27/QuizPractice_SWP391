@@ -56,12 +56,77 @@ public class userDAO extends MyDAO {
         }
     }
 
-    public boolean checkLogin(String user, String pass) {
-        xSql = "SELECT * FROM User WHERE [username] = ? and [password] = ?";
-        User x = null;
+    public User getUpdateUser(String email, String password) {
+        try {
+            if (con != null) {
+                xSql = "SELECT u.*, r.* FROM [User] u , [Role] r  WHERE [email] = ? AND [password] = ? and r.roleId = u.roleId";
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, email);
+                ps.setString(2, password);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    User user = new User();
+                    Role role = new Role();
+
+                    role.setRole_id(rs.getInt("RoleID"));
+                    role.setRole_name(rs.getString("Name"));
+
+                    user.setUserid(rs.getInt("userId"));
+                    user.setFullname(rs.getString("fullname"));
+                    user.setPhone(rs.getString("phone"));
+                    user.setEmail(rs.getString("email"));
+                    user.setAvatar(rs.getString("avatar"));
+                    user.setCreated_date(rs.getTimestamp("created_date"));
+                    user.setModify_date(rs.getTimestamp("modify_date"));
+                    user.setAddress(rs.getString("address"));
+                    user.setPassword(rs.getString("password"));
+
+                    return user;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    //tim nguoi dung theo id va cap nhat mat khau
+   public void changePassword(int userId, String newPassword) {
+        xSql = "UPDATE [dbo].[User] SET password = '"+newPassword+"' WHERE userId = ?";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, userId);
+               // ps.setString(1, newPassword);
+                ps.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+public User checkLogin(int userId, String pass) {
+        xSql = "SELECT * FROM User WHERE [userId] = ? and [password] = ?";
         try {
             ps = con.prepareStatement(xSql);
-            ps.setString(1, user);
+            ps.setInt(1, userId);
             ps.setString(2, pass);
 
             rs = ps.executeQuery();
@@ -80,18 +145,14 @@ public class userDAO extends MyDAO {
                 String xemail = rs.getString(5);
                 String xava = rs.getString(10);
 
-                x = new User(xuserid, xusername, xpassword, xfullname, xphone, xaddress, xemail, xava, role);
+                return new User(xuserid, xusername, xpassword, xfullname, xphone, xaddress, xemail, xava, role);
                 
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(x==null){
-            return false;
-        }else{
-            return true;
-        }
+       return null;
     }
 
     public User checkUserExit(String user) {
@@ -141,8 +202,7 @@ public class userDAO extends MyDAO {
             e.printStackTrace();
         }
     }
- 
-    
+
     public User getUser(String email, String pass) {
         xSql = "select * from [User] WHERE [email] =? and [password] =?";
         User x = null;
@@ -161,13 +221,13 @@ public class userDAO extends MyDAO {
                 int xuserid = rs.getInt(1);
                 String xusername = rs.getString(2);
                 String xpassword = rs.getString(3);
-                String xfullname = rs.getString(7);
-                String xphone = rs.getString(6);
-                String xaddress = rs.getString(8);
                 String xemail = rs.getString(5);
+                String xphone = rs.getString(6);
+                String xfullname = rs.getString(7);
+                String xaddress = rs.getString(8);
                 String xava = rs.getString(10);
 
-                x = new User(xuserid, xusername, xpassword, xfullname, xphone, xaddress, xemail, xava, role);
+                x = new User(xuserid, xusername, xpassword, xemail, xphone, xfullname, xaddress, xava, role);
                 return x;
             }
 
@@ -176,26 +236,25 @@ public class userDAO extends MyDAO {
         }
         return null;
     }
-    
-    
+
     //Kiểm tra input username nhập vào có bị trùng với username đã có hay không
-    public boolean checkUsername(String username){
-        try{
-            xSql="SELECT [username] FROM [User] WHERE [username]=?";
+    public boolean checkUsername(String username) {
+        try {
+            xSql = "SELECT [username] FROM [User] WHERE [username]=?";
             ps = con.prepareStatement(xSql);
-            ps.setString(1,username);
+            ps.setString(1, username);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
-    
+
     //check phonenumber
-    public boolean checkPhonenumber(String phone){
+    public boolean checkPhonenumber(String phone) {
         String regex = "^\\d{10}$";
         Pattern p = Pattern.compile(regex);
         if (phone == null) {
@@ -205,7 +264,7 @@ public class userDAO extends MyDAO {
         Matcher m = p.matcher(phone);
         return m.matches();
     }
-    
+
     //  Kiểm tra password nhập vào có đúng điều kiện không, điều kiên 
     //  cụ thể ở đây là password phải có từ 6 đến 20 kí tự bao gồm chữ và số.
     public boolean checkPassword(String password) {
@@ -218,17 +277,17 @@ public class userDAO extends MyDAO {
         Matcher m = p.matcher(password);
         return m.matches();
     }
-    
+
     //Kiem tra email
     /*
     - Cho phep cac gia tri tu 0-9
     - Cho phep ca cac chu hoa va chu thuong tu a den z
     - dau "-" va dau"." khong duoc phep o dau va cuoi phan ten mien
     - khong co dau cham lien tiep
-    */
-    public boolean checkEmail(String email){
-        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
-        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+     */
+    public boolean checkEmail(String email) {
+        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         Pattern p = Pattern.compile(regex);
         if (email == null) {
             return false;
@@ -237,24 +296,21 @@ public class userDAO extends MyDAO {
         Matcher m = p.matcher(email);
         return m.matches();
     }
-    
+
     //kiem tra email ton tai
-    public boolean checkEmailExist(String email){
-        try{
-            xSql="SELECT [email] FROM [User] WHERE [email]=?";
+    public boolean checkEmailExist(String email) {
+        try {
+            xSql = "SELECT [email] FROM [User] WHERE [email]=?";
             ps = con.prepareStatement(xSql);
-            ps.setString(1,email);
+            ps.setString(1, email);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
-    
-    
-    
-}
 
+}
