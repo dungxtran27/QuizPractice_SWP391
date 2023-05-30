@@ -4,8 +4,13 @@
     Author     : admin
 --%>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@page import="DAO.*" %>
+<%
+    List<Blog> blist = (List<Blog>)request.getAttribute("blist");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,32 +21,55 @@
         <title>Manage Blog</title>
     </head>
     <body>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">BlogId</th>
-                        <th scope="col">BlogName</th>
-                        <th scope="col">SubId</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${listB}" var="bl">
-                    <tr>
-                        <td>${bl.blogId}</td>
-                        <td>${bl.blogName}></td>
-                        <td>${bl.subId}></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        <div id="content">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav ml-auto">
+                                <li>
+                                    <form action="SearchBlog" method="POST">
+                                        <p><input type="text" name="blogName" value=""/>
+                                        <input type="submit" value="Search"> 
+                                    </form>  
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="profile.jsp">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="post.jsp">post</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="BlogList">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="rr" href=""><img style="width: 40px" src="img/roll.jpg" alt="alt"/></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+        </div>
+        
+        <div class="list">
+            <%
+            if (blist == null || blist.size() == 0) {
+            %>
+            <h1>No blogs found</h1>
+            <% } else {
+                for (Blog bl : blist) {
+            %>
+            <a class="a card" href="#">
+                <div style="display: flex" class="">
+                    <div style="text-align: left;" class="">
+                        <h5>Blog Id: <%=bl.getBlogId()%></h5>
+                        <h5>Blog name: <%=bl.getBlogName()%></h5>
+                        <h5>Sub Id: <%=bl.getSubId()%></h5>
+                    </div>
+                </div>
+            </a>
+            <% }
+    } %>
+        </div>
     </body>
 </html>

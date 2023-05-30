@@ -68,5 +68,39 @@ public class BlogDAO extends MyDAO{
         }
         return bl;
     }
+      public List<Blog> getAllBlogByCharacter(String blogName) {
+        xSql = "SELECT * FROM Blog WHERE blogName LIKE '%"+ blogName +"%'";
+        List<Blog> list = new ArrayList<>();
+
+        try {
+            ps = con.prepareStatement(xSql);
+//            ps.setString(1, "%" + character + "%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Blog bl = new Blog();
+                bl.setBlogId(rs.getInt(1));
+                bl.setBlogName(rs.getString(2));
+                bl.setSubId(rs.getInt(3));
+                list.add(bl);
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+
+
+
+
+
+
+
+
 }
 

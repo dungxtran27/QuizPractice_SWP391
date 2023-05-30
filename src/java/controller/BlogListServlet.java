@@ -4,46 +4,35 @@
  */
 package controller;
 
-import model.Blog;
 import DAO.BlogDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
+import model.Blog;
 
 /**
  *
  * @author admin
  */
-public class BlogListController extends HttpServlet {
-
-   
+public class BlogListServlet extends HttpServlet {
     
-
-   
     @Override
-   
-     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter pr = response.getWriter();
      
-           
-        
-        
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
-
-        
-
+        BlogDAO bd = new BlogDAO();
+        List<Blog> list = bd.getAllBlog();
+        request.setAttribute("blist", list);
+      
+        request.getRequestDispatcher("BlogList.jsp").forward(request, response);
     }
 
-   
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
+

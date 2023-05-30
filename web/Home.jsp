@@ -98,6 +98,9 @@
                                     <a class="nav-link" href="#">Page</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="BlogList">Blog</a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="profile.jsp">
                                         <img src="${sessionScope.currUser.avatar}" alt="Avatar" class="avatar">
                                     </a>
@@ -139,7 +142,7 @@
                         <div class="carousel-item active">
                             <a href="slider.jsp">
 
-                                <img style="" src="<%=sl.getSliderUrl()%>" alt="First Slide">
+                                <img style="width: 100%" src="<%=sl.getSliderUrl()%>" alt="First Slide">
                                 <div class="">
                                     <h5> <%=sl.getTitle()%></h5>
                                  
