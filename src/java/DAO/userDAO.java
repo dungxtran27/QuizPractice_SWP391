@@ -98,12 +98,12 @@ public class userDAO extends MyDAO {
      }
     //tim nguoi dung theo id va cap nhat mat khau
     public void changePassword(int userId, String newPassword) {
-        xSql = "UPDATE User SET password = ? WHERE userId = ?";
+        xSql = "UPDATE [dbo].[User] SET password = '"+newPassword+"' WHERE userId = ?";
         try {
             if (con != null) {
                 ps = con.prepareStatement(xSql);
-                ps.setInt(2, userId);
-                ps.setString(1, newPassword);
+                ps.setInt(1, userId);
+               // ps.setString(1, newPassword);
                 ps.executeUpdate();
             }
         } catch (Exception e) {
@@ -118,6 +118,7 @@ public class userDAO extends MyDAO {
             }
         }
     }
+
 
     public boolean checkLogin(String user, String pass) {
         xSql = "SELECT * FROM User WHERE [username] = ? and [password] = ?";
