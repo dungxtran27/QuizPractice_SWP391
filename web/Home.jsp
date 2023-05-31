@@ -113,13 +113,13 @@
                 <h2>quiz prsctice</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-<h2>Slider: </h2>
- <div id="myCarousel" class="carousel " >
+                <h2>Slider: </h2>
+                <div id="myCarousel" class="carousel " >
 
                     <%
                            if(sllist == null||sllist.size()== 0){
                     %>
-                    
+
                     <div class="carousel__item">
                         <div class="carousel-item active">
                             <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
@@ -145,7 +145,7 @@
                                 <img style="width: 100%" src="<%=sl.getSliderUrl()%>" alt="First Slide">
                                 <div class="">
                                     <h5> <%=sl.getTitle()%></h5>
-                                 
+
                                 </div>
                             </a>
 
@@ -160,16 +160,16 @@
                         }
                     %>
 
-                   
+
                 </div>
 
-  <h2>Post: </h2>
+                <h2>Hot Post: </h2>
                 <div id="myCarousel" class="carousel " >
 
                     <%
                            if(plist == null||plist.size()== 0){
                     %>
-                    
+
                     <div class="carousel__item">
                         <div class="carousel-item active">
                             <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
@@ -195,86 +195,84 @@
                                 <img style="width: 100%" src="<%=p.getThumbnail()%>" alt="First Slide">
                                 <div class="">
                                     <h5> <%=p.getTitle()%></h5>
-                                    <h5><%=p.getBrifInfor()%><h5>
-                                </div>
-                            </a>
+                                    <h5><%=p.getCreated_date()%><h5>
+                                            </div>
+                                            </a>
 
-                        </div>
+                                            </div>
 
-                    </div>
-
-
-
-                    <%
-                           }
-                        }
-                    %>
-
-                   
-                </div>
-<h2>Subject: </h2>
-                <div id="myCarousel" class="carousel " >
-
-                    <%
-                           if(slist == null||slist.size()== 0){
-                    %>
-                    <div class="carousel__item">
-                        <div class="carousel-item active">
-                            <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>no subject</h5>
-                                <p>First Slide Description</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <%
-                        }else{
-                           for(subject s: slist){
-                    %>
-
-
-                    <div class="carousel__item">
-
-                        <div class="carousel-item active">
-                            <a href="subject.jsp">
-
-                                <img style="width: 100%" src="<%=s.getThumbnail()%>" alt="First Slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <br>  <br>  <br>  <br>
-                                    <h5 style="color: black; background-color: whitesmoke"><%=s.getTitle()%></h5>
-                                  
-                                </div>
-                            </a>
-
-                        </div>
-
-                    </div>
+                                            </div>
 
 
 
-                    <%
-                           }
-                        }
-                    %>
-
-                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                                            <%
+                                                   }
+                                                }
+                                            %>
 
 
+                                            </div>
+                                            <h2>Subject: </h2>
+                                            <div id="myCarousel" class="carousel " >
+
+                                                <%
+                                                       if(slist == null||slist.size()== 0){
+                                                %>
+                                                <div class="carousel__item">
+                                                    <div class="carousel-item active">
+                                                        <img src="https://www.ncertbooks.guru/wp-content/uploads/2022/05/Course-details.png" alt="First Slide">
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                            <h5>no subject</h5>
+                                                            <p>First Slide Description</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <%
+                                                    }else{
+                                                       for(subject s: slist){
+                                                %>
+
+
+                                                <div class="carousel__item">
+
+                                                    <div class="carousel-item active">
+                                                        <a href="subject.jsp">
+
+                                                            <img style="width: 100%" src="<%=s.getThumbnail()%>" alt="First Slide">
+                                                            <div class="carousel-caption d-none d-md-block">
+                                                                <br>  <br>  <br>  <br>
+                                                                <h5 style="color: black; background-color: whitesmoke"><%=s.getTitle()%></h5>
+
+                                                            </div>
+                                                        </a>
+
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                <%
+                                                       }
+                                                    }
+                                                %>
+
+                                                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
 
 
 
 
-
+                                           
 
 
 
@@ -282,52 +280,53 @@
 
 
 
-               
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-        </div>
 
-    </div>
-    <div class="footer" >
-        <%@include file="Components/footer.jsp" %>
-    </div>
-    <script>
-        const carousel = document.querySelector('.carousel');
-        const items = carousel.querySelectorAll('.carousel__item');
-        const prevBtn = document.createElement('button');
-        prevBtn.innerHTML = '&lt;';
-        prevBtn.className = 'carousel__btn carousel__btn--prev';
-        const nextBtn = document.createElement('button');
-        nextBtn.innerHTML = '&gt;';
-        nextBtn.className = 'carousel__btn carousel__btn--next';
-        carousel.parentNode.insertBefore(prevBtn, carousel);
-        carousel.parentNode.insertBefore(nextBtn, carousel.nextSibling);
 
-        let scrollPosition = 0;
-        const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(items[0]).marginRight);
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                            </div>
+                                            </div>
 
-        function handlePrevClick() {
-            if (scrollPosition > 0) {
-                scrollPosition -= itemWidth;
-                carousel.scroll({
-                    left: scrollPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
+                                            </div>
+                                            <div class="footer" >
+                                                <%@include file="Components/footer.jsp" %>
+                                            </div>
+                                            <script>
+                                                const carousel = document.querySelector('.carousel');
+                                                const items = carousel.querySelectorAll('.carousel__item');
+                                                const prevBtn = document.createElement('button');
+                                                prevBtn.innerHTML = '&lt;';
+                                                prevBtn.className = 'carousel__btn carousel__btn--prev';
+                                                const nextBtn = document.createElement('button');
+                                                nextBtn.innerHTML = '&gt;';
+                                                nextBtn.className = 'carousel__btn carousel__btn--next';
+                                                carousel.parentNode.insertBefore(prevBtn, carousel);
+                                                carousel.parentNode.insertBefore(nextBtn, carousel.nextSibling);
 
-        function handleNextClick() {
-            if (scrollPosition < (carousel.scrollWidth - carousel.offsetWidth)) {
-                scrollPosition += itemWidth;
-                carousel.scroll({
-                    left: scrollPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
+                                                let scrollPosition = 0;
+                                                const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(items[0]).marginRight);
 
-        prevBtn.addEventListener('click', handlePrevClick);
-        nextBtn.addEventListener('click', handleNextClick);
-    </script>
-</body>
-</html>
+                                                function handlePrevClick() {
+                                                    if (scrollPosition > 0) {
+                                                        scrollPosition -= itemWidth;
+                                                        carousel.scroll({
+                                                            left: scrollPosition,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                }
+
+                                                function handleNextClick() {
+                                                    if (scrollPosition < (carousel.scrollWidth - carousel.offsetWidth)) {
+                                                        scrollPosition += itemWidth;
+                                                        carousel.scroll({
+                                                            left: scrollPosition,
+                                                            behavior: 'smooth'
+                                                        });
+                                                    }
+                                                }
+
+                                                prevBtn.addEventListener('click', handlePrevClick);
+                                                nextBtn.addEventListener('click', handleNextClick);
+                                            </script>
+                                            </body>
+                                            </html>

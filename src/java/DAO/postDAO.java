@@ -17,7 +17,7 @@ public class postDAO extends MyDAO {
 
     public List<Post> getAllPost() {
         xSql = "select * from [Post] \n" +
-"order by created_date ";
+"order by created_date desc ";
         List<Post> list = new ArrayList<>();
 
         int postId;

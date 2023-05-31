@@ -14,7 +14,7 @@
     </head>
     <body>
         <div id="container">
-             <form class="form" action="changepw" method="post" >
+            <form class="form" action="changepw" method="post" onsubmit="return submitForm()">
             <div id="table-head">
                 <span>Change password</span>
                 <h3 style="color:red">${requestScope.ms}</h3>
@@ -44,7 +44,7 @@
         </form>
     </div>
 <!--        doan code js kiem tra mat khau ma nguoi dung nhap vao-->
-<!--        <script>
+        <script>
             function submitForm() {
                     var oldPassword = document.getElementById("old-password").value;
                     var newPassword = document.getElementById("new-password").value;
@@ -63,6 +63,6 @@
                     }
                     return true;
                 }
-        </script>-->
+        </script>
     </body>
 </html>

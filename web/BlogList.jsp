@@ -30,7 +30,7 @@
                                 <li>
                                     <form action="SearchBlog" method="POST">
                                         <p><input type="text" name="blogName" value=""/>
-                                        <input type="submit" value="Search"> 
+                                        <input type="submit"  value="Search by name"> 
                                     </form>  
                                 </li>
                                 <li class="nav-item active">
