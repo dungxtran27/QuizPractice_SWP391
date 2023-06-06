@@ -22,7 +22,7 @@
             </ul>
         </li>
         <li>
-            <a href="#">About</a>
+            <a href="test.jsp">About</a>
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>

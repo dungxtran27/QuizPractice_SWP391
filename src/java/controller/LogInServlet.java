@@ -65,7 +65,7 @@ public class LogInServlet extends HttpServlet {
 //        }
         pr.print(email + " " + pass);
         pr.print(logResult);
-        request.getRequestDispatcher("Home.jsp").include(request, response);
+        request.getRequestDispatcher("test.jsp").forward(request, response);
 
     }
     
