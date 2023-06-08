@@ -1,5 +1,19 @@
 
 <!-- Sidebar  -->
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@page import="DAO.*" %>
+<!DOCTYPE html>
+<%
+    User u = (User)request.getSession().getAttribute("currUser");
+   
+    
+
+    
+%>
 <nav id="sidebar">
     <div class="sidebar-header">
         <h3>QPS04</h3>
@@ -22,7 +36,7 @@
             </ul>
         </li>
         <li>
-            <a href="test.jsp">About</a>
+            <a href="subject-list">subject</a>
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
@@ -46,6 +60,12 @@
         </li>
     </ul>
     
+    
+  
+    
+    
+    <% if(u == null){
+    %>
     <ul class="list-unstyled CTAs">
         <li>
             <a href="SignIn.jsp" class="login">Login</a>
@@ -54,6 +74,9 @@
             <a href="SignUp.jsp" class="register">Sign up</a>
         </li>
     </ul>
+    <%}
+    %>
+    
     
 </nav>
 

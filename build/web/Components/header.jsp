@@ -36,9 +36,15 @@
                                     <a class="nav-link" href="BlogList">Blog</a>
                                 </li>
                                 <li class="nav-item">
+                                   <% if(u==null){%>
+                                     <a href="profile.jsp">
+                                        <img src="./img/roll.jpg" alt="Avatar" class="avatar">
+                                    </a>
+                                     <%}else{%>
                                     <a href="profile.jsp">
                                         <img src="${sessionScope.currUser.avatar}" alt="Avatar" class="avatar">
                                     </a>
+                                    <%}%>
                                 </li>
                             </ul>
                         </div>

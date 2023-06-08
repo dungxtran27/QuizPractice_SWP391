@@ -16,9 +16,6 @@
        response.setHeader("Location", "SignIn.jsp");
        return;
     }
-    
-
-    
 %>
 <html>
     <head>
@@ -30,14 +27,15 @@
        if(u.getRole().getRole_id()!=1){
        
        %>
-       <h1>muahahaha</h1>
-               <h1><%=u.getRole().getRole_id()%></h1>
+       <h1>not authorized</h1>
+              
 
        <%
            }else{%>
         
         
         <h1><%=u.getRole().getRole_id()%></h1>
+         <h1> m là adminic</h1>
         <%}%>
     </body>
 </html>

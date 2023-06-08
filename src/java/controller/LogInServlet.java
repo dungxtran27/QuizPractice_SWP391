@@ -50,22 +50,10 @@ public class LogInServlet extends HttpServlet {
             logResult = "Login is successful!";
         }
 
-//        if(user != null && pass != null){
-//            User us = t.getUser(user, pass);
-//            if(us != null){
-//                request.getSession().setAttribute("currUser", x);
-//                if(us.getRole().getRole_name().equalsIgnoreCase("ADMIN")){
-//                    request.getSession().setAttribute("currentYear", currentYear);
-//                    response.sendRedirect("Home.jsp");
-//                }else{
-//                    response.sendRedirect("Home.jsp");
-//                }
-//            }
-//            
-//        }
+  
         pr.print(email + " " + pass);
         pr.print(logResult);
-        request.getRequestDispatcher("test.jsp").forward(request, response);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
 
     }
     

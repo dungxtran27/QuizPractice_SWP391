@@ -49,6 +49,8 @@ public class ChangePassword extends HttpServlet {
         userDao.changePassword(userid, newPassword);
         curUser.setPassword(newPassword);
         request.getSession().setAttribute("currUser", curUser);
+        String successMessage = "Change password successfully";
+    request.setAttribute("successMessage", successMessage);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
         //}
     }
