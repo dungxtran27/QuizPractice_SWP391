@@ -13,16 +13,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.*;
-import DAO.*;
-
+import model.subject;
+import DAO.subjectListDAO;
+import model.PricePackage;
+import DAO.PricePackageDAO;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name="postServlet", urlPatterns={"/postServlet"})
-public class postServlet extends HttpServlet {
+@WebServlet(name="SubjectDetail", urlPatterns={"/subject-detail"})
+public class SubjectDetail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -60,15 +61,17 @@ public class postServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         //processRequest(request, response);
-        int postId = Integer.parseInt(request.getParameter("id"));
-        List<Post> plist = new postDAO().getAllPost();
-        List<Post> plistById = new postDAO().getPostByID(postId);
+        int subjectId = Integer.parseInt(request.getParameter("id"));
+        List<subject> listSubjects = new subjectListDAO().getAllSubject();
+        List<subject> listSubjectBySubjectId = new subjectListDAO().getListSubjectBySubjectId(subjectId);
+        List<PricePackage> listAllPricePackage = new PricePackageDAO().getAllPackage();
         
-        request.setAttribute("listPost", plist);
-        request.setAttribute("postId", postId);
-        request.setAttribute("plistById", plistById);
+        request.setAttribute("listAllPricePackage", listAllPricePackage);
+        request.setAttribute("listSubjects", listSubjects);
+        request.setAttribute("subId", subjectId);
+        request.setAttribute("listSubjectBySubjectId", listSubjectBySubjectId);
         
-        request.getRequestDispatcher("post.jsp").forward(request, response);
+        request.getRequestDispatcher("SubjectDetail.jsp").forward(request, response);
     } 
 
     /** 
@@ -82,15 +85,17 @@ public class postServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         //processRequest(request, response);
-        int postId = Integer.parseInt(request.getParameter("id"));
-        List<Post> plist = new postDAO().getAllPost();
-        List<Post> plistById = new postDAO().getPostByID(postId);
+        int subjectId = Integer.parseInt(request.getParameter("id"));
+        List<subject> listSubjects = new subjectListDAO().getAllSubject();
+        List<subject> listSubjectBySubjectId = new subjectListDAO().getListSubjectBySubjectId(subjectId);
+        List<PricePackage> listAllPricePackage = new PricePackageDAO().getAllPackage();
         
-        request.setAttribute("listPost", plist);
-        request.setAttribute("postId", postId);
-        request.setAttribute("plistById", plistById);
+        request.setAttribute("listAllPricePackage", listAllPricePackage);
+        request.setAttribute("listSubjects", listSubjects);
+        request.setAttribute("subId", subjectId);
+        request.setAttribute("listSubjectBySubjectId", listSubjectBySubjectId);
         
-        request.getRequestDispatcher("post.jsp").forward(request, response);
+        request.getRequestDispatcher("SubjectDetail.jsp").forward(request, response);
     }
 
     /** 

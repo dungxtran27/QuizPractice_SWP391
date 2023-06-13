@@ -81,8 +81,12 @@
 
 
                 <%@include file="Components/header.jsp" %>
-                <h2>quiz prsctice</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h2>quiz practice</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+                    in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 
 
@@ -103,8 +107,8 @@
                         <div class="carousel-item <%= activeClass %>">
                             <img class="d-block w-100" src="<%=sl.getSliderUrl()%>" alt="no pic">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5><%=sl.getSliderId()%></h5>
-                                <p>Third slide caption</p>
+
+
                             </div>
                         </div>
                         <% } %>
@@ -157,9 +161,9 @@
                     <div class="carousel__item">
 
                         <div class="carousel-item active">
-                            <a href="post.jsp">
+                            <a href="postServlet?id=<%=p.getPostId()%>">
 
-                                <img style="width: 100%" src="<%=p.getThumbnail()%>" alt="First Slide">
+                                <img src="<%=p.getThumbnail()%>" style="width: 100%"  alt="First Slide">
                                 <div class="">
                                     <h5> <%=p.getTitle()%></h5>
                                     <h5><%=p.getCreated_date()%><h5>
@@ -205,7 +209,7 @@
                                                 <div class="carousel__item">
 
                                                     <div class="carousel-item active">
-                                                        <a href="subject.jsp">
+                                                        <a href="subject-detail?id=<%=s.getSubjectId()%>">
 
                                                             <img style="width: 100%" src="<%=s.getThumbnail()%>" alt="First Slide">
                                                             <div class="carousel-caption d-none d-md-block">
@@ -226,7 +230,7 @@
                                                     }
                                                 %>
 
-                                               
+
                                             </div>
 
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -240,8 +244,8 @@
                                             <script>
                                                 const carousel = document.querySelector('.carousel');
                                                 const items = carousel.querySelectorAll('.carousel__item');
-                                              
-                                                
+
+
                                                 carousel.parentNode.insertBefore(prevBtn, carousel);
                                                 carousel.parentNode.insertBefore(nextBtn, carousel.nextSibling);
 

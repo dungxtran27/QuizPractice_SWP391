@@ -4,30 +4,26 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/slider.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/logout.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/change.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/User.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/AllAccess.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/SignUpServlet.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/postServlet.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Post.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/profile.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/SubjectDetail.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/subjectListDAO.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/SubjectDetail.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/PricePackage.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/PricePackageDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/subject.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/userList.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/header.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/ChangePassword.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/SubjectList.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/postDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/SignIn.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Role.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/post.jsp</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/LogInServlet.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/userDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/blogServlet.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/index.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/searchblog.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/postServlet.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/RoleDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/profile.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/subjectListDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Home.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/BlogDetail.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/sideBar2.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/userDAO.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/subject.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
         </group>
     </open-files>
 </project-private>

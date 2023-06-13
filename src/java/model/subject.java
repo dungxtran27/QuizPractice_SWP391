@@ -4,12 +4,13 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
- * @author dungmuahahaha
+ * @author Admin
  */
 public class subject {
-
     private int subjectId;
     private String subjectName;
     private int categoryId;
@@ -18,6 +19,9 @@ public class subject {
     private String title;
     private String thumbnail;
     private String description;
+    private float salePrice;
+    private float price;
+    private Date createDate;
 
     public subject() {
     }
@@ -31,6 +35,39 @@ public class subject {
         this.title = title;
         this.thumbnail = thumbnail;
         this.description = description;
+    }
+    
+    public subject(int subjectId, String subjectName, int categoryId, boolean status, int tagLine, String title, String thumbnail, String description, float salePrice, float price) {
+        this.subjectId = subjectId;
+        this.subjectName = subjectName;
+        this.categoryId = categoryId;
+        this.status = status;
+        this.tagLine = tagLine;
+        this.title = title;
+        this.thumbnail = thumbnail;
+        this.description = description;
+        this.salePrice = salePrice;
+        this.price = price;
+    }
+
+    public subject(int subjectId, String subjectName, int categoryId, boolean status, int tagLine, String title, String thumbnail, String description, Date createDate) {
+        this.subjectId = subjectId;
+        this.subjectName = subjectName;
+        this.categoryId = categoryId;
+        this.status = status;
+        this.tagLine = tagLine;
+        this.title = title;
+        this.thumbnail = thumbnail;
+        this.description = description;
+        this.createDate = createDate;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public int getSubjectId() {
@@ -96,7 +133,22 @@ public class subject {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
+    public float getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(float salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
     
 
 }

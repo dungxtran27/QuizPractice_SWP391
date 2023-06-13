@@ -35,7 +35,7 @@
         
         
         <h1><%=u.getRole().getRole_id()%></h1>
-         <h1> m là adminic</h1>
+         <h1> admin</h1>
         <%}%>
     </body>
 </html>
