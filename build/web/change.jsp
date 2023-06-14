@@ -52,11 +52,23 @@
                 var oldPassword = document.getElementById("old-password").value;
                 var newPassword = document.getElementById("new-password").value;
                 var confirmPassword = document.getElementById("confirm-password").value;
-                if (oldPassword !== ${sessionScope.currUser.password}) {
+                if (oldPassword.trim() === "") {
+                    document.getElementById("error-old-password").innerHTML = "Please enter old password";
+                    return false;
+                } else {
+                    document.getElementById("error-old-password").innerHTML = "";
+                }
+                if (oldPassword !== "${sessionScope.currUser.password}") {
                     document.getElementById("error-old-password").innerHTML = "Old password is not correct";
                     return false;
                 } else {
                     document.getElementById("error-old-password").innerHTML = "";
+                }
+                if (newPassword.length < 6) {
+                    document.getElementById("error-new-password").innerHTML = "Password must be greater than 6 characters";
+                    return false;
+                } else {
+                    document.getElementById("error-new-password").innerHTML = "";
                 }
                 if (confirmPassword !== newPassword) {
                     document.getElementById("error-confirm-password").innerHTML = "Confirm password not same as password";
