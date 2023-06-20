@@ -3,26 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/slider.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/change.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/postServlet.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Post.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/profile.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/SubjectDetail.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/subjectListDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/SubjectDetail.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/PricePackage.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/PricePackageDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/subject.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/userList.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/SubjectList.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/postDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/SignIn.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/post.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/searchblog.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/quiz_point.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/QuizPointDAO.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/userPage.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/AllAccess.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/MyDAO.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/QuizHistoryServlet.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/slider.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/header.jsp</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Home.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/sideBar2.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/userDAO.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/LogInServlet.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/subject.jsp</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
         </group>

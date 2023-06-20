@@ -34,6 +34,15 @@ public class quiz_point {
         this.attempt = attempt;
     }
 
+    public quiz_point( float point, int quizId, Date taken_date, float pointPercent, int attempt) {
+  
+        this.point = point;
+        this.quizId = quizId;
+        this.taken_date = taken_date;
+        this.pointPercent = pointPercent;
+        this.attempt = attempt;
+    }
+
     public int getId() {
         return id;
     }

@@ -43,6 +43,10 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>controller.logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuizHistoryServlet</servlet-name>
+        <servlet-class>controller.QuizHistoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -78,6 +82,10 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuizHistoryServlet</servlet-name>
+        <url-pattern>/QuizHistoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
