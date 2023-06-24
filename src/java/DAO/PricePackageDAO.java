@@ -53,7 +53,45 @@ public class PricePackageDAO extends MyDAO {
         return list;
     }
     
-    
+     
+    public PricePackage getPricePackageById(int priceId) {
+        try {
+            if (con != null) {
+                xSql = "select priceId, name, acessDuration, price, salePrice, status, description\n"
+                        + "from PricePackage\n"
+                        + "where priceId = ?";
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, priceId);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    PricePackage pricePackage = new PricePackage();
+                    pricePackage.setPriceId(rs.getInt(1));
+                    pricePackage.setName(rs.getString(2));
+                    pricePackage.setAcessDuration(rs.getInt(3));
+                    pricePackage.setPrice(rs.getFloat(4));
+                    pricePackage.setSalePrice(rs.getFloat(5));
+                    pricePackage.setStatus(rs.getBoolean(6));
+                    pricePackage.setDescription(rs.getString(7));
+                    return pricePackage;
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
+    }
+
     public ArrayList<PricePackage> getAllPricePackageBySubjectId(int subjectId) {
         ArrayList<PricePackage> list = new ArrayList<>();
         int xpriceID;

@@ -313,4 +313,37 @@ public User checkLogin(int userId, String pass) {
         return false;
     }
 
+    public User getUserById(int userid) {
+        try {
+            if (con != null) {
+                String sql = "select userid, username, password, email, phone, fullname, address, gender, avatar, roleId, created_date, modify_date\n"
+                        + "from Account\n"
+                        + "where userId = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, userid);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    RoleDAO roleDAO = new RoleDAO();
+                    Role role = roleDAO.getRoleById(rs.getInt("roleId"));
+                    userid = rs.getInt("userid");
+                    String username = rs.getString("username");
+
+                    return new User(userid, username);                   
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+
 }

@@ -79,6 +79,11 @@ public class User {
         this.password_token = password_token;
     }
 
+    public User(int userid, String username) {
+        this.userid = userid;
+        this.username = username;
+    }
+
     public int getUserid() {
         return userid;
     }

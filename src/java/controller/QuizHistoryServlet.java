@@ -21,6 +21,9 @@ import model.quiz_point;
  */
 public class QuizHistoryServlet extends HttpServlet {
 
+    
+     
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter pr = response.getWriter();
@@ -28,19 +31,20 @@ public class QuizHistoryServlet extends HttpServlet {
         User currUser = (User) request.getSession().getAttribute("currUser");
         QuizPointDAO qpd = new QuizPointDAO();
         ArrayList<quiz_point> qplist =new ArrayList<>() ;
-        int qptest=0;
+      //  int qptest=0;
         if (currUser == null) {
             response.sendRedirect("SignIn.jsp");
         } else {
                 qplist= qpd.getQuizHistory(currUser.getUserid());
             request.setAttribute("qplist", qplist);
+          request.getRequestDispatcher("userPage.jsp").forward(request, response);
 
         }
-        request.setAttribute("Testlist", "muahaha");
+      //  request.setAttribute("Testlist", "muahaha");
 
-          request.getRequestDispatcher("userPage.jsp").forward(request, response);
     
               
 
     }
+    
 }

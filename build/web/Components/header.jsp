@@ -6,14 +6,16 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
             .avatar {
-                width: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                height: 50px; /* Điều chỉnh kích thước theo ý muốn */
+                display: inline-flex;
+                width: 50px;
+                height: 50px;
                 border-radius: 50%;
             }
             .dropdown-toggle::after {
@@ -38,7 +40,7 @@
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
                     <i class="fas fa-align-left"></i>
                     <a href="Home.jsp">
-                        <span>Home Page</span>
+                        <span>Home Page</span></a>
                 </button>
                 <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-align-justify"></i>
@@ -68,10 +70,10 @@
                                 </a>
                                 <%}%>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="avatarDropdown">
-                                    <a class="dropdown-item" href="#">Account</a>
+                                    <a class="dropdown-item" href="profile.jsp">Profile</a>
                                     <a class="dropdown-item" href="#">Settings</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Logout</a>
+                                    <a class="dropdown-item" href="logout">Logout</a>
                                 </div>
                             </div>
 

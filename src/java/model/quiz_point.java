@@ -19,7 +19,7 @@ public class quiz_point {
     private float pointPercent;
     private float numQuesTrue;
     private int attempt;
-
+private int subId;
     public quiz_point() {
     }
 
@@ -42,6 +42,22 @@ public class quiz_point {
         this.pointPercent = pointPercent;
         this.attempt = attempt;
     }
+     public quiz_point(int id, int userId, float point, int quizId, int attempt) {
+        this.id = id;
+        this.userId = userId;
+        this.point = point;
+        this.quizId = quizId;
+        this.attempt = attempt;
+    }
+
+    public int getSubId() {
+        return subId;
+    }
+
+    public void setSubId(int subId) {
+        this.subId = subId;
+    }
+
 
     public int getId() {
         return id;

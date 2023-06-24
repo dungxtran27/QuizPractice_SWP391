@@ -6,28 +6,61 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@page import="DAO.*" %>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include file="Components/AllAccess.jsp"%>
+
     </head>
     <body>
+        <div class="wrapper">
+            <div style="" id="header">
+                <%@include file="Components/Sidebar.jsp" %>
+            </div>
+            <div id="content">
+                <%@include file="Components/header.jsp" %>
+                 <h2>quiz practice</h2>
+                <div>
+                    <table class="table table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Quiz ID</th>
+                            <th>Total Point</th>
+                            <th>pointPercent </th>
+                            <th>Attempt</th>
+                            <th>taken_date</th>
+                            <th>Review</th>
+                            
 
-        
-        <h1>${requestScope.qplist.size()}</h1>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="qp" items="${qplist}">
+                            <tr>
+                                <td>${qp.getQuizId()}</td>
+                                <td>${qp.getPoint()}</td>
+                                <td>${qp.getPointPercent()}</td>
+                                <td>${qp.getAttempt()}</td>
+                                <td>${qp.getTaken_date()}</td>
+                                <td><a href="#" class="btn btn-warning">review</a></td>
 
-        
-        
-    <c:forEach  var="qp" items="${qplist}">
-        <div>
-                <h2 class="text-center"> ${qp.getAttempt()} </h2>
-                <h2 class="text-center"> ${qp.getQuizId()} </h2>
-                <h2 class="text-center"> ${qp.getPoint()} </h2>
-              
-          
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
         </div>
-    </c:forEach>
-</body>
+
+
+        <div class="footer" >
+            <%@include file="Components/footer.jsp" %>
+        </div>    </body>
 </html>

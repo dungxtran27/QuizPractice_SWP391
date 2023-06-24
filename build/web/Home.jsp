@@ -125,15 +125,6 @@
                 </div>
 
 
-
-
-
-
-
-
-
-
-
                 <h2>Hot Post: </h2>
                 <div id="myCarousel" class="carousel " >
 
@@ -237,7 +228,7 @@
                                             </div>
                                             </div>
 
-                                            </div>
+
                                             <div class="footer" >
                                                 <%@include file="Components/footer.jsp" %>
                                             </div>

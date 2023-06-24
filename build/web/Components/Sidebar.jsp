@@ -39,13 +39,13 @@
             <a href="subject-list">subject</a>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Quizzes</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="QuizHistoryServlet">userpage</a>
+                    <a href="QuizHistoryServlet">Quiz History</a>
                 </li>
                 <li>
-                    <a href="#">Page 2</a>
+                    <a href="quiz-list">Quiz List</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>

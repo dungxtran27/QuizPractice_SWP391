@@ -1,16 +1,13 @@
 <%-- 
-    Document   : test
-    Created on : May 25, 2022, 8:15:23 PM
-    Author     : ADMIN
+    Document   : SubjectDetail
+    Created on : Jun 8, 2023, 9:05:39 PM
+    Author     : admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@page import="DAO.*" %>
-<%           
-    
-%>
 
 <!DOCTYPE html>
 <html>
@@ -27,6 +24,12 @@
             }
         </style>
         <script type="text/javascript"></script>
+        <script>
+            function openPopup (popupId) {
+            document.getElementById (popupId).classList.remove("popup-hidden");
+            function closePopup (popupId) {
+            document.getElementById (popupId).classList.add("popup-hidden");
+        </script>
     </head>
 
     <body class="sb-sidenav-toggled">
@@ -61,13 +64,14 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <!--                                                <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                                                        <!--<button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
                                                         <h4 class="modal-title">Choose price package </h4>
                                                     </div>
-                                                    <form action="subject-resgister">
+                                                    <form action="subject-register">
                                                         <div class="modal-body">
                                                             <div class="my-3 col-12">
                                                                 <b>Price Package:
+                                                                    <input type="text" value="${SBSI.getSubjectId()}" name="id" style="display:none"/>
                                                                     <select name="priceId" class="form-control" onchange="PricePackageAsync(this.value)">
                                                                         <c:forEach items="${listAllPricePackage}" var="PP">
                                                                             <option value="${PP.priceId}">${PP.name}</option>
@@ -80,7 +84,9 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            
                                                             <button type="submit" class="btn btn-primary">Register</button>
+                                                            
                                                         </div>
                                                     </form>
 

@@ -14,18 +14,26 @@ import model.*;
  * @author dungmuahahaha
  */
 public class QuizPointDAO extends MyDAO {
-    
-     public ArrayList<quiz_point> getQuizHistory(int userId) {
-        xSql = "select * from QUIZ_POINT where userId = 7";
+
+//    public int getSubId(int quizId) {
+//        xSql = "select q.subId as 'subId'\n"
+//                + "from QUIZ_POINT qp ,Quiz q\n"
+//                + "where qp.quizId=q.quizId\n"
+//                + "and qp.quizId=?";
+//
+//    }
+
+    public ArrayList<quiz_point> getQuizHistory(int userId) {
+        xSql = "select * from QUIZ_POINT where userId = ?";
         ArrayList<quiz_point> qpList = new ArrayList<>();
-       float point;
-       int quizId;
-       Date taken_date;
-       float pointPercent;
-       int attemp;
+        float point;
+        int quizId;
+        Date taken_date;
+        float pointPercent;
+        int attemp;
         try {
             ps = con.prepareStatement(xSql);
-           // ps.setInt(1, userId);
+             ps.setInt(1, userId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 point = rs.getFloat("point");
@@ -33,11 +41,12 @@ public class QuizPointDAO extends MyDAO {
                 taken_date = rs.getDate("taken_date");
                 pointPercent = rs.getFloat("pointPercent");
                 attemp = rs.getInt("attempt");
-                qpList.add(new quiz_point( point, quizId, taken_date, pointPercent, attemp));
+                qpList.add(new quiz_point(point, quizId, taken_date, pointPercent, attemp));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return qpList;
+
     }
 }
