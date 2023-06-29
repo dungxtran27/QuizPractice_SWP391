@@ -27,8 +27,8 @@
                                 <h1 class="text-center ">QPS04</h1>
                             </div>
                             <form action="login" method="post">
-                                <c: if test="${not empty status}">
-                                    <p class="text-center text text-fails">${status}</p>
+                                <c: if test="${not empty err}">
+                                    <p class="text-center text text-fails">${err}</p>
                                     <p></p>
                                 </c:>
                                 <!-- Username input -->
@@ -54,7 +54,7 @@
                                 <div class="text-center text-lg-start mt-4 pt-2">
                                     <button id="buttonLogin" type="submit" class="btn btn-primary btn-l">Login</button>
                                     <p  class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
-                                        <a href="#!" class="link-danger">Register</a></p>
+                                        <a href="SignUp.jsp" class="link-danger">Register</a></p>
                                 </div>
 
                             </form>

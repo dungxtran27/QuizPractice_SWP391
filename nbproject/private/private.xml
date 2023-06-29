@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/quiz_point.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/QuizPointDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/userPage.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/MyRegistration.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/QuizList.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/QuizDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/QuizHistoryServlet.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/course.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/QuizList.java</file>
         </group>
     </open-files>
 </project-private>

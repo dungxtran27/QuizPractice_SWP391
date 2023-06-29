@@ -41,15 +41,15 @@ public class QuizDAO extends MyDAO {
         }
         return a;
     }
-
-    public int test(int page, int PAGE_SIZE_6) {
-        int a = 10;
-        for (int i = 0; i < 5; i++) {
-            a++;
-
-        }
-        return a;
-    }
+//
+//    public int test(int page, int PAGE_SIZE_6) {
+//        int a = 10;
+//        for (int i = 0; i < 5; i++) {
+//            a++;
+//
+//        }
+//        return a;
+//    }
 
     public List<quiz> getListQuizzesByPagging(int page, int PAGE_SIZE_6) {
         List<quiz> list = new ArrayList<>();

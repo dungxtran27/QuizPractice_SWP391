@@ -87,7 +87,7 @@ public class QuizList extends HttpServlet {
         List<Type> listTypeQuizes = new typeDAO().getListTypeQuizes();
          List<quiz> listQuizzesByPagging = quiz1.getListQuizzesByPagging(page, PAGE_SIZE_6);
        // int listQuizzesByPagging = tuanvm.getListQuizzesByPagging(page, PAGE_SIZE_6);
-        int test=quiz1.test(1, 3);
+        //int test=quiz1.test(1, 3);
         request.setAttribute("listSubjects", listSubjects);
         request.setAttribute("listTypeQuizes", listTypeQuizes);
         request.getSession().setAttribute("listQuizzesByPagging", listQuizzesByPagging);
@@ -101,7 +101,7 @@ public class QuizList extends HttpServlet {
         request.setAttribute("totalPage", totalPage);
         request.setAttribute("pagination_url", "quiz-list?");
         pr.print(listQuizzesByPagging);
-        pr.print(test);
+       // pr.print(test);
         pr.print(totalSearch);
         request.getRequestDispatcher("QuizList.jsp").forward(request, response);
     }

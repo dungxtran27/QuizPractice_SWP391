@@ -39,29 +39,21 @@
 
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="gender" id="femaleGender"
-                                                       value="Female" checked />
+                                                       value="0" checked />
                                                 <label class="form-check-label" for="femaleGender">Female</label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="gender" id="maleGender"
-                                                       value="Male" />
+                                                       value="1" />
                                                 <label class="form-check-label" for="maleGender">Male</label>
                                             </div>
 
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" id="otherGender"
-                                                       value="Other" />
-                                                <label class="form-check-label" for="otherGender">Other</label>
-                                            </div>
                                         </div>
 
-                                        <div class="form-outline mb-4" data-validate="Email is required!">
-                                            <input type="email" id="email" name="email" class="form-control form-control-lg"
-                                                   value="" placeholder="Email" required="required"/>
-                                        </div>
 
-                                        <div class="form-outline mb-4" data-validate="Email is required!">
+
+                                        <div class="form-outline mb-4" data-validate="phoneNumber is required!">
                                             <input type="text" id="phone" name="phone" class="form-control form-control-lg"
                                                    value="" placeholder="Phone number" required="required"/>
                                         </div>   
@@ -76,11 +68,14 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <div class="form-outline mb-4" data-validate="Username is required!">
-                                            <input type="text" id="username" name="username" class="form-control form-control-lg"
-                                                   value="" placeholder="Username" required="required"/>
-                                        </div>    
-
+                                        <!--                                        <div class="form-outline mb-4" data-validate="Username is required!">
+                                                                                    <input type="text" id="username" name="username" class="form-control form-control-lg"
+                                                                                           value="" placeholder="Username" required="required"/>
+                                                                                </div>    -->
+                                        <div class="form-outline mb-4" data-validate="Email is required!">
+                                            <input type="email" id="email" name="email" class="form-control form-control-lg"
+                                                   value="" placeholder="Email" required="required"/>
+                                        </div>
                                         <!-- Password input -->
                                         <div id="enterbox" class="form-outline mb-3" data-validate="Password is required!">
                                             <input type="password" id="password"name="password" class="form-control form-control-lg"

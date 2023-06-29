@@ -54,6 +54,51 @@
                         </c:forEach>
                     </tbody>
                 </table>
+                    <c:choose>
+            <c:when test="${sessionScope.qplist==null || sessionScope.qplist.size()==0}">
+                Not founds
+            </c:when>
+            <c:when test="${totalPage < 2}">
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <c:forEach begin="1" end="${totalPage}" var="i">
+                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                            </c:forEach>
+                    </ul>
+                </nav>
+            </c:when>
+            <c:when test="${page < 2}">
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                    <ul class="pagination">                               
+                        <c:forEach begin="1" end="${totalPage}" var="i">
+                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                            </c:forEach>
+                        <li class="page-item"><a class="page-link" href="${pagination_url}page=${page+1}">Next</a></li>
+                    </ul>
+                </nav>
+            </c:when>
+            <c:when test="${page+1 > totalPage}">
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="${pagination_url}page=${page-1}">Previous</a></li>
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                            </c:forEach>
+                    </ul>
+                </nav>
+            </c:when>
+            <c:otherwise>
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="${pagination_url}page=${page-1}">Previous</a></li>
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                            </c:forEach>
+                        <li class="page-item"><a class="page-link" href="${pagination_url}page=${page+1}">Next</a></li>
+                    </ul>
+                </nav>
+            </c:otherwise>
+        </c:choose>
                 </div>
 
             </div>

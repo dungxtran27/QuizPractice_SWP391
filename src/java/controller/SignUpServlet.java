@@ -31,7 +31,7 @@ public class SignUpServlet extends HttpServlet {
         
         userDAO dao = new userDAO();
         String fullname = request.getParameter("fullname");
-        String gender = request.getParameter("gender");
+       // String gender = request.getParameter("gender");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String username = request.getParameter("username");
@@ -93,13 +93,15 @@ public class SignUpServlet extends HttpServlet {
         //Create new user
         User user = new User();
         user.setFullname(fullname);
-        user.setUsername(username);
+       // user.setUsername(username);
         user.setPassword(pass);
-        user.setGender(gender);
+       // user.setGender(gender);
         user.setEmail(email);
         user.setPhone(phone);
         
         dao.signUp(user);
+        pr.print(user.getEmail());
+        
         request.setAttribute("status", "successfully");
         dispatcher = request.getRequestDispatcher("SignIn.jsp");
         dispatcher.forward(request, response);

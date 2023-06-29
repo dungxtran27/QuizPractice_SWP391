@@ -46,14 +46,18 @@ public class LogInServlet extends HttpServlet {
 
         if (currUser == null) {
             logResult = "Sorry, username and/or password are/ is invalid!";
+             request.setAttribute("err", logResult);
+            request.getRequestDispatcher("SignIn.jsp").forward(request, response);
+
         } else {
             logResult = "Login is successful!";
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
+
         }
 
-  
+       
         pr.print(email + " " + pass);
         pr.print(logResult);
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
 
     }
     

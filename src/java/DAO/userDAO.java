@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import model.DBContext;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.Role;
@@ -187,22 +189,26 @@ public User checkLogin(int userId, String pass) {
 
     //Sign Up for Customer
     public void signUp(User x) {
-        xSql = "INSERT INTO [User] ([fullname],[gender],[username],[phone], [password] ,[email], [roleId]) VALUES (?, ?, ?, ?, ?, ?, 2)";
+        xSql = "INSERT INTO [User] ([fullname],[gender],[phone], [password] ,[email], [roleId]) VALUES (?,0,?,?,?, 2)";
 
         try {
             ps = con.prepareStatement(xSql);
+            
             ps.setString(1, x.getFullname());
-            ps.setString(2, x.getGender());
-            ps.setString(3, x.getUsername());
-            ps.setString(4, x.getPhone());
-            ps.setString(5, x.getPassword());
-            ps.setString(6, x.getEmail());
+         //   ps.setString(2, x.getGender());
+          //  ps.setString(3, x.getUsername());
+            ps.setString(3, x.getPhone());
+            ps.setString(4, x.getPassword());
+            ps.setString(5, x.getEmail());
+            
+            
             ps.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+   
     public User getUser(String email, String pass) {
         xSql = "select * from [User] WHERE [email] =? and [password] =?";
         User x = null;
