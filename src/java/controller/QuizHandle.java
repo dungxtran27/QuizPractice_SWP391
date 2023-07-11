@@ -62,12 +62,14 @@ public class QuizHandle extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //processRequest(request, response);
+       // processRequest(request, response);
+       PrintWriter out = response.getWriter();
         String url = "";
         try {
             int quizzId = Integer.parseInt(request.getParameter("quizzId"));
             int subId = Integer.parseInt(request.getParameter("subId"));
 
+            
             HttpSession session = request.getSession();
 
             QuizDAO quizDAO = new QuizDAO();
@@ -79,7 +81,7 @@ public class QuizHandle extends HttpServlet {
             if (user == null) {
                 url = "SignIn.jsp";
             } else {
-
+          
                 quiz quiz = quizDAO.getQuizByQuizId(quizzId);
                 quiz_point quizzPoint = quizDAO.getQuizPointAttempt(user.getUserid(), quizzId);
 
@@ -95,7 +97,6 @@ public class QuizHandle extends HttpServlet {
                 if (maxAttemp <= lastAttempt) { //user attempt max
                     check = false;
                 }
-
                 if (check) {
 
                     int questionTime = quizDAO.getQuizByQuizId(quizzId).getDuration();
@@ -111,23 +112,28 @@ public class QuizHandle extends HttpServlet {
                     session.setAttribute("DO_QUIZZ", quizz);
 
                     request.setAttribute("quizzId", quizzId);
-//                Quiz quiz = quizDAO.getQuizByQuizId(quizzId);
+                  
                     quiz.setTotalQues(quizz.size());
                     request.setAttribute("QUIZZ", quiz);
                     request.setAttribute("attempt", lastAttempt);
                     request.setAttribute("subId", subId);
                     url = "DoQuizz.jsp";
+                               out.print(check);
+
              }
-//else {
-//                    request.setAttribute("WARNING", "You have done this quizz!");
-//                    url = "subject-list?subId=" + subId + "&action=get";
-//                }
+                 else {
+                               out.print(check);
+
+                    request.setAttribute("WARNING", "You have done this quizz!");
+                    url = "subject-list?subId=" + subId + "&action=get";
+                }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
+          
         }
 
     } 

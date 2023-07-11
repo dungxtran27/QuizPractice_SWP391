@@ -6,7 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%
+    User userheader = (User)request.getSession().getAttribute("currUser");
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,7 +44,9 @@
                     <a href="Home.jsp">
                         <span>Home Page</span></a>
                 </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" 
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" 
+                        aria-label="Toggle navigation">
                     <i class="fas fa-align-justify"></i>
                 </button>
 
@@ -60,7 +64,7 @@
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">
-                                <% if(u==null){%>
+                                <% if(userheader ==null||userheader.getAvatar()==null){%>
                                 <a href="profile.jsp" class="avatar dropdown-toggle" id="avatarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="./img/roll.jpg" alt="Avatar">
                                 </a>

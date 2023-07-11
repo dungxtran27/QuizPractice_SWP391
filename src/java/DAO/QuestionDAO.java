@@ -103,5 +103,30 @@ public class QuestionDAO extends MyDAO{
         return null;
     }
 
+ public int getTotalQuestionExist(int quizId,int subjectId) {
+        try {
+            if (con != null) {
+                xSql = "select COUNT(questionId) from Question where quizId = ? and subjectId=?";
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, quizId);
+                ps.setInt(2, subjectId);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 
 }

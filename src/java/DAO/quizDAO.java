@@ -23,7 +23,7 @@ import model.quiz_point;
 public class QuizDAO extends MyDAO {
 
     public int getTotalQuiz() {
-        int a=0;
+        int a = 0;
         try {
             if (con != null) {
                 xSql = "select distinct count(Q.quizId) as 'id'\n"
@@ -32,12 +32,12 @@ public class QuizDAO extends MyDAO {
                 ps = con.prepareStatement(xSql);
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                     a=rs.getInt("id");
+                    a = rs.getInt("id");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        
+
         }
         return a;
     }
@@ -59,24 +59,21 @@ public class QuizDAO extends MyDAO {
         boolean xstatus;
         float xrate;
         int xsubId;
-        int xlessonId;
+        int xlessonId = 1;
         String xtypeId;
         int xduration;
         String xdescription;
         int xtotalQues;
         String xtypeName;
         String xsubjectName;
-        
 
         try {
-            xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r,\n"
-                    + "Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId,\n"
-                    + "Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName from Quiz AS Q left join Lesson AS L\n"
-                    + "on Q.lessonId = L.lessonId inner join Subject S\n"
-                    + "on L.subId = S.subjectId inner join Type T on Q.typeId = T.typeId)\n"
-                    + "select * from t where r between ?*? - (?-1) and ?*?";
+            xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.subId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName \n"
+                    + "from Quiz AS Q inner join Subject S\n"
+                    + "on Q.subId = S.subjectId inner join Type T on Q.typeId = T.typeId)\n"
+                    + "select * from t where status =1 and r between ?*? - (?-1) and ?*?";
             if (con != null) {
-               // System.out.println("muahha");
+                // System.out.println("muahha");
                 ps = con.prepareStatement(xSql);
                 ps.setInt(1, page);
                 ps.setInt(2, PAGE_SIZE_6);
@@ -91,17 +88,17 @@ public class QuizDAO extends MyDAO {
                     xstatus = rs.getBoolean("status");
                     xrate = rs.getFloat("rate");
                     xsubId = rs.getInt("subId");
-                    xlessonId = rs.getInt("lessonId");
+                    // xlessonId = rs.getInt("lessonId");
                     xtypeId = rs.getString("typeId");
                     xduration = rs.getInt("duration");
                     xdescription = rs.getString("description");
                     xtotalQues = rs.getInt("totalQues");
                     xtypeName = rs.getString("typeName");
                     xsubjectName = rs.getString("subjectName");
-                  //  a++;
+                    //  a++;
                     //System.out.println(a);
                     // System.out.println("a++");
-                     list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
+                    list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
                 }
             } else {
                 System.out.println("arghhhh");
@@ -110,7 +107,65 @@ public class QuizDAO extends MyDAO {
             e.printStackTrace();
 
         }
-        
+
+        return list;
+    }
+     public List<quiz> getListQuizzesByPaggingAdmin(int page, int PAGE_SIZE_6) {
+        List<quiz> list = new ArrayList<>();
+        int xquizId;
+        String xtitle;
+        String xlevel;
+        boolean xstatus;
+        float xrate;
+        int xsubId;
+        int xlessonId = 1;
+        String xtypeId;
+        int xduration;
+        String xdescription;
+        int xtotalQues;
+        String xtypeName;
+        String xsubjectName;
+
+        try {
+            xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.subId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName \n"
+                    + "from Quiz AS Q inner join Subject S\n"
+                    + "on Q.subId = S.subjectId inner join Type T on Q.typeId = T.typeId)\n"
+                    + "select * from t where  r between ?*? - (?-1) and ?*?";
+            if (con != null) {
+                // System.out.println("muahha");
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, page);
+                ps.setInt(2, PAGE_SIZE_6);
+                ps.setInt(3, PAGE_SIZE_6);
+                ps.setInt(4, page);
+                ps.setInt(5, PAGE_SIZE_6);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    xquizId = rs.getInt("quizId");
+                    xtitle = rs.getString("title");
+                    xlevel = rs.getString("level");
+                    xstatus = rs.getBoolean("status");
+                    xrate = rs.getFloat("rate");
+                    xsubId = rs.getInt("subId");
+                    // xlessonId = rs.getInt("lessonId");
+                    xtypeId = rs.getString("typeId");
+                    xduration = rs.getInt("duration");
+                    xdescription = rs.getString("description");
+                    xtotalQues = rs.getInt("totalQues");
+                    xtypeName = rs.getString("typeName");
+                    xsubjectName = rs.getString("subjectName");
+                    //  a++;
+                    //System.out.println(a);
+                    // System.out.println("a++");
+                    list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
+                }
+            } else {
+                System.out.println("arghhhh");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
 
         return list;
     }
@@ -146,9 +201,9 @@ public class QuizDAO extends MyDAO {
         try {
             if (con != null) {
                 xSql = "select distinct count(Q.quizId)\n"
-                        + "from Quiz AS Q inner join Lesson AS L\n"
-                        + "on Q.lessonId = L.lessonId  inner join Subject S\n"
-                        + "on S.subjectId = L.subId where Q.title like ? and L.subId = ?";
+                        + "from Quiz AS Q inner join Subject S\n"
+                        + "on S.subjectId = Q.subId where Q.title like ? and Q.subId = ?\n";
+
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
                 ps.setInt(2, subId);
@@ -188,10 +243,8 @@ public class QuizDAO extends MyDAO {
         String xsubjectName;
         try {
             if (con != null) {
-                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r,\n"
-                        + "Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, "
-                        + "Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName from Quiz AS Q left join Lesson AS L \n"
-                        + "on Q.lessonId = L.lessonId inner join Subject S on L.subId = S.subjectId \n"
+                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName \n"
+                        + "from Quiz AS Q inner join Subject S on Q.subId = S.subjectId \n"
                         + "inner join Type T on Q.typeId = T.typeId where Q.title like ?) \n"
                         + "select * from t where r between ?*?-(?-1) and ?*?";
                 ps = con.prepareStatement(xSql);
@@ -251,10 +304,8 @@ public class QuizDAO extends MyDAO {
         String xsubjectName;
         try {
             if (con != null) {
-                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r,\n"
-                        + "Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, "
-                        + "Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName from Quiz AS Q left join Lesson AS L \n"
-                        + "on Q.lessonId = L.lessonId inner join Subject S on L.subId = S.subjectId \n"
+                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName\n"
+                        + "  from Quiz AS Q inner join Subject S on Q.subId =   S.subjectId \n"
                         + "inner join Type T on Q.typeId = T.typeId where Q.title like ? and S.subjectId = ?) \n"
                         + "select * from t where r between ?*?-(?-1) and ?*?";
                 ps = con.prepareStatement(xSql);
@@ -344,11 +395,10 @@ public class QuizDAO extends MyDAO {
         String xsubjectName;
         try {
             if (con != null) {
-                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r,\n"
-                        + "Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, "
-                        + "Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName from Quiz AS Q left join Lesson AS L \n"
-                        + "on Q.lessonId = L.lessonId inner join Subject S on L.subId = S.subjectId \n"
-                        + "inner join Type T on Q.typeId = T.typeId where Q.title like ? and T.typeId = ? ) \n"
+                xSql = " with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, \n"
+                        + " Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName\n"
+                        + "  from Quiz AS Q inner join Subject S on Q.subId =   S.subjectId \n"
+                        + "inner join Type T on Q.typeId = T.typeId where Q.title like ? and T.typeId = ?) \n"
                         + "select * from t where r between ?*?-(?-1) and ?*?";
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
@@ -490,11 +540,10 @@ public class QuizDAO extends MyDAO {
 
     public quiz getQuizByQuizId(int quizId) {
         quiz quiz = null;
-        xSql = "SELECT Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.subId, Q.lessonId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName, Q.attempt "
-                + "FROM Quiz AS Q "
-                + "LEFT JOIN Lesson AS L ON Q.lessonId = L.lessonId "
-                + "INNER JOIN Subject S ON L.subId = S.subjectId "
-                + "INNER JOIN Type T ON Q.typeId = T.typeId "
+        xSql = "SELECT Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.subId, Q.lessonId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName, Q.attempt \n"
+                + "FROM Quiz AS Q\n"
+                + "INNER JOIN Subject S ON Q.subId = S.subjectId \n"
+                + "INNER JOIN Type T ON Q.typeId = T.typeId \n"
                 + "WHERE Q.quizId = ?";
         try {
             if (con != null) {
@@ -537,7 +586,10 @@ public class QuizDAO extends MyDAO {
         quiz_point quizzPoint = null;
         try {
             if (con != null) {
-                xSql = "SELECT * FROM QUIZ_POINT WHERE quizId = ? AND userId = ? ORDER BY attempt DESC";
+                xSql = "SELECT TOP 1 *\n"
+                        + "FROM QUIZ_POINT\n"
+                        + "WHERE quizId = ? AND userId = ?\n"
+                        + "ORDER BY attempt DESC;";
                 ps = con.prepareStatement(xSql);
                 ps.setInt(1, quizId);
                 ps.setInt(2, userId);
@@ -563,9 +615,9 @@ public class QuizDAO extends MyDAO {
         return quizzPoint;
     }
 
-      public boolean isDoQuizz(int userId, int quizzId) {
+    public boolean isDoQuizz(int userId, int quizzId) {
         try {
-          
+
             if (con != null) {
                 String sql = "select *\n"
                         + "from QUIZ_POINT\n"
@@ -592,13 +644,14 @@ public class QuizDAO extends MyDAO {
         }
         return false;
     }
-       public quiz_point getQuizPoint(int userId, int quizId, int attempt) {
-                  quiz_point quizzPoint = null;
 
-                   int id;
-                   float point;
+    public quiz_point getQuizPoint(int userId, int quizId, int attempt) {
+        quiz_point quizzPoint = null;
+
+        int id;
+        float point;
         try {
-          //  con = DBContext.makeConnection();
+            //  con = DBContext.makeConnection();
             if (con != null) {
                 String sql = "select *\n"
                         + "from QUIZ_POINT\n"
@@ -609,16 +662,14 @@ public class QuizDAO extends MyDAO {
                 ps.setInt(3, attempt);
                 rs = ps.executeQuery();
                 if (rs.next()) {
-                  //  quiz_point quizzPoint = quiz_point.builder()
-                          id= rs.getInt(1);
-                          userId= rs.getInt(2);
-                           point =rs.getFloat(3);
-                          quizId= rs.getInt(4);
-                          attempt= rs.getInt(8);
-                      quizzPoint = new quiz_point(id, userId, point, quizId, attempt);
-                           
-                   
-                    
+                    //  quiz_point quizzPoint = quiz_point.builder()
+                    id = rs.getInt(1);
+                    userId = rs.getInt(2);
+                    point = rs.getFloat(3);
+                    quizId = rs.getInt(4);
+                    attempt = rs.getInt(8);
+                    quizzPoint = new quiz_point(id, userId, point, quizId, attempt);
+
                     return quizzPoint;
 
                 }
@@ -637,9 +688,10 @@ public class QuizDAO extends MyDAO {
         }
         return null;
     }
-public boolean checkUserIsChoosen(int answerId, int quizId, int userid, int attempt) {
+
+    public boolean checkUserIsChoosen(int answerId, int quizId, int userid, int attempt) {
         try {
-           
+
             if (con != null) {
                 String sql = "select *\n"
                         + "from answerDetail\n"
@@ -668,6 +720,7 @@ public boolean checkUserIsChoosen(int answerId, int quizId, int userid, int atte
         }
         return false;
     }
+
     public boolean insertAnswerDetail(AnswerDetail answerDetail) {
         try {
             if (con != null) {
@@ -736,9 +789,160 @@ public boolean checkUserIsChoosen(int answerId, int quizId, int userid, int atte
         return false;
     }
 
-    public static void main(String[] args) {
-        QuizDAO qd = new QuizDAO();
-        qd.getListQuizzesByPagging(1, 3);
+    public quiz insertQuiz(quiz q) {
+        xSql = "INSERT INTO [Quiz]\n"
+                + "          ([title]\n"
+                + "          ,[level]\n"
+                + "          ,[rate]\n"
+                + "          ,[subId]\n"
+                + "          ,[duration]\n"
+                + "          ,[typeId]\n"
+                + "          ,[description]\n"
+                + "          ,[totalQues]\n"
+                + "          ,[status]\n"
+                + "          ,[attempt])\n"
+                + "           VALUES\n"
+                + "            (?,?,?,?,?,?,?,?,1,?)";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, q.getTitle());
+                ps.setString(2, q.getLevel());
+                ps.setFloat(3, q.getRate());
+                ps.setInt(4, q.getSubId());
+                ps.setInt(5, q.getDuration());
+                ps.setString(6, q.getTypeId());
+                ps.setString(7, q.getDescription());
+                ps.setInt(8, q.getTotalQues());
+                ps.setInt(9, q.getAttempt());
+                ps.executeUpdate();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return q;
     }
 
+    public boolean checkExistDoQuiz(int quizId) {
+        try {
+            if (con != null) {
+                xSql = "select * from QUIZ_POINT where quizId = ?";
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, quizId);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public void updateQuiz(String title, int subId, String description, int durarion, String level, Float rate, String typeId, int quizId, int totalQues, int attempt) {
+        xSql = "UPDATE [Quiz]\n"
+                + "   SET [title] = ?\n"
+                + "      ,[level] = ?\n"
+                + "      ,[rate] = ?\n"
+                + "      ,[subId] = ?\n"
+                + "      ,[duration] = ?\n"
+                + "      ,[typeId] = ?\n"
+                + "      ,[description] = ?\n"
+                + "      ,[attempt] = ?\n"
+                + "      ,[totalQues] = ?\n"
+                + " WHERE quizId = ?";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, title);
+                ps.setString(2, level);
+                ps.setFloat(3, rate);
+                ps.setInt(4, subId);
+                ps.setInt(5, durarion);
+                ps.setString(6, typeId);
+                ps.setString(7, description);
+                ps.setInt(8, attempt);
+                ps.setInt(9, totalQues);
+                ps.setInt(10, quizId);
+                ps.executeUpdate();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void hideQuizByQuizId(int quizId) {
+        xSql = "UPDATE [dbo].[Quiz]\n"
+                + "   SET [status] = 0\n"
+                + " WHERE quizId = ?";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, quizId);
+                ps.executeUpdate();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void showQuizByQuizId(int quizId) {
+        xSql = "UPDATE [dbo].[Quiz]\n"
+                + "   SET [status] = 1\n"
+                + " WHERE quizId = ?";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, quizId);
+                ps.executeUpdate();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

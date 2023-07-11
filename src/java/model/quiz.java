@@ -91,6 +91,22 @@ public class quiz {
         this.attempt = attempt;
     }
 
+    public quiz(String title, String level, boolean status, float rate, int subId, int quesId, int duration, String typeId, String description, int totalQues, int attempt) {
+        this.title = title;
+        this.level = level;
+        this.status = status;
+        this.rate = rate;
+        this.subId = subId;
+        this.quesId = quesId;
+        this.duration = duration;
+        this.typeId = typeId;
+        this.description = description;
+        this.totalQues = totalQues;
+        this.attempt = attempt;
+    }
+
+   
+
     public int getQuizId() {
         return quizId;
     }

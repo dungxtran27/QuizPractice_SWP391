@@ -6,6 +6,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+  User us = (User)request.getSession().getAttribute("currUser");
+  if(us == null){
+     response.setStatus(response.SC_MOVED_TEMPORARILY);
+     response.setHeader("Location", "SignIn.jsp");
+     return;
+  }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +27,14 @@
             }
             .paging{
                 position: fixed;
+                display: contents;
             }
+            .tiltleQuiz {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
         </style>
 
         <!-- Custom scripts -->
@@ -59,41 +74,86 @@
                             <button type="submit" class="btn btn-primary mb-2">
                                 <i class="fas fa-search"></i>
                             </button>
+                            <%
+                          if(us.getRole().getRole_id()==1){
 
+                            %>
+                            <a href="quiz-detail?action=add-quiz&message=0" class="btn btn-primary ms-4 pt-2" style="border-radius: 5px; height: 39px; padding-top: 10px; padding-top: 14px !important;"/>Add New</a>
+
+
+                            <%}%>
                         </div>
                     </form>
 
                     <div class ="row" style="margin-top: 80px">
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
+                            <table class="table  table-bordered table-hover table-striped">
                                 <thead class="thead-dark">
-                                    <tr class="text-center">
-                                        <th>ID</th>
-                                        <th>Exam Name</th>
-                                        <th>Level</th>
-                                        <th>Subject</th>
-                                        <th>NumQues</th>
-                                        <th>Duration</th>
-                                        <th>Pass Rate</th>
-                                        <th>Action</th>
+                                    <tr class="text-center col-md-12">
+                                        <th class="col-1">ID</th>
+                                        <th class="col-3">Exam Name</th>
+                                        <th class="col-1">Level</th>
+                                        <th class="col-2">Subject</th>
+                                        <th class="col-1">NumQues</th>
+                                        <th class="col-1">Duration</th>
+                                        <th class="col-1">Pass Rate</th>
+                                        <th class="col-2">Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${listQuizzesByPagging}" var="Q">
+
+
+                                    <%
+                         if(us.getRole().getRole_id()==1){
+       
+                                    %>
+                                    <c:forEach items="${listQuizzesByPaggingAd}" var="Q">
                                         <tr class="text-center">
                                             <td>${Q.quizId}</td>
-                                            <td>${Q.title}</td>
+                                            <td class="titleQuiz">${Q.title}</td>
                                             <td>${Q.level}</td>
                                             <td>${Q.subjectName}</td>
                                             <td>${Q.totalQues}</td>
                                             <td>${Q.duration} (mins)</td>
                                             <td>${Q.rate} (%)</td>
+
                                             <td>
-                                                <a href="QuizHandle?quizzId=${Q.quizId}&subId=${Q.subId}&method=get" class="btn btn-primary">Do Quiz</a>
+                                                <c:if test="${Q.status == 'true'}">
+                                                    <a href="hide-quiz?quizId=${Q.quizId}" class="btn btn-danger ms-3"/>Inactive</a>
+                                                </c:if>
+                                                <c:if test="${Q.status == 'false'}">
+                                                    <a href="show-quiz?quizId=${Q.quizId}" class="btn btn-success ms-3"/>Active</a>
+                                                </c:if>
+                                                <a href="quiz-detail?quizId=${Q.quizId}&action=edit-quiz&message=0" class="btn btn-primary"/>Detail</a>
                                             </td>
+
                                         </tr>
                                     </c:forEach>
+
+
+                                    <%
+                          }else{%>
+
+
+                                    <c:forEach items="${listQuizzesByPagging}" var="Q">
+                                        <tr class="text-center">
+                                            <td>${Q.quizId}</td>
+                                            <td class="titleQuiz">${Q.title}</td>
+                                            <td>${Q.level}</td>
+                                            <td>${Q.subjectName}</td>
+                                            <td>${Q.totalQues}</td>
+                                            <td>${Q.duration} (mins)</td>
+                                            <td>${Q.rate} (%)</td>
+
+                                            <td>
+                                                <a href="QuizHandle?quizzId=${Q.quizId}&subId=${Q.subId}" class="btn btn-primary">Do Quiz</a>
+                                            </td>
+
+
+                                        </c:forEach>     
+                                        <%}%>   
                                 </tbody>
                             </table>
                         </div><br>
@@ -103,7 +163,7 @@
 
             </div>
         </div>
-                            <div class="paging">
+        <div class="paging" >
             <c:choose>
                 <c:when test="${sessionScope.listQuizzesByPagging==null || sessionScope.listQuizzesByPagging.size()==0}">
                     Not founds

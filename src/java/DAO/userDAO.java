@@ -101,13 +101,13 @@ public class userDAO extends MyDAO {
     }
 
     //tim nguoi dung theo id va cap nhat mat khau
-   public void changePassword(int userId, String newPassword) {
-        xSql = "UPDATE [dbo].[User] SET password = '"+newPassword+"' WHERE userId = ?";
+    public void changePassword(int userId, String newPassword) {
+        xSql = "UPDATE [dbo].[User] SET password = '" + newPassword + "' WHERE userId = ?";
         try {
             if (con != null) {
                 ps = con.prepareStatement(xSql);
                 ps.setInt(1, userId);
-               // ps.setString(1, newPassword);
+                // ps.setString(1, newPassword);
                 ps.executeUpdate();
             }
         } catch (Exception e) {
@@ -123,8 +123,7 @@ public class userDAO extends MyDAO {
         }
     }
 
-
-public User checkLogin(int userId, String pass) {
+    public User checkLogin(int userId, String pass) {
         xSql = "SELECT * FROM User WHERE [userId] = ? and [password] = ?";
         try {
             ps = con.prepareStatement(xSql);
@@ -148,13 +147,13 @@ public User checkLogin(int userId, String pass) {
                 String xava = rs.getString(10);
 
                 return new User(xuserid, xusername, xpassword, xfullname, xphone, xaddress, xemail, xava, role);
-                
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-       return null;
+        return null;
     }
 
     public User checkUserExit(String user) {
@@ -189,26 +188,24 @@ public User checkLogin(int userId, String pass) {
 
     //Sign Up for Customer
     public void signUp(User x) {
-        xSql = "INSERT INTO [User] ([fullname],[gender],[phone], [password] ,[email], [roleId]) VALUES (?,0,?,?,?, 2)";
+        xSql = "INSERT INTO [User] ([fullname],[phone], [password] ,[email], [roleId],[gender]) VALUES (?,?,?,?, 2,?)";
 
         try {
             ps = con.prepareStatement(xSql);
-            
+
             ps.setString(1, x.getFullname());
-         //   ps.setString(2, x.getGender());
-          //  ps.setString(3, x.getUsername());
-            ps.setString(3, x.getPhone());
-            ps.setString(4, x.getPassword());
-            ps.setString(5, x.getEmail());
-            
-            
+            //  ps.setString(3, x.getUsername());
+            ps.setString(2, x.getPhone());
+            ps.setString(3, x.getPassword());
+            ps.setString(4, x.getEmail());
+            ps.setBoolean(5, Boolean.parseBoolean(x.getGender()));
+
             ps.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-   
     public User getUser(String email, String pass) {
         xSql = "select * from [User] WHERE [email] =? and [password] =?";
         User x = null;
@@ -334,7 +331,7 @@ public User checkLogin(int userId, String pass) {
                     userid = rs.getInt("userid");
                     String username = rs.getString("username");
 
-                    return new User(userid, username);                   
+                    return new User(userid, username);
                 }
             }
         } catch (Exception e) {
@@ -350,6 +347,5 @@ public User checkLogin(int userId, String pass) {
         }
         return null;
     }
-
 
 }

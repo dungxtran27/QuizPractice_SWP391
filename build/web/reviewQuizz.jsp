@@ -52,7 +52,7 @@
                             <div class="col-lg-12">
 
                                 <!-- Blog entries-->
-                                <form action="DoQuizzServlet" method="post" id="myForm">
+                                <form action="QuizHandle" method="post" id="myForm">
                                     <input type="hidden" name="quizzId" value="${requestScope.quizzId}" />
                                     <div class="row">
                                         <div class="col-12">
