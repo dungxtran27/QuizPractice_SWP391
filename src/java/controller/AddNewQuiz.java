@@ -86,7 +86,7 @@ public class AddNewQuiz extends HttpServlet {
         } else {
             
              QuizDAO qd=new QuizDAO();
-             quiz q = new quiz(title, level, true, 0, subId, subId, durarion, typeId, description, totalQues, attempt);
+             quiz q = new quiz(title, level, rate, subId, durarion, typeId, description, totalQues, attempt);
               
              qd.insertQuiz(q);
             request.getSession().setAttribute("messageQuiz", "Add Successful!!!");

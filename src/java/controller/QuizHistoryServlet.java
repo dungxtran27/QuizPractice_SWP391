@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.*;
+import model.Practice;
 import model.User;
 import model.quiz_point;
 
@@ -27,7 +28,8 @@ public class QuizHistoryServlet extends HttpServlet {
 
         User currUser = (User) request.getSession().getAttribute("currUser");
         QuizPointDAO qpd = new QuizPointDAO();
-        ArrayList<quiz_point> qplist = new ArrayList<>();
+        ArrayList<Practice> qplist = new ArrayList<>();
+        ArrayList<Practice> qplistAd = new ArrayList<>();
        
        
 
@@ -49,7 +51,9 @@ public class QuizHistoryServlet extends HttpServlet {
             totalPage += 1;
         }
             qplist = qpd.getQuizHistory(currUser.getUserid(), page, page_5);
+            qplistAd = qpd.getQuizHistoryAd( page, page_5);
             request.getSession().setAttribute("qplist", qplist);
+            request.getSession().setAttribute("qplistAd", qplistAd);
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
             request.setAttribute("pagination_url", "QuizHistoryServlet?");

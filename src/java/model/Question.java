@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author dungmuahahaha
@@ -20,6 +22,29 @@ public class Question {
     private int quizId;
     private String dimension;
     private boolean isMultipleChoice;
+    private List<Answer> answer ;
+
+    public Question(int questionId, String content, int subjectId, int lessonId, int topicId, String level, boolean status, int quizId, String dimension, boolean isMultipleChoice, List<Answer> answer) {
+        this.questionId = questionId;
+        this.content = content;
+        this.subjectId = subjectId;
+        this.lessonId = lessonId;
+        this.topicId = topicId;
+        this.level = level;
+        this.status = status;
+        this.quizId = quizId;
+        this.dimension = dimension;
+        this.isMultipleChoice = isMultipleChoice;
+        this.answer = answer;
+    }
+
+    public List<Answer> getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(List<Answer> answer) {
+        this.answer = answer;
+    }
 
     public Question(int questionId, String content, int subjectId, int lessonId, int topicId, String level, boolean status, int quizId, String dimension, boolean isMultipleChoice) {
         this.questionId = questionId;

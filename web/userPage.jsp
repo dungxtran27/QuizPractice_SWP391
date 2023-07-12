@@ -41,17 +41,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="qp" items="${qplist}">
+                        
+                         <%
+                          if(u.getRole().getRole_id()==1){
+
+                            %>
+                            <c:forEach var="qp" items="${qplistAd}">
                             <tr>
-                                <td>${qp.getQuizId()}</td>
+                                <td>${qp.getQuizzId()}</td>
                                 <td>${qp.getPoint()}</td>
                                 <td>${qp.getPointPercent()}</td>
                                 <td>${qp.getAttempt()}</td>
                                 <td>${qp.getTaken_date()}</td>
-                                <td><a href="ReviewQuizzServlet?quizzId=${qp.getQuizId()}&attempt=${qp.getAttempt()}&subId=${qp.getSubId()}" class="btn btn-warning">review</a></td>
+                                <td><a href="ReviewQuizzServlet?quizzId=${qp.getQuizzId()}&attempt=${qp.getAttempt()}&subId=${qp.getSubId()}" class="btn btn-warning">review</a></td>
 
                             </tr>
                         </c:forEach>
+
+                            <%}else{%>
+                         <c:forEach var="qp" items="${qplist}">
+                            <tr>
+                                <td>${qp.getQuizzId()}</td>
+                                <td>${qp.getPoint()}</td>
+                                <td>${qp.getPointPercent()}</td>
+                                <td>${qp.getAttempt()}</td>
+                                <td>${qp.getTaken_date()}</td>
+                                <td><a href="ReviewQuizzServlet?quizzId=${qp.getQuizzId()}&attempt=${qp.getAttempt()}&subId=${qp.getSubId()}" class="btn btn-warning">review</a></td>
+
+                            </tr>
+                        </c:forEach>
+                        <%}%>
+                       
                     </tbody>
                 </table>
                     <c:choose>

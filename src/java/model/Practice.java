@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author dungmuahahaha
@@ -16,7 +18,7 @@ public class Practice {
     private String title;
     private int duration;
     private int totalQues;
-    private String taken_date; 
+    private Date taken_date; 
     private int numOfQues;
     private int attempt;
     private float pointPercent;
@@ -27,7 +29,39 @@ public class Practice {
     public Practice() {
     }
 
-    public Practice(int id, int userId, float point, int quizzId, String title, int duration, int totalQues, String taken_date, int numOfQues, int attempt, float pointPercent, int numQuesTrue, String subName, int subId) {
+    public Practice(int userId, float point, int quizzId, String title, int duration, int totalQues, Date taken_date, int numOfQues, int attempt, float pointPercent, int numQuesTrue, String subName, int subId) {
+        this.userId = userId;
+        this.point = point;
+        this.quizzId = quizzId;
+        this.title = title;
+        this.duration = duration;
+        this.totalQues = totalQues;
+        this.taken_date = taken_date;
+        this.numOfQues = numOfQues;
+        this.attempt = attempt;
+        this.pointPercent = pointPercent;
+        this.numQuesTrue = numQuesTrue;
+        this.subName = subName;
+        this.subId = subId;
+    }
+
+    public Practice( float point, int quizzId, String title, int duration, int totalQues, Date taken_date, int numOfQues, int attempt, float pointPercent, int numQuesTrue, String subName, int subId) {
+        
+        this.point = point;
+        this.quizzId = quizzId;
+        this.title = title;
+        this.duration = duration;
+        this.totalQues = totalQues;
+        this.taken_date = taken_date;
+        this.numOfQues = numOfQues;
+        this.attempt = attempt;
+        this.pointPercent = pointPercent;
+        this.numQuesTrue = numQuesTrue;
+        this.subName = subName;
+        this.subId = subId;
+    }
+
+    public Practice(int id, int userId, float point, int quizzId, String title, int duration, int totalQues, Date taken_date, int numOfQues, int attempt, float pointPercent, int numQuesTrue, String subName, int subId) {
         this.id = id;
         this.userId = userId;
         this.point = point;
@@ -100,11 +134,11 @@ public class Practice {
         this.totalQues = totalQues;
     }
 
-    public String getTaken_date() {
+    public Date getTaken_date() {
         return taken_date;
     }
 
-    public void setTaken_date(String taken_date) {
+    public void setTaken_date(Date taken_date) {
         this.taken_date = taken_date;
     }
 

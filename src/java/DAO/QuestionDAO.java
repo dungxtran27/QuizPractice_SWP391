@@ -12,8 +12,8 @@ import model.Question;
  *
  * @author dungmuahahaha
  */
-public class QuestionDAO extends MyDAO{
-    
+public class QuestionDAO extends MyDAO {
+
     public List<Question> getQuestionByQuizId(int QuizId) {
         List<Question> list = new ArrayList<>();
         int xquestionId;
@@ -53,11 +53,65 @@ public class QuestionDAO extends MyDAO{
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     *
+     * @param QuizId
+     * @param page
+     * @param page10
+     * @return
+     */
+    public ArrayList<Question> getQuestionByQuizIdAndPagging(int QuizId,int page, int page10) {
+        ArrayList<Question> list = new ArrayList<>();
+        int xquestionId;
+        String xcontent;
+        int xsubjectId;
+        int xlessonId;
+        int xtopicId;
+        String xlevel;
+        boolean xstatus;
+        int xquizId;
+        boolean xisMultipleChoice;
+        try {
+            if (con != null) {
+                xSql = "with t as (select ROW_NUMBER() over (order by Q.questionId asc) as r,\n"
+                        + "Q.* from Question AS Q where Q.quizId = ? )\n"
+                        + " select * from t where    r between    ?*?-(?-1) and ?*?";
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, QuizId);
+               
+                ps.setInt(2, page);
+                ps.setInt(3, page10);
+                ps.setInt(4, page10);
+                ps.setInt(5, page);
+                ps.setInt(6, page10);
+                 rs = ps.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        xquestionId = rs.getInt("questionId");
+                        xcontent = rs.getString("content");
+                        xsubjectId = rs.getInt("subjectId");
+                        xlessonId = rs.getInt("lessonId");
+                        xtopicId = rs.getInt("topicId");
+                        xlevel = rs.getString("level");
+                        xstatus = rs.getBoolean("status");
+                       // xquizId = rs.getInt("quizId");
+                        xisMultipleChoice = rs.getBoolean("isMultipleChoice");
+
+                        list.add(new Question(xquestionId, xcontent, xsubjectId, xlessonId, xtopicId, xlevel, xstatus, QuizId, xlevel, xisMultipleChoice));
+                    }
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
+                System.out.println(list);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -91,19 +145,11 @@ public class QuestionDAO extends MyDAO{
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return null;
     }
 
- public int getTotalQuestionExist(int quizId,int subjectId) {
+    public int getTotalQuestionExist(int quizId, int subjectId) {
         try {
             if (con != null) {
                 xSql = "select COUNT(questionId) from Question where quizId = ? and subjectId=?";
@@ -128,5 +174,28 @@ public class QuestionDAO extends MyDAO{
         }
         return 0;
     }
-
+        public int getTotalQuestionExist(int quizId) {
+        try {
+            if (con != null) {
+                xSql = "select COUNT(questionId) from Question where quizId = ? ";
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, quizId);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 }

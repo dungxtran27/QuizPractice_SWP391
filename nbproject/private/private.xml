@@ -3,15 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/AddNewQuiz.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/DoQuizz.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/scorePage.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Answer.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/AnswerDAO.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/QuizList.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/EditQuiz.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/QuizDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/ShowQuiz.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/QuizDetail.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/quiz.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/SearchQuiz.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/userDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/HideQuiz.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/QuizList.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Question.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/ReviewQuizzServlet.java</file>
         </group>
     </open-files>
 </project-private>

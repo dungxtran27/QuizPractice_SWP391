@@ -18,6 +18,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Vector;
 
 /**
  *
@@ -43,7 +44,7 @@ public class ReviewQuizzServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ReviewQuizzServlet</title>");            
+            out.println("<title>Servlet ReviewQuizzServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ReviewQuizzServlet at " + request.getContextPath() + "</h1>");
@@ -64,41 +65,61 @@ public class ReviewQuizzServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String url = "";
-        try {
-            int quizzId = Integer.parseInt(request.getParameter("quizzId"));
-            int subId = Integer.parseInt(request.getParameter("subId"));
-            int attempt = Integer.parseInt(request.getParameter("attempt"));
-            HttpSession session = request.getSession();
+        String url = "";
+        PrintWriter pr = response.getWriter();
+        HttpSession session = request.getSession();
 
-            QuizDAO quizDAO = new QuizDAO();
-            QuestionDAO questionDAO = new QuestionDAO();
-            AnswerDAO answerDAO = new AnswerDAO();
-            User account = (User) session.getAttribute("currUser");
-            if (account != null) {
+        User account = (User) session.getAttribute("currUser");
 
+        if (account == null) {
+            response.sendRedirect("SignIn.jsp");
+        } else {
+            try {
+                int quizzId = Integer.parseInt(request.getParameter("quizzId"));
+                int subId = Integer.parseInt(request.getParameter("subId"));
+                int attempt = Integer.parseInt(request.getParameter("attempt"));
+
+                QuizDAO quizDAO = new QuizDAO();
+                QuestionDAO questionDAO = new QuestionDAO();
+                AnswerDAO answerDAO = new AnswerDAO();
+                if (account == null) {
+                    pr.print("null");
+                } else {
+                    pr.print("not null");
+                }
+
+                pr.print(account.getFullname());
+
+                pr.print("muahahahah");
                 boolean isDoQUizz = quizDAO.isDoQuizz(account.getUserid(), quizzId);
 
                 if (isDoQUizz) {
-
+                    pr.print(isDoQUizz);
                     int questionTime = quizDAO.getQuizByQuizId(quizzId).getDuration();
-
-                    HashMap<Question, List<Answer>> quizz = new HashMap<>();
+                    // Vector<Question> ques= 
+                    //        HashMap<Question, List<Answer>> quizz = new HashMap<>();
                     List<Question> questions = questionDAO.getQuestionByQuizId(quizzId);
+
                     for (Question question : questions) {
                         List<Answer> answers = answerDAO.getAnswerByQuestionId(question.getQuestionId());
-                        for (Answer answer : answers) {
+                        question.setAnswer(answers);
+
+                        pr.print(answers.size() + " ");
+
+                        for (Answer answer : question.getAnswer()) {
+                            pr.print(answer.getContent() + " ");
+
                             if (quizDAO.checkUserIsChoosen(answer.getAnswerId(), quizzId, account.getUserid(), attempt)) {
                                 answer.setUserCheck(true);
                             }
                         }
-                        quizz.put(question, answers);
+                        //quizz.put(question, answers);
                     }
-                    session.setAttribute("REVIEW_QUIZZ", quizz);
+                    session.setAttribute("REVIEW_QUIZZ", questions);
 
                     request.setAttribute("quizzId", quizzId);
                     quiz quiz = quizDAO.getQuizByQuizId(quizzId);
-                    quiz.setTotalQues(quizz.size());
+                    quiz.setTotalQues(questions.size());
                     quiz_point quizzPoint = quizDAO.getQuizPoint(account.getUserid(), quizzId, attempt);
                     request.setAttribute("QUIZZ_POINT", quizzPoint);
                     request.setAttribute("QUIZZ", quiz);
@@ -106,19 +127,20 @@ public class ReviewQuizzServlet extends HttpServlet {
 
                     url = "reviewQuizz.jsp";
                 } else {
-                    url = "lesson-quiz?subId=" + subId + "&action=get";
+                    pr.print(isDoQUizz);
+                    url = "quiz-list";
                 }
-            } else {
-                url = "SignIn.jsp";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-        }
-    }
 
-   
-   
+                pr.print(url + "catch");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                pr.print(url);
+                request.getRequestDispatcher(url).forward(request, response);
+
+            }
+        }
+
+    }
 
 }

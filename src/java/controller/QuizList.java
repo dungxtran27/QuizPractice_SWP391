@@ -40,6 +40,7 @@ public class QuizList extends HttpServlet {
         }
 
         int totalSearch = quiz1.getTotalQuiz();
+        pr.print(totalSearch);
         int totalPage = totalSearch / PAGE_SIZE_6;
         if (totalSearch % PAGE_SIZE_6 != 0) {
             totalPage += 1;

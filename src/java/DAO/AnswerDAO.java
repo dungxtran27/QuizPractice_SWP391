@@ -58,67 +58,50 @@ public class AnswerDAO extends MyDAO {
         String xcontent;
         boolean xcorrect;
         int xquesId;
+        
         try {
-            if (con != null) {
-                xSql = "select answerId, content, correct, quesId\n"
-                        + "from Answer\n"
-                        + "where quesId = ?";
-                ps = con.prepareStatement(xSql);
-                ps.setInt(1, QuestionId);
-                rs = ps.executeQuery();
-                if (rs != null) {
-                    while (rs.next()) {
-                        xanswerId = rs.getInt("answerId");
-                        xcontent = rs.getString("content");
-                        xcorrect = rs.getBoolean("correct");
-                        xquesId = rs.getInt("questId");
 
-                        list.add(new Answer(xanswerId, xcontent, xcorrect, xquesId, xcorrect));
-                    }
-                }
+            xSql = "select answerId, content, correct, quesId\n"
+                    + "from Answer\n"
+                    + "where quesId = ?";
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, QuestionId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                xanswerId = rs.getInt("answerId");
+                xcontent = rs.getString("content");
+                xcorrect = rs.getBoolean("correct");
+                xquesId = rs.getInt("quesId");
+
+                list.add(new Answer(xanswerId, xcontent, xcorrect, xquesId, xcorrect));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return list;
     }
 
     public boolean checkAnswerIsCorrect(int answerId) {
         try {
-            if (con != null) {
+            
                 xSql = "select answerId, content, correct, quesId\n"
                         + "from Answer\n"
                         + "where answerId = ? and correct = 1";
                 ps = con.prepareStatement(xSql);
                 ps.setInt(1, answerId);
                 rs = ps.executeQuery();
-                if (rs != null) {
+              
                     while (rs.next()) {
                         return true;
                     }
-                }
-            }
+                
+            
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return false;
     }
 
@@ -140,14 +123,6 @@ public class AnswerDAO extends MyDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return 0;
     }

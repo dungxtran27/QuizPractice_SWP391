@@ -57,6 +57,36 @@ public class quiz {
         this.totalQues = totalQues;
         this.attempt = attempt;
     }
+
+    public quiz(String title, String level, float rate, int subId, int duration, String typeId, String description, int totalQues, int attempt) {
+        this.title = title;
+        this.level = level;
+        this.rate = rate;
+        this.subId = subId;
+        this.duration = duration;
+        this.typeId = typeId;
+        this.description = description;
+        this.totalQues = totalQues;
+        this.attempt = attempt;
+    }
+
+    public quiz(int quizId, String title, String level, boolean status, float rate, int subId, int lessonId, int duration, String typeId, String typeName, String subjectName, String description, int totalQues, int attempt) {
+        this.quizId = quizId;
+        this.title = title;
+        this.level = level;
+        this.status = status;
+        this.rate = rate;
+        this.subId = subId;
+        this.lessonId = lessonId;
+        this.duration = duration;
+        this.typeId = typeId;
+        this.typeName = typeName;
+        this.subjectName = subjectName;
+        this.description = description;
+        this.totalQues = totalQues;
+        this.attempt = attempt;
+    }
+    
     public quiz(int quizId, String title, String level, boolean status, float rate, int subId, int lessonId, int duration, String typeId, String typeName, String subjectName, String description, int totalQues) {
         this.quizId = quizId;
         this.title = title;

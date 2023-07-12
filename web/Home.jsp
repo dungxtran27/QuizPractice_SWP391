@@ -229,9 +229,9 @@
                                             </div>
 
 
-                                            <div class="footer" >
-                                                <%@include file="Components/footer.jsp" %>
-                                            </div>
+         <div class="footer" >
+          <%@include file="Components/footer.jsp" %>
+         </div>
                                             <script>
                                                 const carousel = document.querySelector('.carousel');
                                                 const items = carousel.querySelectorAll('.carousel__item');

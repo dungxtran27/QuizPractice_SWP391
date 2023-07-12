@@ -26,9 +26,10 @@ public class QuizDAO extends MyDAO {
         int a = 0;
         try {
             if (con != null) {
-                xSql = "select distinct count(Q.quizId) as 'id'\n"
-                        + "from Quiz AS Q inner join Lesson AS L\n"
-                        + "on Q.lessonId = L.lessonId";
+                xSql = "select distinct count(Q.quizId)\n"
+                        + "as 'id'\n"
+                        + " from Quiz\n"
+                        + "AS Q ";
                 ps = con.prepareStatement(xSql);
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -110,7 +111,8 @@ public class QuizDAO extends MyDAO {
 
         return list;
     }
-     public List<quiz> getListQuizzesByPaggingAdmin(int page, int PAGE_SIZE_6) {
+
+    public List<quiz> getListQuizzesByPaggingAdmin(int page, int PAGE_SIZE_6) {
         List<quiz> list = new ArrayList<>();
         int xquizId;
         String xtitle;
@@ -172,37 +174,29 @@ public class QuizDAO extends MyDAO {
 
     public int getTotalQuizOnlySearch(String keyword) {
         try {
-            if (con != null) {
+            
                 xSql = "select distinct count(Q.quizId)\n"
-                        + "from Quiz AS Q inner join Lesson AS L\n"
-                        + "on Q.lessonId = L.lessonId where Q.title like ?";
+                        + "from Quiz AS Q \n"
+                        + " where Q.title like ?";
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     return rs.getInt(1);
                 }
-            }
+            
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return 0;
     }
 
     public int getTotalQuizBySubIdAndSearch(String keyword, int subId) {
         try {
-            if (con != null) {
+             
                 xSql = "select distinct count(Q.quizId)\n"
-                        + "from Quiz AS Q inner join Subject S\n"
-                        + "on S.subjectId = Q.subId where Q.title like ? and Q.subId = ?\n";
+                        + "from Quiz AS Q \n"
+                        + "where Q.title like ? and Q.subId = ?\n";
 
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
@@ -211,18 +205,10 @@ public class QuizDAO extends MyDAO {
                 while (rs.next()) {
                     return rs.getInt(1);
                 }
-            }
+            
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return 0;
     }
 
@@ -246,7 +232,68 @@ public class QuizDAO extends MyDAO {
                 xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName \n"
                         + "from Quiz AS Q inner join Subject S on Q.subId = S.subjectId \n"
                         + "inner join Type T on Q.typeId = T.typeId where Q.title like ?) \n"
-                        + "select * from t where r between ?*?-(?-1) and ?*?";
+                        + "select * from t where status =1 and r between ?*?-(?-1) and ?*?";
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, "%" + keyword + "%");
+                ps.setInt(2, page);
+                ps.setInt(3, PAGE_SIZE_6);
+                ps.setInt(4, PAGE_SIZE_6);
+                ps.setInt(5, page);
+                ps.setInt(6, PAGE_SIZE_6);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    xquizId = rs.getInt("quizId");
+                    xtitle = rs.getString("title");
+                    xlevel = rs.getString("level");
+                    xstatus = rs.getBoolean("status");
+                    xrate = rs.getFloat("rate");
+                    xsubId = rs.getInt("subId");
+                    xlessonId = rs.getInt("lessonId");
+                    xtypeId = rs.getString("typeId");
+                    xduration = rs.getInt("duration");
+                    xdescription = rs.getString("description");
+                    xtotalQues = rs.getInt("totalQues");
+                    xtypeName = rs.getString("typeName");
+                    xsubjectName = rs.getString("subjectName");
+
+                    list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public List<quiz> getListQuizzesBySearchAndPaggingAd(int page, int PAGE_SIZE_6, String keyword) {
+        List<quiz> list = new ArrayList<>();
+        int xquizId;
+        String xtitle;
+        String xlevel;
+        boolean xstatus;
+        float xrate;
+        int xsubId;
+        int xlessonId;
+        String xtypeId;
+        int xduration;
+        String xdescription;
+        int xtotalQues;
+        String xtypeName;
+        String xsubjectName;
+        try {
+            if (con != null) {
+                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName \n"
+                        + "from Quiz AS Q inner join Subject S on Q.subId = S.subjectId \n"
+                        + "inner join Type T on Q.typeId = T.typeId where Q.title like ?) \n"
+                        + "select * from t where  r between ?*?-(?-1) and ?*?";
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
                 ps.setInt(2, page);
@@ -288,6 +335,68 @@ public class QuizDAO extends MyDAO {
     }
 
     public List<quiz> getListQuizzesBySubIdAndSearchAndPagging(int page, int PAGE_SIZE_6, String keyword, int subId) {
+        List<quiz> list = new ArrayList<>();
+        int xquizId;
+        String xtitle;
+        String xlevel;
+        boolean xstatus;
+        float xrate;
+        int xsubId;
+        int xlessonId;
+        String xtypeId;
+        int xduration;
+        String xdescription;
+        int xtotalQues;
+        String xtypeName;
+        String xsubjectName;
+        try {
+            if (con != null) {
+                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName\n"
+                        + "  from Quiz AS Q inner join Subject S on Q.subId =   S.subjectId \n"
+                        + "inner join Type T on Q.typeId = T.typeId where Q.title like ? and S.subjectId = ?) \n"
+                        + "select * from t where status=1 and r between ?*?-(?-1) and ?*?";
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, "%" + keyword + "%");
+                ps.setInt(2, subId);
+                ps.setInt(3, page);
+                ps.setInt(4, PAGE_SIZE_6);
+                ps.setInt(5, PAGE_SIZE_6);
+                ps.setInt(6, page);
+                ps.setInt(7, PAGE_SIZE_6);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    xquizId = rs.getInt("quizId");
+                    xtitle = rs.getString("title");
+                    xlevel = rs.getString("level");
+                    xstatus = rs.getBoolean("status");
+                    xrate = rs.getFloat("rate");
+                    xsubId = rs.getInt("subId");
+                    xlessonId = rs.getInt("lessonId");
+                    xtypeId = rs.getString("typeId");
+                    xduration = rs.getInt("duration");
+                    xdescription = rs.getString("description");
+                    xtotalQues = rs.getInt("totalQues");
+                    xtypeName = rs.getString("typeName");
+                    xsubjectName = rs.getString("subjectName");
+
+                    list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public List<quiz> getListQuizzesBySubIdAndSearchAndPaggingAd(int page, int PAGE_SIZE_6, String keyword, int subId) {
         List<quiz> list = new ArrayList<>();
         int xquizId;
         String xtitle;
@@ -351,10 +460,10 @@ public class QuizDAO extends MyDAO {
 
     public int getTotalQuizByTypeIdAndSearch(String keyword, String typeId) {
         try {
-            if (con != null) {
+           
                 xSql = "select distinct count(Q.quizId)\n"
-                        + "from Quiz AS Q inner join Lesson AS L\n"
-                        + "on Q.lessonId = L.lessonId  inner join Type T\n"
+                        + "from Quiz AS Q \n"
+                        + "inner join Type T\n"
                         + "on T.typeId = Q.typeId where Q.title like ? and T.typeId = ?";
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
@@ -362,19 +471,11 @@ public class QuizDAO extends MyDAO {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     return rs.getInt(1);
-                }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return 0;
     }
 
@@ -399,7 +500,7 @@ public class QuizDAO extends MyDAO {
                         + " Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName\n"
                         + "  from Quiz AS Q inner join Subject S on Q.subId =   S.subjectId \n"
                         + "inner join Type T on Q.typeId = T.typeId where Q.title like ? and T.typeId = ?) \n"
-                        + "select * from t where r between ?*?-(?-1) and ?*?";
+                        + "select * from t where status =1 and r between ?*?-(?-1) and ?*?";
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
                 ps.setString(2, typeId);
@@ -441,15 +542,70 @@ public class QuizDAO extends MyDAO {
         return list;
     }
 
+    public List<quiz> getListQuizzesByTypeIdSearchAndPaggingAd(int page, int PAGE_SIZE_6, String keyword, String typeId) {
+        List<quiz> list = new ArrayList<>();
+        int xquizId;
+        String xtitle;
+        String xlevel;
+        boolean xstatus;
+        float xrate;
+        int xsubId;
+        int xlessonId;
+        String xtypeId;
+        int xduration;
+        String xdescription;
+        int xtotalQues;
+        String xtypeName;
+        String xsubjectName;
+        try {
+           
+                xSql = " with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r, Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, \n"
+                        + " Q.typeId, Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName\n"
+                        + "  from Quiz AS Q inner join Subject S on Q.subId =   S.subjectId \n"
+                        + "inner join Type T on Q.typeId = T.typeId where Q.title like ? and T.typeId = ?) \n"
+                        + "select * from t where r between ?*?-(?-1) and ?*?";
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, "%" + keyword + "%");
+                ps.setString(2, typeId);
+                ps.setInt(3, page);
+                ps.setInt(4, PAGE_SIZE_6);
+                ps.setInt(5, PAGE_SIZE_6);
+                ps.setInt(6, page);
+                ps.setInt(7, PAGE_SIZE_6);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    xquizId = rs.getInt("quizId");
+                    xtitle = rs.getString("title");
+                    xlevel = rs.getString("level");
+                    xstatus = rs.getBoolean("status");
+                    xrate = rs.getFloat("rate");
+                    xsubId = rs.getInt("subId");
+                    xlessonId = rs.getInt("lessonId");
+                    xtypeId = rs.getString("typeId");
+                    xduration = rs.getInt("duration");
+                    xdescription = rs.getString("description");
+                    xtotalQues = rs.getInt("totalQues");
+                    xtypeName = rs.getString("typeName");
+                    xsubjectName = rs.getString("subjectName");
+
+                    list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        return list;
+    }
+
     public int getTotalQuizByTypeIdAndSubIdAndSearch(String keyword, int subId, String typeId) {
         try {
-            if (con != null) {
+            
                 xSql = "select distinct count(Q.quizId)\n"
-                        + "from Quiz AS Q inner join Lesson AS L\n"
-                        + "on Q.lessonId = L.lessonId  inner join Type T\n"
+                        + "from Quiz AS Q \n"
+                        + " inner join Type T\n"
                         + "on T.typeId = Q.typeId inner join Subject S\n"
-                        + "on S.subjectId = L.subId where Q.title like ? \n"
-                        + "and T.typeId = ? and L.subId = ?";
+                        + "on S.subjectId = Q.subId where Q.title like ? \n"
+                        + "and T.typeId = ? and Q.subId = ?";
                 ps = con.prepareStatement(xSql);
                 ps.setString(1, "%" + keyword + "%");
                 ps.setString(2, typeId);
@@ -458,18 +614,10 @@ public class QuizDAO extends MyDAO {
                 while (rs.next()) {
                     return rs.getInt(1);
                 }
-            }
+            
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return 0;
     }
 
@@ -489,7 +637,72 @@ public class QuizDAO extends MyDAO {
         String xtypeName;
         String xsubjectName;
         try {
-            if (con != null) {
+            
+                xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r,\n"
+                        + "Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, "
+                        + "Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName, Q.attempt from Quiz AS Q left join Lesson AS L \n"
+                        + "on Q.lessonId = L.lessonId inner join Subject S on L.subId = S.subjectId \n"
+                        + "inner join Type T on Q.typeId = T.typeId where Q.title like ? and S.subjectId = ? and T.typeId = ? ) \n"
+                        + "select * from t where status = 1 and r between ?*?-(?-1) and ?*?";
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, "%" + keyword + "%");
+                ps.setInt(2, subId);
+                ps.setString(3, typeId);
+                ps.setInt(4, page);
+                ps.setInt(5, PAGE_SIZE_6);
+                ps.setInt(6, PAGE_SIZE_6);
+                ps.setInt(7, page);
+                ps.setInt(8, PAGE_SIZE_6);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    xquizId = rs.getInt("quizId");
+                    xtitle = rs.getString("title");
+                    xlevel = rs.getString("level");
+                    xstatus = rs.getBoolean("status");
+                    xrate = rs.getFloat("rate");
+                    xsubId = rs.getInt("subId");
+                    xlessonId = rs.getInt("lessonId");
+                    xtypeId = rs.getString("typeId");
+                    xduration = rs.getInt("duration");
+                    xdescription = rs.getString("description");
+                    xtotalQues = rs.getInt("totalQues");
+                    xtypeName = rs.getString("typeName");
+                    xsubjectName = rs.getString("subjectName");
+
+                    list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public List<quiz> getListQuizzesBySubIdAndTypeIdAndSearchAndPaggingAd(int page, int PAGE_SIZE_6, String keyword, int subId, String typeId) {
+        List<quiz> list = new ArrayList<>();
+        int xquizId;
+        String xtitle;
+        String xlevel;
+        boolean xstatus;
+        float xrate;
+        int xsubId;
+        int xlessonId;
+        String xtypeId;
+        int xduration;
+        String xdescription;
+        int xtotalQues;
+        String xtypeName;
+        String xsubjectName;
+        try {
+            
                 xSql = "with t as (select ROW_NUMBER() over (order by Q.quizId asc) as r,\n"
                         + "Q.quizId, Q.title, Q.level, Q.status, Q.rate, Q.lessonId, Q.subId, Q.typeId, "
                         + "Q.duration, Q.description, Q.totalQues, T.typeName, S.subjectName, Q.attempt from Quiz AS Q left join Lesson AS L \n"
@@ -522,7 +735,7 @@ public class QuizDAO extends MyDAO {
                     xsubjectName = rs.getString("subjectName");
 
                     list.add(new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues));
-                }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -546,38 +759,31 @@ public class QuizDAO extends MyDAO {
                 + "INNER JOIN Type T ON Q.typeId = T.typeId \n"
                 + "WHERE Q.quizId = ?";
         try {
-            if (con != null) {
-                ps = con.prepareStatement(xSql);
-                ps.setInt(1, quizId);
-                rs = ps.executeQuery();
-                if (rs.next()) {
-                    int xquizId = rs.getInt("quizId");
-                    String xtitle = rs.getString("title");
-                    String xlevel = rs.getString("level");
-                    boolean xstatus = rs.getBoolean("status");
-                    float xrate = rs.getFloat("rate");
-                    int xsubId = rs.getInt("subId");
-                    int xlessonId = rs.getInt("lessonId");
-                    String xtypeId = rs.getString("typeId");
-                    int xduration = rs.getInt("duration");
-                    String xdescription = rs.getString("description");
-                    int xtotalQues = rs.getInt("totalQues");
-                    String xtypeName = rs.getString("typeName");
-                    String xsubjectName = rs.getString("subjectName");
 
-                    quiz = new quiz(xquizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues);
-                }
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizId);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int xquizId = rs.getInt(1);
+                String xtitle = rs.getString(2);
+                String xlevel = rs.getString(3);
+                boolean xstatus = rs.getBoolean(4);
+                float xrate = rs.getFloat(5);
+                int xsubId = rs.getInt(6);
+                int xlessonId = rs.getInt(7);
+                String xtypeId = rs.getString(8);
+                int xduration = rs.getInt(9);
+                String xdescription = rs.getString(10);
+                int xtotalQues = rs.getInt(11);
+                String xtypeName = rs.getString(12);
+                String xsubjectName = rs.getString(13);
+                int attempt = rs.getInt(14);
+
+                quiz = new quiz(quizId, xtitle, xlevel, xstatus, xrate, xsubId, xlessonId, xduration, xtypeId, xtypeName, xsubjectName, xdescription, xtotalQues, attempt);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return quiz;
     }
@@ -603,14 +809,6 @@ public class QuizDAO extends MyDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return quizzPoint;
     }
@@ -633,15 +831,8 @@ public class QuizDAO extends MyDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
+
         return false;
     }
 
@@ -677,14 +868,6 @@ public class QuizDAO extends MyDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return null;
     }
@@ -709,14 +892,6 @@ public class QuizDAO extends MyDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return false;
     }
@@ -738,14 +913,6 @@ public class QuizDAO extends MyDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return false;
     }
@@ -777,14 +944,6 @@ public class QuizDAO extends MyDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return false;
     }

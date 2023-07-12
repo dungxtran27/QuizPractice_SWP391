@@ -72,7 +72,7 @@
                     <h1>Quiz Detail</h1>
                     <div class ="row mt-5">
                         <div class="mb-3 mx-auto d-block shadow p-3 bg-white rounded" style="padding: 10px 0px 10px 10px; border-radius: 8px; width: 32%; margin-left: 10px; width: 100% !important">
-                            <div class="tab list-group list-group-horizontal" style="width: 30%; margin-left: 75px">
+                            <div class="tab list-group d-flex" style="width: 30%; margin-left: 75px">
                                 <button class="tablinks list-group-item list-group-item-action active" onclick="openCity(event, 'Overview')">Overview</button>
                                 <button class="tablinks list-group-item list-group-item-action" onclick="openCity(event, 'Setting')">Setting</button>
                             </div>
