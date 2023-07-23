@@ -124,6 +124,7 @@ public class ReviewQuizzServlet extends HttpServlet {
                     request.setAttribute("QUIZZ_POINT", quizzPoint);
                     request.setAttribute("QUIZZ", quiz);
                     request.setAttribute("subId", subId);
+                    request.setAttribute("attempt", attempt);
 
                     url = "reviewQuizz.jsp";
                 } else {

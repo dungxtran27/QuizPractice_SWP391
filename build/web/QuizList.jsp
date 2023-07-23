@@ -55,6 +55,9 @@
                     <c:if test="${sessionScope.checkSuccess == 'true'}">
                         <p class="text-success">${sessionScope.messageStatusQuiz}</p>
                     </c:if>
+                    <c:if test="${sessionScope.checkSuccess == 'true'}">
+                        <p class="text-warning">${sessionScope.WARNING}</p>
+                    </c:if>
                     <form action="search-quiz" method="POST" style="width: 900px; float: right !important">
 
                         <div class="input-group">
@@ -75,7 +78,7 @@
                                 <i class="fas fa-search"></i>
                             </button>
                             <%
-                          if(us.getRole().getRole_id()==1){
+                          if(us.getRole().getRole_id()==1||us.getRole().getRole_id()==3){
 
                             %>
                             <a href="quiz-detail?action=add-quiz&message=0" class="btn btn-primary ms-4 pt-2" style="border-radius: 5px; height: 39px; padding-top: 10px; padding-top: 14px !important;"/>Add New</a>
@@ -95,7 +98,7 @@
                                         <th class="col-3">Exam Name</th>
                                         <th class="col-1">Level</th>
                                         <th class="col-2">Subject</th>
-                                        <th class="col-1">NumQues</th>
+                                        <th class="col-1">Total questions</th>
                                         <th class="col-1">Duration</th>
                                         <th class="col-1">Pass Rate</th>
                                         <th class="col-2">Action</th>
@@ -106,7 +109,7 @@
 
 
                                     <%
-                         if(us.getRole().getRole_id()==1){
+                         if(us.getRole().getRole_id()==1||us.getRole().getRole_id()==3){
        
                                     %>
                                     <c:forEach items="${listQuizzesByPaggingAd}" var="Q">

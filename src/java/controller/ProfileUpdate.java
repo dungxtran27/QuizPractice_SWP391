@@ -98,7 +98,7 @@ public class ProfileUpdate extends HttpServlet {
         String successNoti = "yes";
         request.setAttribute("successNoti", successNoti);
 
-        User curUser = (User) request.getSession().getAttribute("currUser");
+        //User curUser = (User) request.getSession().getAttribute("currUser");
         //lay thong tin cua nguoi dung hien tai
         String fullname = request.getParameter("fullname");
         String phone = request.getParameter("phone");
@@ -139,9 +139,9 @@ public class ProfileUpdate extends HttpServlet {
         //luu thong tin update vao db
         userDao.editProfile(us);
 
-        User userUpdate = userDao.getUpdateUser(curUser.getEmail(), curUser.getPassword());
+        User userUpdate = userDao.getUpdateUser(us.getEmail(), us.getPassword());
      
-        HttpSession session = request.getSession(true);
+    //    HttpSession session = request.getSession(true);
         request.getSession().setAttribute("currUser", userUpdate);
 
         response.sendRedirect("Home.jsp");

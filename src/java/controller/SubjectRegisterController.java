@@ -42,6 +42,7 @@ public class SubjectRegisterController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         int subId = Integer.parseInt(request.getParameter("id"));
         int priceId = Integer.parseInt(request.getParameter("priceId"));

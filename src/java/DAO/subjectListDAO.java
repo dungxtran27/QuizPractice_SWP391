@@ -32,7 +32,7 @@ public class subjectListDAO extends MyDAO {
         String xsubjectName;
 
         boolean xstatus;
-        ;
+        
         try {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();

@@ -32,38 +32,36 @@ public class MyRegistration extends HttpServlet {
         PrintWriter pr = response.getWriter();
         String url = "";
         String msg = "";
-        try {
-            HttpSession session = request.getSession();
-            //Is Login
-            if (session.getAttribute("currUser") == null) {
-                url = "SignIn.jsp";
-                msg = "You Must Login To Action This !";
-            }//Logined
-            else {
+        HttpSession session = request.getSession();
+        //Is Login
+        if (session.getAttribute("currUser") == null) {
+            url = "SignIn.jsp";
+            msg = "You Must Login To Action This !";
+        }//Logined
+        else {
+            try {
+
                 RegistrationDAO registrationDAO = new RegistrationDAO();
                 User user = (User) session.getAttribute("currUser");
                 List<RegistrationDTO> rlist = registrationDAO.getRegistrationByAccount(user.getUserid());
                 request.setAttribute("rlist", rlist);
-//                pr.print(registrationDTOs.size());
-                url = MYREGISTRATION_PAGE;
-            }
+                request.setAttribute("testmua1", "test");
+                pr.print(rlist.size());
+                for(RegistrationDTO r : rlist)
+                    pr.print("["+r.getRegisId()+"}");
+                
+                pr.print(user.getUserid());
+                url = "MyRegistration.jsp";
+            
 
-        } catch (Exception e) {
+        }catch (Exception e) {
             log("Error at MyRegistrationServlet: " + e.getMessage());
         }
-            request.getRequestDispatcher(url).forward(request, response);
-              
-    }
+        request.getRequestDispatcher("MyRegistration.jsp").forward(request, response);
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    }}
+
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -114,10 +114,10 @@ public class QuizHandle extends HttpServlet {
 
                         // HashMap<Question, List<Answer>> quizz = new HashMap<>();
                         List<Question> questions = questionDAO.getQuestionByQuizId(quizzId);
-                       // out.print("[[[ques" + questions + "]]]");
+                        // out.print("[[[ques" + questions + "]]]");
 
                         for (Question question : questions) {
-                              out.print("[quesId" + question.getQuestionId() + "]");
+                            out.print("[quesId" + question.getQuestionId() + "]");
 
                             List<Answer> answers = answerDAO.getAnswerByQuestionId(question.getQuestionId());
                             question.setAnswer(answers);
@@ -141,7 +141,6 @@ public class QuizHandle extends HttpServlet {
                     } else {
                         out.print(check);
 
-                        request.setAttribute("WARNING", "You have done this quizz!");
                         url = "quiz-list";
                     }
                 }
@@ -149,7 +148,9 @@ public class QuizHandle extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                 request.getRequestDispatcher(url).forward(request, response);
+                request.setAttribute("WARNING", "You have reached max attempt for this quiz !");
+                request.getSession().setAttribute("checkSuccess", "true");
+                request.getRequestDispatcher(url).forward(request, response);
 
             }
 

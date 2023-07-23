@@ -3,6 +3,7 @@
     Created on : Jun 22, 2023, 9:22:59 AM
     Author     : admin
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     subjectListDAO sd;
     sd = new subjectListDAO();
@@ -27,7 +28,7 @@
         </style>
         <script type="text/javascript"></script>
     </head>
-    
+
     <body class="sb-sidenav-toggled">
         <div class="wrapper">
 
@@ -42,29 +43,51 @@
                 <%@include file="Components/header.jsp" %>
                 <div id="layoutSidenav">
                     <div id="layoutSidenav_content">
-                    <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
-                    <h1>My Registrations</h1>
-                    <div class="row mt-5">
-                        <c:forEach var="c" items="${rlist}">
-                            <div class="col-md-4 mb-3 mx-auto d-block shadow p-3 mb-5 bg-white rounded"
-                                 style="padding: 10px 0px 10px 10px; border-radius: 8px; width: 32%; margin-left: 10px">
-                                <form action="subject-detail" method="POST">
-                                    <img class="mx-auto d-block" src="${c.subject.thumbnail}" />
-                                    <h2 class="text-center">${c.subject.subjectName}</h2>
-                                    <ul style="margin-left: 8%">
-                                        <li><b>Price: ${c.pricePackage.price}</b></li>
-                                        <li><b>Date: ${c.regisDate}</b></li>                                               
-                                        <li><b>Status: ${c.statis}</b></li>                                               
-                                    </ul>
-                                    <div class="text-center">
-                                        <a href="subject-detail?subId=${c.subject.subjectId}" class="btn btn-success">Detail</a>
-                                    </div>
-                                </form>
+                        <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
+                            <h1>My Registrations</h1>
+
+
+
+
+                            <div class ="row">
+                                <div class="table-responsive">
+                                    <table class="table  table-bordered table-hover table-striped">
+                                        <thead class="thead-dark">
+                                            <tr class="text-center col-md-12">
+                                                <th class="col-1">Subject ID</th>
+                                                <th class="col-3">Subject name</th>
+                                                <th class="col-1">email</th>
+                                                <th class="col-2">phone</th>
+                                                <th class="col-1">address</th>
+                                                <th class="col-1">gender</th>
+                                                <th class="col-1">role</th>
+                                                <th class="col-2">Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="r" items="${rlist}">
+                                                <tr class="text-center">
+                                                    <td>${r.subjectId}</td>
+                                                    <td>${r.regisDate}</td>
+                                                    <td>${u.email}</td>
+                                                    <td>${u.phone}</td>
+                                                    <td>${u.address}</td>
+                                                    <td>${u.gender==true?"male":"female"}</td>
+                                                    <td>${u.roleid}</td>
+                                                    <td>delete</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>>
+                                    </table>
+
+                                </div>
+
+
                             </div>
-                        </c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </body>
 </html>

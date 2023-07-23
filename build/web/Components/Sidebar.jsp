@@ -22,22 +22,18 @@
     <ul class="list-unstyled components">
         <p>Quiz Practicing System</p>
         <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Subjects</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Home 1</a>
+                    <a href="subject-list">Subject list</a>
                 </li>
                 <li>
-                    <a href="#">Home 2</a>
+                    <a href="my-registration">My Subject</a>
                 </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
+
             </ul>
         </li>
-        <li>
-            <a href="subject-list">subject</a>
-        </li>
+
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Quizzes</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -47,23 +43,19 @@
                 <li>
                     <a href="quiz-list">Quiz List</a>
                 </li>
-                <li>
-                    <a href="#">Page 3</a>
-                </li>
+
             </ul>
         </li>
         <li>
             <a href="profile.jsp">Profile</a>
         </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
+
     </ul>
-    
-    
-  
-    
-    
+
+
+
+
+
     <% if(u == null){
     %>
     <ul class="list-unstyled CTAs">
@@ -74,10 +66,31 @@
             <a href="SignUp.jsp" class="register">Sign up</a>
         </li>
     </ul>
-    <%}
-    %>
-    
-    
+    <%}else{%>
+     
+        <%if(u.getRole().getRole_id()==1){%>
+          <ul class="list-unstyled CTAs">
+            <li>
+                <a href="user-list">Users List</a>
+            </li>
+              </ul>
+         <%}%>
+       
+         <%if(u.getRole().getRole_id()==3){%>
+           <ul class="list-unstyled CTAs">
+            <li>
+                <a href="user-list">Students List</a>
+            </li>
+              </ul>
+         <%}%>
+   
+       
+        
+        
+    <%}%>
+
+
+
 </nav>
 
 

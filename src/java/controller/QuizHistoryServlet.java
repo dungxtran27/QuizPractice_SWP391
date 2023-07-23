@@ -46,9 +46,14 @@ public class QuizHistoryServlet extends HttpServlet {
         }
 
         int totalSearch = qpd.getTotalQuiz2(currUser.getUserid());
+        int totalSearchAd = qpd.getTotalQuiz3();
         int totalPage = totalSearch / page_5;
+        int totalPageAd = totalSearchAd / page_5;
         if (totalSearch % page_5 != 0) {
             totalPage += 1;
+        }
+        if (totalSearchAd % page_5 != 0) {
+            totalPageAd += 1;
         }
             qplist = qpd.getQuizHistory(currUser.getUserid(), page, page_5);
             qplistAd = qpd.getQuizHistoryAd( page, page_5);
@@ -56,6 +61,7 @@ public class QuizHistoryServlet extends HttpServlet {
             request.getSession().setAttribute("qplistAd", qplistAd);
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
+            request.setAttribute("totalPageAd", totalPageAd);
             request.setAttribute("pagination_url", "QuizHistoryServlet?");
             request.getRequestDispatcher("userPage.jsp").forward(request, response);
 

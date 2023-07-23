@@ -70,7 +70,7 @@
                                 </a>
                                 <%}else{%>
                                 <a href="profile.jsp"  class="avatar dropdown-toggle" id="avatarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="${sessionScope.currUser.avatar}" alt="Avatar">
+                                    <img src="${sessionScope.currUser.avatar}" alt="Avatar" class="avatar">
                                 </a>
                                 <%}%>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="avatarDropdown">

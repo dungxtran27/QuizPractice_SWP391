@@ -66,10 +66,15 @@
             <%@include file="Components/Sidebar.jsp" %>
             <div class="content">
                 <%@include file="Components/header.jsp" %>
-                
-           
+
+
                 <div class="container-fluid px-4 px-lg-5 mb-5" >
-                    <h1>Quiz Detail</h1>
+                    <c:if test="${sessionScope.action == 'edit-quiz'}">
+                        <h1> Edit Quiz</h1>
+                        </c:if>
+                        <c:if test="${sessionScope.action == 'add-quiz'}">
+                            <h1> Add Quiz</h1>
+                        </c:if>
                     <div class ="row mt-5">
                         <div class="mb-3 mx-auto d-block shadow p-3 bg-white rounded" style="padding: 10px 0px 10px 10px; border-radius: 8px; width: 32%; margin-left: 10px; width: 100% !important">
                             <div class="tab list-group d-flex" style="width: 30%; margin-left: 75px">
@@ -205,8 +210,8 @@
                 </div>
             </div>
         </div>
-          
-               <div class="footer"> <%@include file="Components/footer.jsp" %></div>
+
+        <div class="footer"> <%@include file="Components/footer.jsp" %></div>
 
 
     </body>

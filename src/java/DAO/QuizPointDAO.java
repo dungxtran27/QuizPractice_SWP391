@@ -167,4 +167,24 @@ public class QuizPointDAO extends MyDAO {
         }
         return a;
     }
+    public int getTotalQuiz3() {
+        int a = 0;
+        try {
+            if (con != null) {
+                xSql = "select distinct count(Q.userId) as 'count'\n"
+                        + "                        from QUIZ_POINT AS Q  ";
+                ps = con.prepareStatement(xSql);
+               // ps.setInt(1, userId);
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    a = rs.getInt("count");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return a;
+    }
 }

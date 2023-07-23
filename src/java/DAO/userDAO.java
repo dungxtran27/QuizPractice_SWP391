@@ -348,4 +348,163 @@ public class userDAO extends MyDAO {
         return null;
     }
 
+    public int getTotalAccount() {
+        try {
+
+            xSql = " select distinct count(userId)\n"
+                    + "  from [User] ";
+            ps = con.prepareStatement(xSql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public ArrayList<User> getAllUser() {
+        ArrayList<User> list = new ArrayList<>();
+        String xUserName, password, email, phone, fullname, address, status, gender;
+        int roleId, userId;
+
+        try {
+
+            xSql = "  select * from [User]";
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                 userId = rs.getInt(1);
+                xUserName = rs.getString(2);
+                password = rs.getString(3);
+                // status = rs.getString(4);
+                boolean xstat = rs.getBoolean(4);
+                status = String.valueOf(xstat);
+                email = rs.getString(5);
+                phone = rs.getString(6);
+                fullname = rs.getString(7);
+                address = rs.getString(8);
+                roleId = rs.getInt(11);
+                boolean genderBool = rs.getBoolean(9);
+                gender = String.valueOf(genderBool);
+                User u = new User(userId, xUserName, password, email, phone, fullname, status, address, gender, roleId);
+                list.add(u);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ArrayList<User> getListUsersByPagging(int page, int PAGE_SIZE_10) {
+        ArrayList<User> list = new ArrayList<>();
+        String xUserName, password, email, phone, fullname, address, status, gender;
+        int roleId, userId;
+
+        try {
+
+            xSql = "  with t as (select ROW_NUMBER() over (order by A.userId asc) as r,\n"
+                    + "   A.* from [User] AS A )\n"
+                    + "   select * from t\n"
+                    + "   where r between ?*?-(?-1) and ?*?";
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE_10);
+            ps.setInt(3, PAGE_SIZE_10);
+            ps.setInt(4, page);
+            ps.setInt(5, PAGE_SIZE_10);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                userId = rs.getInt(2);
+                xUserName = rs.getString(3);
+                password = rs.getString(4);
+                // status = rs.getString(4);
+                boolean xstat = rs.getBoolean(5);
+                status = String.valueOf(xstat);
+                email = rs.getString(6);
+                phone = rs.getString(7);
+                fullname = rs.getString(8);
+                address = rs.getString(9);
+                roleId = rs.getInt(12);
+                boolean genderBool = rs.getBoolean(10);
+                gender = String.valueOf(genderBool);
+                User u = new User(userId, xUserName, password, email, phone, fullname, status, address, gender, roleId);
+                list.add(u);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+    public ArrayList<User> getListStudentAndPaging(int page, int PAGE_SIZE_10) {
+        ArrayList<User> list = new ArrayList<>();
+        String xUserName, password, email, phone, fullname, address, status, gender;
+        int roleId, userId;
+
+        try {
+
+            xSql = "  with t as (select ROW_NUMBER() over (order by A.userId asc) as r,\n"
+                    + "   A.* from [User] AS A )\n"
+                    + "   select * from t\n"
+                    + "   where  roleId=2 and r between ?*?-(?-1) and ?*?";
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE_10);
+            ps.setInt(3, PAGE_SIZE_10);
+            ps.setInt(4, page);
+            ps.setInt(5, PAGE_SIZE_10);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                userId = rs.getInt(2);
+                xUserName = rs.getString(3);
+                password = rs.getString(4);
+                // status = rs.getString(4);
+                boolean xstat = rs.getBoolean(5);
+                status = String.valueOf(xstat);
+                email = rs.getString(6);
+                phone = rs.getString(7);
+                fullname = rs.getString(8);
+                address = rs.getString(9);
+                roleId = rs.getInt(12);
+                boolean genderBool = rs.getBoolean(10);
+                gender = String.valueOf(genderBool);
+                User u = new User(userId, xUserName, password, email, phone, fullname, status, address, gender, roleId);
+                list.add(u);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+    
+    public void addTeacher(User x) {
+        xSql = "INSERT INTO [User] ([fullname],[phone], [password] ,[email], [roleId],[gender]) VALUES (?,?,?,?, 2,?)";
+
+        try {
+            ps = con.prepareStatement(xSql);
+
+            ps.setString(1, x.getFullname());
+            //  ps.setString(3, x.getUsername());
+            ps.setString(2, x.getPhone());
+            ps.setString(3, x.getPassword());
+            ps.setString(4, x.getEmail());
+            ps.setBoolean(5, Boolean.parseBoolean(x.getGender()));
+
+            ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

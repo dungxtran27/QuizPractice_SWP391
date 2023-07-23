@@ -14,7 +14,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 import model.Question;
+import model.subject;
 
 /**
  *
@@ -40,7 +42,7 @@ public class QuestionList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet QuestionList</title>");            
+            out.println("<title>Servlet QuestionList</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet QuestionList at " + request.getContextPath() + "</h1>");
@@ -61,61 +63,49 @@ public class QuestionList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        PrintWriter pr = response.getWriter();
         try {
-            int quizId= Integer.parseInt(request.getParameter("quizzId"));
-            
-            final int PAGE_SIZE = 10;
+            int quizId = Integer.parseInt(request.getParameter("quizzId"));
+
+            final int PAGE_SIZE = 7;
             int page = 1;
             String pageStr = request.getParameter("page");
             if (pageStr != null) {
                 page = Integer.parseInt(pageStr);
             }
-            int totalSearch = new QuestionDAO().getTotalQuestionExist(quizId);
+            QuestionDAO qd = new QuestionDAO();
+            subjectListDAO sd = new subjectListDAO();
+            List<subject> quesList = sd.getAllSubject();
+            int totalSearch = qd.getTotalQuestionExist(quizId);
             int totalPage = totalSearch / PAGE_SIZE;
             if (totalSearch % PAGE_SIZE != 0) {
                 totalPage += 1;
             }
             QuestionDAO questionDao = new QuestionDAO();
-           // request.getSession().setAttribute("listQuestion", questionDao.getAllQuestion());
-            ArrayList<Question> listQuestionByPagging = questionDao.getQuestionByQuizIdAndPagging(quizId,page, PAGE_SIZE);
-            request.setAttribute("listQuestion",listQuestionByPagging );
-            request.setAttribute("listSubject", new subjectListDAO().getAllSubject());
-          
-            request.getSession().setAttribute("page", page);
-            request.getSession().setAttribute("totalPage", totalPage);
-            request.getSession().setAttribute("search_url", "search_question");
-            request.setAttribute("pagination_url", "QuestionList?");
+            // request.getSession().setAttribute("listQuestion", questionDao.getAllQuestion());
+            ArrayList<Question> listQuestionByPagging = questionDao.getQuestionByQuizIdAndPagging(quizId, page, PAGE_SIZE);
+            request.setAttribute("listQuestion", listQuestionByPagging);
+            request.setAttribute("listSubject", quesList);
+            for (Question q : listQuestionByPagging) {
+                pr.print(q.getContent() + " ");
 
+            }
+            request.getSession().setAttribute("page", page);
+            request.getSession().setAttribute("quizzId", quizId);
+            request.getSession().setAttribute("totalPage", totalPage);
+            request.getSession().setAttribute("search_url", "search-question?quizzId="+quizId);
+            request.getSession().setAttribute("pagination_url", "QuestionList?quizzId="+quizId+"&");
+           // pr.print(listQuestionByPagging.get(1).getContent());
+           // pr.print(totalSearch);
+           // pr.print(quesList.size());
+            pr.print(totalPage);
+            
+            pr.print(quesList.size());
             request.getRequestDispatcher("QuestionList.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
 
         }
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

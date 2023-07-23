@@ -6,14 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<%
-    User u = (User)request.getSession().getAttribute("currUser");
-    if(u == null){
-       response.setStatus(response.SC_MOVED_TEMPORARILY);
-       response.setHeader("Location", "SignIn.jsp");
-       return;
-    }
-%>
+
 <!DOCTYPE html>
 <%@include file="Components/AllAccess.jsp"%>
 
@@ -22,11 +15,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/profile.css" rel="stylesheet" type="text/css"/>
 
-        <title>Profile Change</title>
+        <title>Profile</title>
     </head>
     <body>
 
-
+        <div class="wrapper">
+              <%@include file="Components/Sidebar.jsp" %>
+              <div class="content" style="width:100%">
+                  <%@include file="Components/header.jsp" %>
         <div id="container">
             <form action="profile" method="post" enctype="multipart/form-data">
                 <div id="table-header">
@@ -82,20 +78,16 @@
             </form>
 
             <div id="avatar">
+                <p>avatar</p>
                 <img src="${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
-            </div>  
-        </div>
-        <a href="logout">
-            <button class="btn btn-danger" role="button"> Log Out
-            </button>
-        </a>
-
-        <%
+                 
+                <h4>activity:</h4>
+                <%
   if(u.getRole().getRole_id()==1){
        
         %>
         <div>
-<button class="btn btn-default" role="button"> <a href="userList.jsp"> <h3>User managerment</h3> </a>
+<button class="btn btn-default" role="button"> <a href="user-list"> <h3>User managerment</h3> </a>
             </button>
            
         </div>
@@ -103,7 +95,7 @@
         <%} else if(u.getRole().getRole_id()==3){%>
         <div>
 
-            <a href="userList.jsp"> <h3>create new quiz</h3> </a>
+            <a href="quiz-list"> <h3>create new quiz</h3> </a>
         </div>
         <%} else if(u.getRole().getRole_id()==4){%> 
         <div>
@@ -111,5 +103,14 @@
             <a href="userList.jsp"> <h3>make new post</h3> </a>
         </div>
         <%}%>
+            </div> 
+        </div>
+        <a href="logout">
+            <button class="btn btn-danger" role="button"> Log Out
+            </button>
+        </a>
+
+    </div>
+    </div>
     </body>
 </html>

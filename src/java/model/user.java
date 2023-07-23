@@ -79,6 +79,20 @@ public class User {
         this.password_token = password_token;
     }
 
+    public User(int userid, String username, String password, String email, String phone, String fullname,String status, String address, String gender, int roleid) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.fullname = fullname;
+        this.address = address;
+        this.gender = gender;
+        this.status = status;
+        this.roleid = roleid;
+    }
+    
+
     public User(int userid, String username) {
         this.userid = userid;
         this.username = username;
