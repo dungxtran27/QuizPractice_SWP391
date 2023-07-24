@@ -14,6 +14,8 @@ public class RegistrationDTO {
     private String regisDate;
     private boolean status;
     private subject subject;
+    private String SubjectName;
+    private String PriceName;
     private int subjectId;
     private PricePackage pricePackage;
     private int pricePackageId;
@@ -42,6 +44,47 @@ public class RegistrationDTO {
         this.pricePackageId = pricePackageId;
         this.user = user;
         this.userid = userid;
+    }
+
+    public RegistrationDTO(int regisId, String regisDate, boolean status, String SubjectName, String PriceName, int subjectId, int pricePackageId, int userid) {
+        this.regisId = regisId;
+        this.regisDate = regisDate;
+        this.status = status;
+        this.SubjectName = SubjectName;
+        this.PriceName = PriceName;
+        this.subjectId = subjectId;
+        this.pricePackageId = pricePackageId;
+        this.userid = userid;
+    }
+
+    public String getSubjectName() {
+        return SubjectName;
+    }
+
+    public RegistrationDTO(int regisId, String regisDate, boolean status, subject subject, String SubjectName, String PriceName, int subjectId, PricePackage pricePackage, int pricePackageId, User user, int userid) {
+        this.regisId = regisId;
+        this.regisDate = regisDate;
+        this.status = status;
+        this.subject = subject;
+        this.SubjectName = SubjectName;
+        this.PriceName = PriceName;
+        this.subjectId = subjectId;
+        this.pricePackage = pricePackage;
+        this.pricePackageId = pricePackageId;
+        this.user = user;
+        this.userid = userid;
+    }
+
+    public void setSubjectName(String SubjectName) {
+        this.SubjectName = SubjectName;
+    }
+
+    public String getPriceName() {
+        return PriceName;
+    }
+
+    public void setPriceName(String PriceName) {
+        this.PriceName = PriceName;
     }
 
     public int getRegisId() {

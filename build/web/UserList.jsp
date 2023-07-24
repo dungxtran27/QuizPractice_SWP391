@@ -6,11 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="Components/AllAccess.jsp"%>
-        <style>
-            .paging{
-                position: fixed;
-                display: contents;
-            }</style>
+     
     </head>
 
     <body class="sb-sidenav-toggled">
@@ -24,8 +20,10 @@
                     
                   
                     <h1>User List</h1>
-                    
+                     
+                  
                     <div class ="row">
+                        <a class="btn btn-primary text-left" href="addTeacher.jsp">add teacher</a>
                         <div class="table-responsive">
                             <table class="table  table-bordered table-hover table-striped">
                                 <thead class="thead-dark">

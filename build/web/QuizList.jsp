@@ -19,26 +19,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="Components/AllAccess.jsp"%>
-        <style>
-            .avatar {
-                width: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                height: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                border-radius: 50%;
-            }
-            .paging{
-                position: fixed;
-                display: contents;
-            }
-            .tiltleQuiz {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-        </style>
-
-        <!-- Custom scripts -->
-        <script type="text/javascript"></script>
+       
+     
     </head>
 
     <body class="sb-sidenav-toggled">

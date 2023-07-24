@@ -20,11 +20,13 @@
             <div id="layoutSidenav_content">
                 <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
                     <div class="container">
+                        <h1>Your attempt: ${requestScope.quizzId}</h1>
+
                         <h1>Your Score: ${requestScope.SCORE}</h1>
                         <div>
                             <a href="quiz-list" class="btn btn-danger" style="float: left"/>Back</a>
                         </div>
-                        
+
                         <c:if test="${requestScope != null}">
                             <a href="QuizHandle?quizzId=${requestScope.quizzId}&subId=${requestScope.subId}&method=get" class="btn btn-danger"/>Do Again</a>
                             <a href="ReviewQuizzServlet?quizzId=${requestScope.quizzId}&attempt=${requestScope.attempt}&subId=${requestScope.subId}" class="btn btn-success"/>Review</a>

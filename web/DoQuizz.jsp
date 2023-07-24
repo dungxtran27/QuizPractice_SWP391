@@ -15,26 +15,7 @@
 
         <!-- Custom scripts -->
         <script type="text/javascript"></script>
-
-        <style>
-            .account-div{
-                position: relative;
-            }
-
-            .account-table{
-                display: none;
-                position: absolute;
-                top: 34px;
-                right: 0;
-                width: 160px;
-                border-radius: 5px;
-                padding: 10px;
-            }
-
-            .account-div:hover .account-table{
-                display: block;
-            }
-        </style>
+        <link rel="stylesheet" href="css/doquiz.css">
     </head>
     <body class="sb-sidenav-toggled" onload="timerfunction()">
 

@@ -366,6 +366,24 @@ public class userDAO extends MyDAO {
         }
         return 0;
     }
+    public int getTotalAccountStudent() {
+        try {
+
+            xSql = " select distinct count(userId)\n"
+                    + "  from [User] where roleId=2";
+            ps = con.prepareStatement(xSql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public ArrayList<User> getAllUser() {
         ArrayList<User> list = new ArrayList<>();
@@ -490,7 +508,7 @@ public class userDAO extends MyDAO {
     }
     
     public void addTeacher(User x) {
-        xSql = "INSERT INTO [User] ([fullname],[phone], [password] ,[email], [roleId],[gender]) VALUES (?,?,?,?, 2,?)";
+        xSql = "INSERT INTO [User] ([fullname],[phone], [password] ,[email], [roleId],[gender]  ,[address]) VALUES (?,?,?,?, 3,?,?)";
 
         try {
             ps = con.prepareStatement(xSql);
@@ -500,7 +518,9 @@ public class userDAO extends MyDAO {
             ps.setString(2, x.getPhone());
             ps.setString(3, x.getPassword());
             ps.setString(4, x.getEmail());
+            
             ps.setBoolean(5, Boolean.parseBoolean(x.getGender()));
+            ps.setString(6,x.getAddress());
 
             ps.executeQuery();
         } catch (Exception e) {

@@ -53,11 +53,8 @@
                         </tr>
                         <tr><td colspan="2"></td></tr>
 
-                        <tr>
-                            <td>Password</td>
-                            <td><a href="change.jsp">Change password</a></td>
-                        </tr>
-                        <tr><td></td></tr>
+                     
+                        
 
                         <tr>
                             <td>Address</td>
@@ -81,11 +78,12 @@
                 <p>avatar</p>
                 <img src="${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
                  
-                <h4>activity:</h4>
+               
                 <%
   if(u.getRole().getRole_id()==1){
        
         %>
+         <h4>activity:</h4>
         <div>
 <button class="btn btn-default" role="button"> <a href="user-list"> <h3>User managerment</h3> </a>
             </button>

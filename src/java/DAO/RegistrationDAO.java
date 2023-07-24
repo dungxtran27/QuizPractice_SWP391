@@ -26,37 +26,33 @@ public class RegistrationDAO extends MyDAO {
         int xsubId;
         int xpriceId;
         int xuserId;
-       
 
         try {
 
-            xSql = "select rs.regisId,rs.regis_Date,s.subjectName,p.name ,rs.statis from Registration_Subject rs\n"
+            xSql = "select rs.regisId,rs.priceId, rs.subId,rs.regis_Date,s.subjectName,p.name ,rs.statis from Registration_Subject rs\n"
                     + "left outer join Subject s \n"
                     + "on rs.subId=s.subjectId \n"
                     + "left outer join PricePackage p\n"
                     + "on rs.priceId=p.priceId\n"
-                 
                     + "where userId = ?";
+//            xSql = " select * from Registration_Subject\n"
+//                    + " where userId=?";
             ps = con.prepareStatement(xSql);
             ps.setInt(1, userid);
             rs = ps.executeQuery();
             while (rs.next()) {
 //                    RegistrationDTO registrationDTO = new RegistrationDTO();
                 xregisId = rs.getInt(1);
-                xregis_Date = rs.getDate(2);
+                xregis_Date = rs.getDate(4);
                 String date = String.valueOf(xregis_Date);
-                xstatus = rs.getBoolean(5);
-                xsubId = rs.getInt(4);
-                xpriceId = rs.getInt(5);
-                RegistrationDTO r = new RegistrationDTO(xregisId, date, xstatus, xsubId, xpriceId, userid);
+                String subName = rs.getString(5);
+                String pricename = rs.getString(6);
+                xstatus = rs.getBoolean(7);
+                xsubId = rs.getInt(3);
+                xpriceId = rs.getInt(2);
+                RegistrationDTO r = new RegistrationDTO(xregisId, date, xstatus, subName, pricename, xsubId, xpriceId, userid);
+             //  RegistrationDTO r = new RegistrationDTO(xregisId, date, xstatus, xsubId, xpriceId, userid);
                 list.add(r);
-                // subjectListDAO subjectDAO = new subjectListDAO();
-//                    xsubId = Integer.parseInt(subjectDAO.getSubjectById(rs.getInt(4)));
-//                    PricePackageDAO pricePackageDAO = new PricePackageDAO();
-//                    registrationDTO.setPricePackage(pricePackageDAO.getPricePackageById(rs.getInt(5)));
-//                    userDAO ud = new userDAO();
-//                    registrationDTO.setUser(ud.getUserById(userid));
-                //    list.add(new RegistrationDTO(userid, , true, userid, userid, userid));
 
             }
         } catch (Exception e) {

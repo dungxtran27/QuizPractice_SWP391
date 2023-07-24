@@ -12,17 +12,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="Components/AllAccess.jsp"%>
-        <style>
-            .headcontent{
-                min-width: 1200px;
-                padding-left: 10px;
-            }
-        </style>
+       
     </head>
     <body class="sb-sidenav-toggled" onload="timerfunction()">
         <div class="wrapper">
             <%@include file="Components/Sidebar.jsp" %>
-            <div class="content">
+            <div class="content" style="width: 100%">
                 <div class="headcontent">
                     <%@include file="Components/header.jsp" %>
                 </div>

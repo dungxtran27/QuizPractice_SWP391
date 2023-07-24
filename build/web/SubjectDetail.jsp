@@ -16,14 +16,7 @@
         <title>JSP Page</title>
         <!-- Custom scripts -->
         <%@include file="Components/AllAccess.jsp"%>
-        <style>
-            .avatar {
-                width: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                height: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                border-radius: 50%;
-            }
-        </style>
-        <script type="text/javascript"></script>
+      
         <script>
             function openPopup (popupId) {
             document.getElementById (popupId).classList.remove("popup-hidden");

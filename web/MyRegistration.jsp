@@ -20,11 +20,7 @@
         <!-- Custom scripts -->
         <%@include file="Components/AllAccess.jsp"%>
         <style>
-            .avatar {
-                width: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                height: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                border-radius: 50%;
-            }
+        
         </style>
         <script type="text/javascript"></script>
     </head>
@@ -56,12 +52,11 @@
                                             <tr class="text-center col-md-12">
                                                 <th class="col-1">Subject ID</th>
                                                 <th class="col-3">Subject name</th>
-                                                <th class="col-1">email</th>
-                                                <th class="col-2">phone</th>
-                                                <th class="col-1">address</th>
-                                                <th class="col-1">gender</th>
-                                                <th class="col-1">role</th>
-                                                <th class="col-2">Action</th>
+                                                <th class="col-2">Regist Date</th>
+                                                <th class="col-2">Price Package</th>
+                                                <th class="col-1">status</th>
+                                               
+                                                <th class="col-1">Action</th>
 
                                             </tr>
                                         </thead>
@@ -69,14 +64,14 @@
                                             <c:forEach var="r" items="${rlist}">
                                                 <tr class="text-center">
                                                     <td>${r.subjectId}</td>
+                                                    <td>${r.getSubjectName()}</td>
+                                                  
                                                     <td>${r.regisDate}</td>
-                                                    <td>${u.email}</td>
-                                                    <td>${u.phone}</td>
-                                                    <td>${u.address}</td>
-                                                    <td>${u.gender==true?"male":"female"}</td>
-                                                    <td>${u.roleid}</td>
-                                                    <td>delete</td>
-                                                </tr>
+                                                    <td>${r.getPriceName()}</td>
+                                                  
+                                                    <td>${r.status==true?"done":"not done"}</td>
+                                                    <td>unEnroll</td>
+                                                                    </tr>
                                             </c:forEach>
                                         </tbody>>
                                     </table>

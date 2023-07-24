@@ -33,38 +33,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="Components/AllAccess.jsp"%>
         <title>QPS 04</title>
-        <style>
-            .carousel {
-                display: flex;
-                flex-wrap: nowrap;
-                overflow-x: scroll;
-                scroll-behavior: smooth;
-                padding: 20px 0;
-                margin-bottom: 20px;
-            }
-
-            .carousel__item {
-                flex: 0 0 calc(100% / 3);
-                text-align: center;
-                padding: 10px;
-                box-sizing: border-box;
-                background-color: #f5f5f5;
-                margin-right: 10px;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            }
-
-            .carousel__back-link {
-                display: inline-block;
-                margin-bottom: 20px;
-            }
-
-            .avatar {
-                width: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                height: 50px; /* Điều chỉnh kích thước theo ý muốn */
-                border-radius: 50%;
-            }
-        </style>
+        <link rel="stylesheet" href="css/home.css">
+        <script src="js/script.js"></script>
 
     </head>
     <body>
@@ -82,11 +52,12 @@
 
                 <%@include file="Components/header.jsp" %>
                 <h2>quiz practice</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                    in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Welcome to Quiz Practice System, the ultimate quiz practicing system for learners of all ages and levels. Quiz Practice System lets
+                    you create, take, and share quizzes on any topic you can imagine. You can choose from different quiz formats,
+                    difficulty levels, time limits, feedback options, and scoring methods. You can also access thousands of quizzes 
+                    created by other users or experts in various fields. Quiz Practice System helps you test your knowledge, improve your skills,
+                    and have fun while learning. Whether you want to prepare for an exam, review a course material, or just challenge yourself,
+                    Quiz Practice System is the perfect tool for you. Start quizzing today and discover how much you can learn!</p>
 
 
 
@@ -232,39 +203,6 @@
          <div class="footer" >
           <%@include file="Components/footer.jsp" %>
          </div>
-                                            <script>
-                                                const carousel = document.querySelector('.carousel');
-                                                const items = carousel.querySelectorAll('.carousel__item');
-
-
-                                                carousel.parentNode.insertBefore(prevBtn, carousel);
-                                                carousel.parentNode.insertBefore(nextBtn, carousel.nextSibling);
-
-                                                let scrollPosition = 0;
-                                                const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(items[0]).marginRight);
-
-                                                function handlePrevClick() {
-                                                    if (scrollPosition > 0) {
-                                                        scrollPosition -= itemWidth;
-                                                        carousel.scroll({
-                                                            left: scrollPosition,
-                                                            behavior: 'smooth'
-                                                        });
-                                                    }
-                                                }
-
-                                                function handleNextClick() {
-                                                    if (scrollPosition < (carousel.scrollWidth - carousel.offsetWidth)) {
-                                                        scrollPosition += itemWidth;
-                                                        carousel.scroll({
-                                                            left: scrollPosition,
-                                                            behavior: 'smooth'
-                                                        });
-                                                    }
-                                                }
-
-                                                prevBtn.addEventListener('click', handlePrevClick);
-                                                nextBtn.addEventListener('click', handleNextClick);
-                                            </script>
+                                            <script></script>
                                             </body>
                                             </html>

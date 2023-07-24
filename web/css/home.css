@@ -1,0 +1,39 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jul 24, 2023, 6:15:02 PM
+    Author     : dungmuahahaha
+*/
+
+  .carousel {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: scroll;
+                scroll-behavior: smooth;
+                padding: 20px 0;
+                margin-bottom: 20px;
+            }
+
+            .carousel__item {
+                flex: 0 0 calc(100% / 3);
+                text-align: center;
+                padding: 10px;
+                box-sizing: border-box;
+                background-color: #f5f5f5;
+                margin-right: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .carousel__back-link {
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+
+            .avatar {
+                width: 50px; /* Điều chỉnh kích thước theo ý muốn */
+                height: 50px; /* Điều chỉnh kích thước theo ý muốn */
+                border-radius: 50%;
+            }

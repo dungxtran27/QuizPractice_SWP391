@@ -6,11 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="Components/AllAccess.jsp"%>
-        <style>
-            .paging{
-                position: fixed;
-                display: contents;
-            }</style>
+      
     </head>
 
     <body class="sb-sidenav-toggled">
@@ -19,11 +15,12 @@
             <%@include file="Components/Sidebar.jsp" %>
             <div class="content" style="width:100%">
                 <%@include file="Components/header.jsp" %>
-                <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
-                    
                     
                   
-                    <h1>User List</h1>
+                <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
+                    
+                
+                    <h1>Student List</h1>
                     
                     <div class ="row">
                         <div class="table-responsive">
@@ -36,7 +33,7 @@
                                         <th class="col-2">phone</th>
                                         <th class="col-1">address</th>
                                         <th class="col-1">gender</th>
-                                        <th class="col-1">role</th>
+                                      
                                         <th class="col-2">Action</th>
 
                                     </tr>
@@ -50,7 +47,7 @@
                                             <td>${u.phone}</td>
                                             <td>${u.address}</td>
                                             <td>${u.gender==true?"male":"female"}</td>
-                                            <td>${u.roleid}</td>
+                                          
                                             <td>delete</td>
                                         </tr>
                                     </c:forEach>

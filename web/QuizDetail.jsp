@@ -14,57 +14,13 @@
     </head>
 
     <style>
-        body {
-            font-family: Arial;
-        }
-
-        /* Style the tab */
-        .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-
-        /* Style the buttons inside the tab */
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-
-        /* Change background color of buttons on hover */
-        .tab button:hover {
-            background-color: #ddd;
-        }
-
-        /* Create an active/current tablink class */
-        .tab button.active {
-            background-color: #ccc;
-        }
-
-        /* Style the tab content */
-        .tabcontent {
-            display: none;
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-top: none;
-        }
-        .avatar {
-            width: 50px; /* Điều chỉnh kích thước theo ý muốn */
-            height: 50px; /* Điều chỉnh kích thước theo ý muốn */
-            border-radius: 50%;
-        }
+       
     </style>
 
     <body class="sb-sidenav-toggled">
         <div class="wrapper">
             <%@include file="Components/Sidebar.jsp" %>
-            <div class="content">
+            <div class="content" style="width:100%">
                 <%@include file="Components/header.jsp" %>
 
 
@@ -194,7 +150,7 @@
                                                 <button class="btn btn-primary"/>Add</button>
                                             </c:if>
 
-                                            <a class="btn btn-danger" onclick="openCity(event, 'Overview')"/>Back</a>
+                                            <a class="btn btn-danger text-white" onclick="openCity(event, 'Overview')"/>Back</a>
                                         </div>
                                     </div>
                                 </div>

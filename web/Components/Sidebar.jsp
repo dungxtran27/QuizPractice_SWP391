@@ -46,10 +46,7 @@
 
             </ul>
         </li>
-        <li>
-            <a href="profile.jsp">Profile</a>
-        </li>
-
+       
     </ul>
 
 
@@ -73,13 +70,16 @@
             <li>
                 <a href="user-list">Users List</a>
             </li>
+              <li>
+                <a href="student-list">Students List</a>
+            </li>
               </ul>
          <%}%>
        
          <%if(u.getRole().getRole_id()==3){%>
            <ul class="list-unstyled CTAs">
             <li>
-                <a href="user-list">Students List</a>
+                <a href="student-list">Students List</a>
             </li>
               </ul>
          <%}%>

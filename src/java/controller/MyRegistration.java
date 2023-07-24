@@ -35,8 +35,7 @@ public class MyRegistration extends HttpServlet {
         HttpSession session = request.getSession();
         //Is Login
         if (session.getAttribute("currUser") == null) {
-            url = "SignIn.jsp";
-            msg = "You Must Login To Action This !";
+           request.getRequestDispatcher("SignIn.jsp").forward(request, response);
         }//Logined
         else {
             try {
@@ -51,7 +50,7 @@ public class MyRegistration extends HttpServlet {
                     pr.print("["+r.getRegisId()+"}");
                 
                 pr.print(user.getUserid());
-                url = "MyRegistration.jsp";
+               
             
 
         }catch (Exception e) {

@@ -77,7 +77,11 @@ public class ProfileUpdate extends HttpServlet {
 //        User user = (User) request.getSession().getAttribute("currUser");
 //        System.out.println("us: " + user);
         request.setAttribute("us", request.getSession().getAttribute("currUser"));
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
+        if (request.getSession().getAttribute("currUser") == null) {
+            request.getRequestDispatcher("SignIn.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("profile.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -140,8 +144,8 @@ public class ProfileUpdate extends HttpServlet {
         userDao.editProfile(us);
 
         User userUpdate = userDao.getUpdateUser(us.getEmail(), us.getPassword());
-     
-    //    HttpSession session = request.getSession(true);
+
+        //    HttpSession session = request.getSession(true);
         request.getSession().setAttribute("currUser", userUpdate);
 
         response.sendRedirect("Home.jsp");
