@@ -20,9 +20,11 @@
             <div id="layoutSidenav_content">
                 <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
                     <div class="container">
-                        <h1>Your attempt: ${requestScope.quizzId}</h1>
+                        <h1>Your attempt: ${requestScope.attempt}</h1>
 
                         <h1>Your Score: ${requestScope.SCORE}</h1>
+                        <h1>Number of correct answer: ${requestScope.numtrue}</h1>
+
                         <div>
                             <a href="quiz-list" class="btn btn-danger" style="float: left"/>Back</a>
                         </div>

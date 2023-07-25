@@ -143,10 +143,10 @@ public class ProfileUpdate extends HttpServlet {
         //luu thong tin update vao db
         userDao.editProfile(us);
 
-        User userUpdate = userDao.getUpdateUser(us.getEmail(), us.getPassword());
+       // User userUpdate = userDao.getUpdateUser(us.getEmail(), us.getPassword());
 
         //    HttpSession session = request.getSession(true);
-        request.getSession().setAttribute("currUser", userUpdate);
+       // request.getSession().setAttribute("currUser", userUpdate);
 
         response.sendRedirect("Home.jsp");
 

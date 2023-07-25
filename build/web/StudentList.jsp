@@ -21,9 +21,8 @@
                     
                 
                     <h1>Student List</h1>
-                    
                     <div class ="row">
-                        <div class="table-responsive">
+                       
                             <table class="table  table-bordered table-hover table-striped">
                                 <thead class="thead-dark">
                                     <tr class="text-center col-md-12">
@@ -51,10 +50,10 @@
                                             <td>delete</td>
                                         </tr>
                                     </c:forEach>
-                                </tbody>>
+                                </tbody>
                             </table>
 
-                        </div>
+                       
                     </div>
            
                 </div>

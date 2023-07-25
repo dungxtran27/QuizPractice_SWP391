@@ -94,6 +94,7 @@
             } else {
                 document.getElementById("error-confirm-password").innerHTML = "";
             }
+            alert("change success")
             return true;
         }</script>
 </body>

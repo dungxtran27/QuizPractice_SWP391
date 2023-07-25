@@ -17,8 +17,7 @@
                 <%@include file="Components/header.jsp" %>
                 <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
                     
-                    
-                  
+                   
                     <h1>User List</h1>
                      
                   
@@ -52,12 +51,12 @@
                                             <td>delete</td>
                                         </tr>
                                     </c:forEach>
-                                </tbody>>
+                                </tbody>
                             </table>
 
                         </div>
                     </div>
-           
+          
                 </div>
 
 
@@ -112,6 +111,7 @@
         </div>
 
         <div class="footer"> <%@include file="Components/footer.jsp" %></div>
+       
     </body>
 </html>
 

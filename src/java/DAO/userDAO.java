@@ -471,9 +471,9 @@ public class userDAO extends MyDAO {
         try {
 
             xSql = "  with t as (select ROW_NUMBER() over (order by A.userId asc) as r,\n"
-                    + "   A.* from [User] AS A )\n"
+                    + "   A.* from [User] AS A where roleId = 2)\n"
                     + "   select * from t\n"
-                    + "   where  roleId=2 and r between ?*?-(?-1) and ?*?";
+                    + "   where  r between ?*?-(?-1) and ?*?";
             ps = con.prepareStatement(xSql);
             ps.setInt(1, page);
             ps.setInt(2, PAGE_SIZE_10);

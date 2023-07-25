@@ -24,7 +24,37 @@
 
                     <h1>Question List</h1>
 
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Add Question
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="InsertQuestion">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Insert Question</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Insert Content</p>
+                                        <input type="hidden" name="subId" value="${requestScope.subId}" />
+                                        <input type="hidden" name="quizzId" value="${requestScope.quizId}">
+                                        <input type="text" name="content" value="" class="form-control">
+                                      
+                                        <input class="form-check-input" style="margin-left: 0px" name="isMultiple" type="checkbox" value="" id="flexCheckChecked">
+                                          <label class="form-check">Is Multiple</label>
+                                        <br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" value="insert" name="action" class="btn btn-primary"/>
+                                    </div>
+                                </form>
 
+                            </div>
+                        </div>
+                    </div>
                     <div class ="row mt-5">
                         <form action="FilterController" method="POST" class="col-7 row d-flex" style="float: right !important">
 
@@ -39,7 +69,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-2 p-0">
+                                <div class="">
                                     <select class="form-control" name="statusFilter">
                                         <option value="1"  ${1==requestScope.status?"selected":"" }> Active</option>
                                         <option value="0" ${0==requestScope.status?"selected":"" }>Inactive</option>

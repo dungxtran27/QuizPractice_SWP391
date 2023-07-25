@@ -125,7 +125,7 @@
                                     </form>
                                 </div>
                             </div>
-                                        <div class="btn btn-primary"><a href="http://localhost:8080/QPS_SWP391/QuizHistoryServlet">return to quiz list</a></div>
+                                        <div class="btn btn-primary"><a href="QuizHistoryServlet">return to quiz history</a></div>
 
                         </div>
                     </div>

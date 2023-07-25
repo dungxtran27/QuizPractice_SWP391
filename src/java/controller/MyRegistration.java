@@ -32,35 +32,53 @@ public class MyRegistration extends HttpServlet {
         PrintWriter pr = response.getWriter();
         String url = "";
         String msg = "";
+
         HttpSession session = request.getSession();
         //Is Login
         if (session.getAttribute("currUser") == null) {
-           request.getRequestDispatcher("SignIn.jsp").forward(request, response);
+            request.getRequestDispatcher("SignIn.jsp").forward(request, response);
         }//Logined
         else {
             try {
 
                 RegistrationDAO registrationDAO = new RegistrationDAO();
                 User user = (User) session.getAttribute("currUser");
-                List<RegistrationDTO> rlist = registrationDAO.getRegistrationByAccount(user.getUserid());
+
+                final int PAGE_SIZE_6 = 5;
+                int page = 1;
+                String pageStr = request.getParameter("page");
+
+                if (pageStr != null) {
+                    page = Integer.parseInt(pageStr);
+                }
+
+                int totalSearch = registrationDAO.getTotalregisterByUserid(user.getUserid());
+              //  pr.print(totalSearch);
+                int totalPage = totalSearch / PAGE_SIZE_6;
+                if (totalSearch % PAGE_SIZE_6 != 0) {
+                    totalPage += 1;
+                }
+
+                List<RegistrationDTO> rlist = registrationDAO.getRegistrationByAccount(user.getUserid(), page, PAGE_SIZE_6);
                 request.setAttribute("rlist", rlist);
                 request.setAttribute("testmua1", "test");
+                request.setAttribute("page", page);
+                request.setAttribute("totalPage", totalPage);
+                request.setAttribute("pagination_url", "my-registration?");
                 pr.print(rlist.size());
-                for(RegistrationDTO r : rlist)
-                    pr.print("["+r.getRegisId()+"}");
-                
-                pr.print(user.getUserid());
+                pr.print(totalSearch);
                
-            
 
-        }catch (Exception e) {
-            log("Error at MyRegistrationServlet: " + e.getMessage());
+               // pr.print(user.getUserid());
+
+            } catch (Exception e) {
+                log("Error at MyRegistrationServlet: " + e.getMessage());
+            }
+            request.getRequestDispatcher("MyRegistration.jsp").forward(request, response);
+
         }
-        request.getRequestDispatcher("MyRegistration.jsp").forward(request, response);
+    }
 
-    }}
-
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

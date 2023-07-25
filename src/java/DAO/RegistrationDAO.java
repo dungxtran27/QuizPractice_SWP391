@@ -18,7 +18,28 @@ import model.subject;
  */
 public class RegistrationDAO extends MyDAO {
 
-    public List<RegistrationDTO> getRegistrationByAccount(int userid) {
+    public int getTotalregisterByUserid(int userid) {
+        int a = 0;
+        try {
+            if (con != null) {
+                xSql = "select distinct count(rs.regisId) as 'id'\n"
+                        + "                         from Registration_Subject rs where rs.userId=?";
+                ps = con.prepareStatement(xSql);
+                ps.setInt(1, userid);
+
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    a = rs.getInt("id");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return a;
+    }
+
+    public List<RegistrationDTO> getRegistrationByAccount(int userid, int page, int Page5) {
         List<RegistrationDTO> list = new ArrayList<>();
         int xregisId;
         Date xregis_Date;
@@ -29,29 +50,39 @@ public class RegistrationDAO extends MyDAO {
 
         try {
 
-            xSql = "select rs.regisId,rs.priceId, rs.subId,rs.regis_Date,s.subjectName,p.name ,rs.statis from Registration_Subject rs\n"
-                    + "left outer join Subject s \n"
-                    + "on rs.subId=s.subjectId \n"
-                    + "left outer join PricePackage p\n"
-                    + "on rs.priceId=p.priceId\n"
-                    + "where userId = ?";
+            xSql = "  with t as (select ROW_NUMBER() over (order by rs.regisId asc) as r,\n"
+                    + "    rs.regisId,rs.priceId, rs.subId,rs.regis_Date,s.subjectName,\n"
+                    + "	 p.name ,rs.statis from Registration_Subject rs\n"
+                    + "    left outer join Subject s \n"
+                    + "    on rs.subId=s.subjectId \n"
+                    + "    left outer join PricePackage p\n"
+                    + "    on rs.priceId=p.priceId\n"
+                    + "	 where userId =?\n"
+                    + "	 )\n"
+                    + "     select * from t\n"
+                    + "     where r between  ?*?-(?-1) and ?*?";
 //            xSql = " select * from Registration_Subject\n"
 //                    + " where userId=?";
             ps = con.prepareStatement(xSql);
             ps.setInt(1, userid);
+            ps.setInt(2, page);
+            ps.setInt(3, Page5);
+            ps.setInt(4, Page5);
+            ps.setInt(5, page);
+            ps.setInt(6, Page5);
             rs = ps.executeQuery();
             while (rs.next()) {
 //                    RegistrationDTO registrationDTO = new RegistrationDTO();
-                xregisId = rs.getInt(1);
-                xregis_Date = rs.getDate(4);
+                xregisId = rs.getInt(2);
+                xregis_Date = rs.getDate(5);
                 String date = String.valueOf(xregis_Date);
-                String subName = rs.getString(5);
-                String pricename = rs.getString(6);
-                xstatus = rs.getBoolean(7);
-                xsubId = rs.getInt(3);
-                xpriceId = rs.getInt(2);
+                String subName = rs.getString(6);
+                String pricename = rs.getString(7);
+                xstatus = rs.getBoolean(8);
+                xsubId = rs.getInt(4);
+                xpriceId = rs.getInt(3);
                 RegistrationDTO r = new RegistrationDTO(xregisId, date, xstatus, subName, pricename, xsubId, xpriceId, userid);
-             //  RegistrationDTO r = new RegistrationDTO(xregisId, date, xstatus, xsubId, xpriceId, userid);
+                //  RegistrationDTO r = new RegistrationDTO(xregisId, date, xstatus, xsubId, xpriceId, userid);
                 list.add(r);
 
             }

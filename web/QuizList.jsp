@@ -97,7 +97,7 @@
                                     <c:forEach items="${listQuizzesByPaggingAd}" var="Q">
                                         <tr class="text-center">
                                             <td>${Q.quizId}</td>
-                                            <td class="titleQuiz"><a href="QuestionList?quizzId=${Q.quizId}">${Q.title}</a></td>
+                                            <td class="titleQuiz"><a href="QuestionList?quizzId=${Q.quizId}"  data-toggle="tooltip" data-placement="bottom" title="Click for detail">${Q.title}</a></td>
                                             <td>${Q.level}</td>
                                             <td>${Q.subjectName}</td>
                                             <td>${Q.totalQues}</td>

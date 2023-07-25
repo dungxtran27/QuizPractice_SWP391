@@ -56,12 +56,22 @@
                        
                         <li class="nav-item">
                             <div class="dropdown">
-                                <% if(userheader ==null||userheader.getAvatar()==null){%>
+                                <% if(userheader ==null){%>
                                 <a href="profile.jsp" class="avatar dropdown-toggle" id="avatarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="./img/roll.jpg" alt="Avatar">
                                 </a>
+                                <%}else if(userheader.getAvatar()==null){%>
+                                 <a href="profile.jsp" class="avatar dropdown-toggle" id="avatarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="./img/roll.jpg" alt="Avatar">
+                                </a>
+                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="avatarDropdown">
+                                    <a class="dropdown-item" href="profile.jsp">Profile</a>
+                                    <a class="dropdown-item" href="change.jsp">change password</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="logout">Logout</a>
+                                </div>
                                 <%}else{%>
-                                <a href="profile.jsp"  class="avatar dropdown-toggle" id="avatarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <a href="profile.jsp"  class="avatar dropdown-toggle" id="avatarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="${sessionScope.currUser.avatar}" alt="Avatar" class="avatar">
                                 </a>
                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="avatarDropdown">
@@ -70,8 +80,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="logout">Logout</a>
                                 </div>
-                                <%}%>
-                               
+                               <%}%>
                             </div>
 
                         </li>

@@ -49,7 +49,7 @@ public class SignUpServlet extends HttpServlet {
         }
         
         //check email exist
-        if(!dao.checkEmailExist(email)){
+        if(dao.checkEmailExist(email)){
             request.setAttribute("status", "Email already exists");
             dispatcher = request.getRequestDispatcher("SignUp.jsp");
             dispatcher.forward(request, response);

@@ -81,7 +81,7 @@
                             %>
                             <c:choose>
             <c:when test="${sessionScope.qplistAd==null || sessionScope.qplistAd.size()==0}">
-                Not founds
+                you haven't do any quiz
             </c:when>
             <c:when test="${totalPageAd < 2}">
                 <nav aria-label="Page navigation example" class="d-flex justify-content-center">

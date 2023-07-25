@@ -263,6 +263,7 @@ public class QuizHandle extends HttpServlet {
                 }
 
                 request.setAttribute("SCORE", point);
+                request.setAttribute("numtrue", numQuesTrue);
                 request.setAttribute("attempt", attempt);
                 request.setAttribute("subId", subId);
                 request.setAttribute("quizzId", quizId);

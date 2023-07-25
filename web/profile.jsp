@@ -76,7 +76,13 @@
 
             <div id="avatar">
                 <p>avatar</p>
-                <img src="${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
+                <%if(userheader.getAvatar() == null){%>
+                                <img src="./img/roll.jpg" alt="Avatar" width="250" height="250">
+
+                <%}else{%>
+                                <img src="${sessionScope.currUser.avatar}" alt="Avatar" width="250" height="250">
+
+                <%}%>
                  
                
                 <%

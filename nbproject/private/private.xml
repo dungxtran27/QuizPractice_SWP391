@@ -3,18 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/AddNewQuiz.java</file>
             <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/MyRegistration.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/Role.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/QuizDetail.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/StudentList.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/QuizList.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/UserListController.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/UserList.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/QuizDetail.jsp</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/model/RegistrationDTO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/RegistrationDAO.java</file>
-            <file>file:/C:/Users/dungmuahahaha/Desktop/random/web/Components/Sidebar.jsp</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/DAO/QuizDAO.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/MyRegistration.java</file>
+            <file>file:/C:/Users/dungmuahahaha/Desktop/random/src/java/controller/QuizHistoryServlet.java</file>
         </group>
     </open-files>
 </project-private>

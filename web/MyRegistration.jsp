@@ -20,7 +20,7 @@
         <!-- Custom scripts -->
         <%@include file="Components/AllAccess.jsp"%>
         <style>
-        
+
         </style>
         <script type="text/javascript"></script>
     </head>
@@ -42,9 +42,6 @@
                         <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
                             <h1>My Registrations</h1>
 
-
-
-
                             <div class ="row">
                                 <div class="table-responsive">
                                     <table class="table  table-bordered table-hover table-striped">
@@ -55,7 +52,7 @@
                                                 <th class="col-2">Regist Date</th>
                                                 <th class="col-2">Price Package</th>
                                                 <th class="col-1">status</th>
-                                               
+
                                                 <th class="col-1">Action</th>
 
                                             </tr>
@@ -65,15 +62,15 @@
                                                 <tr class="text-center">
                                                     <td>${r.subjectId}</td>
                                                     <td>${r.getSubjectName()}</td>
-                                                  
+
                                                     <td>${r.regisDate}</td>
                                                     <td>${r.getPriceName()}</td>
-                                                  
+
                                                     <td>${r.status==true?"done":"not done"}</td>
                                                     <td>unEnroll</td>
-                                                                    </tr>
+                                                </tr>
                                             </c:forEach>
-                                        </tbody>>
+                                        </tbody>
                                     </table>
 
                                 </div>
@@ -84,5 +81,55 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="paging" >
+            <c:choose>
+                <c:when test="${rlist==null ||rlist.size()==0}">
+                    Not founds
+                </c:when>
+                <c:when test="${totalPage < 2}">
+                    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                        </ul>
+                    </nav>
+                </c:when>
+                <c:when test="${page < 2}">
+                    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                        <ul class="pagination">                               
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                            <li class="page-item"><a class="page-link" href="${pagination_url}page=${page+1}">Next</a></li>
+                        </ul>
+                    </nav>
+                </c:when>
+                <c:when test="${page+1 > totalPage}">
+                    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="${pagination_url}page=${page-1}">Previous</a></li>
+                                <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                        </ul>
+                    </nav>
+                </c:when>
+                <c:otherwise>
+                    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="${pagination_url}page=${page-1}">Previous</a></li>
+                                <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                            <li class="page-item"><a class="page-link" href="${pagination_url}page=${page+1}">Next</a></li>
+                        </ul>
+                    </nav>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div class="footer"> <%@include file="Components/footer.jsp" %></div>
+
     </body>
 </html>
