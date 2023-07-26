@@ -90,7 +90,7 @@ public class addTeacher extends HttpServlet {
 //
 //        //check email exist
         if (dao.checkEmailExist(email)) {
-            request.setAttribute("statusTeacher", "Email already exists");
+            request.getSession().setAttribute("statusTeacher", "Email already exists");
             request.getSession().setAttribute("checkSuccessTeacher", "false");
             response.sendRedirect("addTeacher.jsp");
 //
@@ -115,7 +115,7 @@ public class addTeacher extends HttpServlet {
         // pr.print(user.getEmail());
         request.getSession().setAttribute("checkSuccessTeacher", "true");
 
-        request.setAttribute("statusTeacher", "successfully");
+        request.getSession().setAttribute("statusTeacher", "add teacher successfully");
 //      
 //        dispatcher = request.getRequestDispatcher("user-list");
 //        

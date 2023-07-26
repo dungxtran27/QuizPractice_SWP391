@@ -19,7 +19,9 @@
                     
                    
                     <h1>User List</h1>
-                     
+                     <c:if test="${sessionScope.checkSuccessTeacher == 'true'}">
+                        <p class="text-success">${sessionScope.statusTeacher}</p>
+                    </c:if>
                   
                     <div class ="row">
                         <a class="btn btn-primary text-left" href="addTeacher.jsp">add teacher</a>

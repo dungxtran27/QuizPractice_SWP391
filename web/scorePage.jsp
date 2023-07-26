@@ -16,6 +16,17 @@
         <script type="text/javascript"></script>
     </head>
     <body class="sb-sidenav-toggled">
+         <div class="wrapper">
+
+            <!-- Sidebar  -->
+            <div style="" id="header">
+                <%@include file="Components/Sidebar.jsp" %>
+            </div>
+
+            <!-- Page Content  -->
+            <div id="content">
+
+                <%@include file="Components/header.jsp" %>
         <div id="layoutSidenav" class="mb-4">
             <div id="layoutSidenav_content">
                 <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
@@ -38,7 +49,10 @@
                 </div>
             </div>
         </div>
+        </div>
+        </div>
 
+        <div class="footer"> <%@include file="Components/footer.jsp" %></div>
 
 
 

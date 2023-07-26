@@ -40,6 +40,9 @@
                     <c:if test="${sessionScope.checkSuccess == 'true'}">
                         <p class="text-warning">${sessionScope.WARNING}</p>
                     </c:if>
+                    <c:if test="${sessionScope.checkMesss == 'true'}">
+                        <p class="text-danger">${sessionScope.messs}</p>
+                    </c:if>
                     <form action="search-quiz" method="POST" style="width: 900px; float: right !important">
 
                         <div class="input-group">
@@ -81,6 +84,7 @@
                                         <th class="col-1">Level</th>
                                         <th class="col-2">Subject</th>
                                         <th class="col-1">Total questions</th>
+                                        
                                         <th class="col-1">Duration</th>
                                         <th class="col-1">Pass Rate</th>
                                         <th class="col-2">Action</th>
@@ -111,7 +115,7 @@
                                                 <c:if test="${Q.status == 'false'}">
                                                     <a href="show-quiz?quizId=${Q.quizId}" class="btn btn-success ms-3"/>Active</a>
                                                 </c:if>
-                                                <a href="quiz-detail?quizId=${Q.quizId}&action=edit-quiz&message=0" class="btn btn-primary"/>Detail</a>
+                                                <a href="quiz-detail?quizId=${Q.quizId}&action=edit-quiz&message=0" class="btn btn-primary"/>edit</a>
                                             </td>
 
                                         </tr>
@@ -129,6 +133,7 @@
                                             <td>${Q.level}</td>
                                             <td>${Q.subjectName}</td>
                                             <td>${Q.totalQues}</td>
+                                           
                                             <td>${Q.duration} (mins)</td>
                                             <td>${Q.rate} (%)</td>
 

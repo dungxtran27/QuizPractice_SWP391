@@ -53,7 +53,8 @@
                                 <td>${qp.getPointPercent()}%</td>
                                 <td>${qp.getAttempt()}</td>
                                 <td>${qp.getTaken_date()}</td>
-                                <td><a href="ReviewQuizzServlet?quizzId=${qp.getQuizzId()}&attempt=${qp.getAttempt()}&subId=${qp.getSubId()}" class="btn btn-warning">review</a></td>
+                                <td>review</td>
+<!--                                <td><a href="ReviewQuizzServlet?quizzId=${qp.getQuizzId()}&attempt=${qp.getAttempt()}&subId=${qp.getSubId()}" class="btn btn-warning">review</a></td>-->
 
                             </tr>
                         </c:forEach>

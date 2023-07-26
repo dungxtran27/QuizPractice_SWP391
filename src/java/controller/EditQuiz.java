@@ -92,10 +92,10 @@ public class EditQuiz extends HttpServlet {
 
         if (quizByQuizId.getTitle().equalsIgnoreCase(title)
                 && quizByQuizId.getSubId() == subId
-                && quizByQuizId.getDescription().equalsIgnoreCase(description)
-                && quizByQuizId.getLevel().equalsIgnoreCase(level)
-                && quizByQuizId.getDuration() == durarion
-                && quizByQuizId.getRate() == rate
+//                && quizByQuizId.getDescription().equalsIgnoreCase(description)
+//                && quizByQuizId.getLevel().equalsIgnoreCase(level)
+//                && quizByQuizId.getDuration() == durarion
+//                && quizByQuizId.getRate() == rate
                 ) {
             if (totalQues > 30) {
                 request.getSession().setAttribute("messageQuiz", "Total Question must no more 30!!!");
@@ -112,7 +112,7 @@ public class EditQuiz extends HttpServlet {
                 response.sendRedirect("quiz-detail?quizId=" + quizId + "&action=edit-quiz&message=1");
             }
         } else {
-            request.getSession().setAttribute("messageQuiz", "Edit Error: You can only change Total Ques!!!");
+            request.getSession().setAttribute("messageQuiz", "Edit Error: You can't change title and subject!!!");
             request.getSession().setAttribute("CheckEditQuiz", "false");
             response.sendRedirect("quiz-detail?quizId=" + quizId + "&action=edit-quiz&message=1");
         }

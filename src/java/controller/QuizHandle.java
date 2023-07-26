@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import model.Answer;
@@ -140,6 +141,8 @@ public class QuizHandle extends HttpServlet {
 
                     } else {
                         out.print(check);
+                        request.getSession().setAttribute("messs", "you have no more attempt for this quiz");
+                        request.getSession().setAttribute("checkMesss", "true");
 
                         url = "quiz-list";
                     }
@@ -244,6 +247,10 @@ public class QuizHandle extends HttpServlet {
                 }
                 float point = pointForEachQuestion * correct;
                 point += multipleScore;
+                //point = Math.round(point*100)/100;
+                DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                point = Float.parseFloat(decimalFormat.format(point));
+               
                 float pointPercent = point * 10;
                 float numQuesTrueFloat = (point / 10) * questionIds.length;
                 int numQuesTrue = 0;

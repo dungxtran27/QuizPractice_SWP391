@@ -93,7 +93,7 @@
                                         </div>
                                         <div class="my-3 col-5">
                                             <c:if test="${sessionScope.action == 'edit-quiz'}">
-                                                <b class="col-2 pt-1">Attempt <input type="text" class="form-control" id="attempt" name="attempt" value="${requestScope.quizByQuizId.attempt}" placeholder="Total Question"></b>
+                                                <b class="col-2 pt-1">Attempt <input type="text" class="form-control" id="attempt" name="attempt" value="${requestScope.quizByQuizId.attempt}" placeholder="Attempt"></b>
                                                 </c:if>
                                                 <c:if test="${sessionScope.action == 'add-quiz'}">
                                                 <b class="col-2 pt-1">Attempt <input type="text" class="form-control" id="attempt" name="attempt" placeholder="Attempt"></b>
